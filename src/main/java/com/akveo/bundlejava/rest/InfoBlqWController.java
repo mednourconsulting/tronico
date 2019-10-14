@@ -1,0 +1,48 @@
+package com.akveo.bundlejava.rest;
+
+import com.akveo.bundlejava.model.InfoBlqW;
+import com.akveo.bundlejava.repository.InfoBlqWRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/infoBloquant")
+@CrossOrigin("*")
+public class InfoBlqWController {
+    @Autowired
+    private InfoBlqWRepository infoBlqWRepository;
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAll")
+    public ResponseEntity<List<InfoBlqW>> getAll() {
+        return ResponseEntity.ok(infoBlqWRepository.findAll());
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/create")
+    public ResponseEntity<InfoBlqW> createSpleetEcartOF(@RequestBody InfoBlqW infoBlqW) {
+        return ResponseEntity.ok(infoBlqWRepository.save(infoBlqW));
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/update")
+    public ResponseEntity<InfoBlqW> updateSpleetEcartOF(@RequestBody InfoBlqW infoBlqW) {
+        return ResponseEntity.ok(infoBlqWRepository.save(infoBlqW));
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<InfoBlqW> deleteSpleetEcartOF(@PathVariable("id") Long id) {
+        InfoBlqW infoBlqWLoaded = infoBlqWRepository.findById(id).get();
+        if (infoBlqWLoaded==null){
+            System.out.println("NOT FOUND");
+            ResponseEntity.notFound();
+        }
+        infoBlqWRepository.deleteById(id);
+        return ResponseEntity.ok(infoBlqWLoaded);
+    }
+}
