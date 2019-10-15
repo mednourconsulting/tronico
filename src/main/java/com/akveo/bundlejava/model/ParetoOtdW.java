@@ -18,7 +18,7 @@ public class ParetoOtdW implements Serializable {
     private String sujetSupport;
     private String qui;
     private String bloquantEuro;
-    private String actManees;
+    private String actMenees;
     private String delai; // [s1,s2] ou RAS
     private Double tauxAbst;
     private String escalader;
@@ -27,14 +27,14 @@ public class ParetoOtdW implements Serializable {
     public ParetoOtdW() {
     }
 
-    public ParetoOtdW(Long year, Long week, String faitMq, String sujetSupport, String qui, String bloquantEuro, String actManees, String delai, Double tauxAbst, String escalader, String abstRaison) {
+    public ParetoOtdW(Long year, Long week, String faitMq, String sujetSupport, String qui, String bloquantEuro, String actMenees, String delai, Double tauxAbst, String escalader, String abstRaison) {
         this.year = year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         this.week = week;
         this.faitMq = faitMq;
         this.sujetSupport = sujetSupport;
         this.qui = qui;
         this.bloquantEuro = bloquantEuro;
-        this.actManees = actManees;
+        this.actMenees = actMenees;
         this.delai = delai;
         this.tauxAbst = tauxAbst;
         this.escalader = escalader;
@@ -101,12 +101,12 @@ public class ParetoOtdW implements Serializable {
         this.bloquantEuro = bloquantEuro;
     }
 
-    public String getActManees() {
-        return actManees;
+    public String getactMenees() {
+        return actMenees;
     }
 
-    public void setActManees(String actManees) {
-        this.actManees = actManees;
+    public void setactMenees(String actMenees) {
+        this.actMenees = actMenees;
     }
 
     public String getDelai() {
@@ -151,7 +151,7 @@ public class ParetoOtdW implements Serializable {
                 ", sujetSupport='" + sujetSupport + '\'' +
                 ", qui='" + qui + '\'' +
                 ", bloquantEuro='" + bloquantEuro + '\'' +
-                ", actManees='" + actManees + '\'' +
+                ", actMenees='" + actMenees + '\'' +
                 ", delai='" + delai + '\'' +
                 ", tauxAbst=" + tauxAbst +
                 ", escalader='" + escalader + '\'' +
