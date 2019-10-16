@@ -20,6 +20,7 @@ public class EvolutionhController {
     @Autowired
     private EvolutionhRepository evolutionhRepository;
     // get All reocrds
+    @Autowired
     private EvolutionhService evolutionhService;
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")

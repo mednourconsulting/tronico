@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/PlanActPcRepository")
+@RequestMapping("/planActPcd")
 @CrossOrigin("*")
 public class PlanActPcdController {
     @Autowired
