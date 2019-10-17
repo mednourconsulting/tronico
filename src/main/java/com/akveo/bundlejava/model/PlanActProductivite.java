@@ -10,7 +10,7 @@ public class PlanActProductivite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Double ecart;
+    private Double ecart = 0D;
     private String produit;
     private String besoin;
     private String cause;

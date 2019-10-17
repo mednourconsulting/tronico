@@ -12,15 +12,15 @@ public class ParetoOtdW implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long year;
-    private Long week;
+    private Long year= Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+    private Long week=0L;
     private String faitMq;
     private String sujetSupport;
     private String qui;
     private String bloquantEuro;
     private String actMenees;
     private String delai; // [s1,s2] ou RAS
-    private Double tauxAbst;
+    private Double tauxAbst=0D;
     private String escalader;
     private String abstRaison;
 

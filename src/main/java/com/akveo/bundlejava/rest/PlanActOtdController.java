@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 @RestController
-@RequestMapping("/planActionOtd")
+@RequestMapping("/planActOtd")
 @CrossOrigin("*")
 public class PlanActOtdController {
     @Autowired

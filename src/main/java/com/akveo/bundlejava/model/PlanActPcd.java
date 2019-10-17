@@ -11,8 +11,8 @@ public class PlanActPcd implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week;
-    private Long ecartEuro;
+    private Long week=0L;
+    private Long ecartEuro=0L;
     private String besoin;
     private String cause;
     @Column(columnDefinition = "TEXT")

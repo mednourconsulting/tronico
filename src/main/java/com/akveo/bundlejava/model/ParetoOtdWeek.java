@@ -14,10 +14,10 @@ public class ParetoOtdWeek implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week;
-    private Long bjectif;
-    private Long realise;
-    private Long ecart;
+    private Long week=0L;
+    private Long bjectif=0L;
+    private Long realise=0L;
+    private Long ecart=0L;
 
     public ParetoOtdWeek() {
     }

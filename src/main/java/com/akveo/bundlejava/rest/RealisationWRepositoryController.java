@@ -1,7 +1,9 @@
 package com.akveo.bundlejava.rest;
 
+import com.akveo.bundlejava.charts.RealisationWChart;
 import com.akveo.bundlejava.model.RealisationW;
 import com.akveo.bundlejava.repository.RealisationWRepository;
+import com.akveo.bundlejava.service.RealisationWService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,6 +16,9 @@ import java.util.List;
 public class RealisationWRepositoryController {
     @Autowired
     private RealisationWRepository realisationWRepository;
+    @Autowired
+    private RealisationWService realisationWService;
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<RealisationW>> getAll() {
@@ -41,4 +46,11 @@ public class RealisationWRepositoryController {
         realisationWRepository.deleteById(id);
         return ResponseEntity.ok(realisationWLoaded);
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getChartData/{year}")
+    public ResponseEntity<RealisationWChart> getChartData(@PathVariable("year") Long year){
+        System.out.println(realisationWService.getChartData(year));
+        return ResponseEntity.ok(realisationWService.getChartData(year));
+    }
+
 }

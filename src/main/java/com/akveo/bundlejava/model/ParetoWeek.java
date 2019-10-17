@@ -10,8 +10,8 @@ public class ParetoWeek implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String produit;
-    private Double ecartCarte;
-    private Double ecart;
+    private Double ecartCarte=0D;
+    private Double ecart=0D;
     private String raison;
     @ManyToOne
     private ParetoOtdWeek paretoOtdWeek;

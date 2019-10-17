@@ -13,10 +13,10 @@ public class OtdW implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week;
-    private Double otdRealise;
-    private Double objectif;
-    private Double ecart;
+    private Long week=0L;
+    private Double otdRealise=0D;
+    private Double objectif=0D;
+    private Double ecart=0D;
 
     public OtdW() {
     }

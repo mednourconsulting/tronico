@@ -5,20 +5,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Calendar;
 
 @Entity
 public class PcdWeek implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long year;
-    private Long week;
-    private Long objectifEuro;
-    private Long objectifQte;
-    private Long pcdEuro;
-    private Long pcdQte;
-    private Long ecartEuro;
-    private Long ecartQte;
+    private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+    private Long week = 0L;
+    private Long objectifEuro = 0L;
+    private Long objectifQte = 0L;
+    private Long pcdEuro = 0L;
+    private Long pcdQte = 0L;
+    private Long ecartEuro = 0L;
+    private Long ecartQte = 0L;
 
     public PcdWeek() {
     }

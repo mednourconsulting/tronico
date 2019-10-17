@@ -11,7 +11,7 @@ public class SpleetEcartOF implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long nClient;
+    private Long nClient = 0L;
     private String lot;
     private String descProduit;
     private int qteBase;

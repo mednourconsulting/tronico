@@ -1,8 +1,10 @@
 package com.akveo.bundlejava.rest;
 
+import com.akveo.bundlejava.charts.PcdWeekChartData;
 import com.akveo.bundlejava.model.PcdWeek;
 import com.akveo.bundlejava.repository.PcdWeekRepository;
 
+import com.akveo.bundlejava.service.PcdWeekService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +17,9 @@ import java.util.List;
 public class PcdWeekController {
     @Autowired
     private PcdWeekRepository pcdWeekRepository;
+    @Autowired
+    private PcdWeekService pcdWeekService;
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<PcdWeek>> getAll() {
@@ -41,5 +46,12 @@ public class PcdWeekController {
         }
         pcdWeekRepository.deleteById(id);
         return ResponseEntity.ok(pcdWeekLoaded);
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getChartData/{year}")
+    public ResponseEntity<PcdWeekChartData> getChartData(@PathVariable("year") Long year){
+        System.out.println(pcdWeekService.getChartData(year));
+        return ResponseEntity.ok(pcdWeekService.getChartData(year));
     }
 }

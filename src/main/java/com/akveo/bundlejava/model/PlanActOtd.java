@@ -14,7 +14,7 @@ public class PlanActOtd implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week;
+    private Long week=0L;
     private String produit;
     private String besoin;
     private String cause;

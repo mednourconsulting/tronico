@@ -14,11 +14,11 @@ public class Evolutionh implements Serializable {
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
     private String week;
-    private Double budjet;
+    private Double budjet=0D;
     private Integer heuresCDE = Integer.valueOf(0);
     private Integer heuresPrevus = Integer.valueOf(0);
-    private Double facture;
-    private Double ecart;
+    private Double facture=0D;
+    private Double ecart=0D;
 
     public Evolutionh(Long year, String week, Double budjet, Integer heuresCDE, Integer heuresPrevus, Double facture, Double ecart) {
         this.year = year;

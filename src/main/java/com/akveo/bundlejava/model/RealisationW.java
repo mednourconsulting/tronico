@@ -13,10 +13,10 @@ public class RealisationW implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week;
-    private Long heuresRealise;
-    private Long objectif;
-    private Long ecart;
+    private Long week = 0L;
+    private Long heuresRealise = 0L;
+    private Long objectif = 0L;
+    private Long ecart = 0L;
 
     public RealisationW() {
     }

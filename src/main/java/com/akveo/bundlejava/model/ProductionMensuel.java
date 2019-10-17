@@ -14,10 +14,10 @@ public class ProductionMensuel implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long month;
-    private Double productivite;
-    private Double objectif;
-    private Double ecart;
+    private Long month = 0L;
+    private Double productivite = 0D;
+    private Double objectif = 0D;
+    private Double ecart = 0D;
 
     public ProductionMensuel() {
     }
