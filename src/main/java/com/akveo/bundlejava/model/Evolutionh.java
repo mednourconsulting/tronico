@@ -13,14 +13,14 @@ public class Evolutionh implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private String week;
+    private Long week;
     private Double budjet=0D;
     private Integer heuresCDE = Integer.valueOf(0);
     private Integer heuresPrevus = Integer.valueOf(0);
-    private Double facture=0D;
-    private Double ecart=0D;
+    private Double facture = Double.valueOf(0);
+    private Double ecart= Double.valueOf(0);
 
-    public Evolutionh(Long year, String week, Double budjet, Integer heuresCDE, Integer heuresPrevus, Double facture, Double ecart) {
+    public Evolutionh(Long year, Long week, Double budjet, Integer heuresCDE, Integer heuresPrevus, Double facture, Double ecart) {
         this.year = year;
         this.week = week;
         this.budjet = budjet;
@@ -41,11 +41,11 @@ public class Evolutionh implements Serializable {
         this.year = year;
     }
 
-    public String getWeek() {
+    public Long getWeek() {
         return week;
     }
 
-    public void setWeek(String week) {
+    public void setWeek(Long week) {
         this.week = week;
     }
 

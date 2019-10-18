@@ -13,13 +13,13 @@ public class PcdWeek implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week = 0L;
-    private Long objectifEuro = 0L;
-    private Long objectifQte = 0L;
-    private Long pcdEuro = 0L;
-    private Long pcdQte = 0L;
-    private Long ecartEuro = 0L;
-    private Long ecartQte = 0L;
+    private Long week = Long.valueOf(0);
+    private Long objectifEuro = Long.valueOf(0);
+    private Long objectifQte = Long.valueOf(0);
+    private Long pcdEuro = Long.valueOf(0);
+    private Long pcdQte = Long.valueOf(0);
+    private Long ecartEuro = Long.valueOf(0);
+    private Long ecartQte = Long.valueOf(0);
 
     public PcdWeek() {
     }

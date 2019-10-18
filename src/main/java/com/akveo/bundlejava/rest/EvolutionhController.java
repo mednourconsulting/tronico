@@ -53,6 +53,7 @@ public class EvolutionhController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Evolutionh> createSpleetEcartOF(@RequestBody Evolutionh evolutionh) {
+        evolutionh.setEcart(Double.valueOf(evolutionh.getHeuresPrevus()-evolutionh.getHeuresCDE()));
         return ResponseEntity.ok(evolutionhRepository.save(evolutionh));
     }
 
