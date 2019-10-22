@@ -28,8 +28,9 @@ public class SpleetEcartOFController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<SpleetEcartOF> createSpleetEcartOF(@RequestBody SpleetEcartOF spleetEcartOF){
-       return ResponseEntity.ok(spleetEcartOFRepository.save(spleetEcartOF));
+        return ResponseEntity.ok(spleetEcartOFRepository.save(spleetEcartOF));
     }
+
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")

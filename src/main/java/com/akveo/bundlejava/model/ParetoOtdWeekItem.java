@@ -5,15 +5,16 @@ import java.io.Serializable;
 
 
 @Entity
-public class ParetoWeek implements Serializable {
+public class ParetoOtdWeekItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String produit;
+    private Produit produit;
     private Double ecartCarte=0D;
     private Double ecart=0D;
     private String raison;
     private String atelier;
+    private ParetoOtdWeek paretoOtdWeek;
 
     @Override
     public String toString() {
@@ -35,11 +36,11 @@ public class ParetoWeek implements Serializable {
         this.id = id;
     }
 
-    public String getProduit() {
+    public Produit getProduit() {
         return produit;
     }
 
-    public void setProduit(String produit) {
+    public void setProduit(Produit produit) {
         this.produit = produit;
     }
 
@@ -75,11 +76,20 @@ public class ParetoWeek implements Serializable {
         this.atelier = atelier;
     }
 
-    public ParetoWeek(String produit, Double ecartCarte, Double ecart, String raison, String atelier) {
+    public ParetoOtdWeek getParetoOtdWeek() {
+        return paretoOtdWeek;
+    }
+
+    public void setParetoOtdWeek(ParetoOtdWeek paretoOtdWeek) {
+        this.paretoOtdWeek = paretoOtdWeek;
+    }
+
+    public ParetoOtdWeekItem(Produit produit, Double ecartCarte, Double ecart, String raison, String atelier, ParetoOtdWeek paretoOtdWeek) {
         this.produit = produit;
         this.ecartCarte = ecartCarte;
         this.ecart = ecart;
         this.raison = raison;
         this.atelier = atelier;
+        this.paretoOtdWeek = paretoOtdWeek;
     }
 }
