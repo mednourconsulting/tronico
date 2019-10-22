@@ -17,16 +17,15 @@ public class RealisationW implements Serializable {
     private Long heuresRealise = 0L;
     private Long objectif = 0L;
     private Long ecart = 0L;
+    private String atelier;
 
-    public RealisationW() {
-    }
-
-    public RealisationW(Long year, Long week, Long heuresRealise, Long objectif, Long ecart) {
+    public RealisationW(Long year, Long week, Long heuresRealise, Long objectif, Long ecart, String atelier) {
         this.year = year;
         this.week = week;
         this.heuresRealise = heuresRealise;
         this.objectif = objectif;
         this.ecart = ecart;
+        this.atelier = atelier;
     }
 
     public Long getId() {
@@ -77,6 +76,14 @@ public class RealisationW implements Serializable {
         this.ecart = ecart;
     }
 
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
     @Override
     public String toString() {
         return "RealisationW{" +
@@ -86,6 +93,7 @@ public class RealisationW implements Serializable {
                 ", heuresRealise=" + heuresRealise +
                 ", objectif=" + objectif +
                 ", ecart=" + ecart +
+                ", atelier='" + atelier + '\'' +
                 '}';
     }
 }

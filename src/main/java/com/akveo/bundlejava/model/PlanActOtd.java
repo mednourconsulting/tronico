@@ -26,11 +26,9 @@ public class PlanActOtd implements Serializable {
     private String actionEfficace;
     private String generalisationPossible;
     private String comment;
+    private String atelier;
 
-    public PlanActOtd() {
-    }
-
-    public PlanActOtd(Long year, Long week, String produit, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPossible, String comment) {
+    public PlanActOtd(Long year, Long week, String produit, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPossible, String comment, String atelier) {
         this.year = year;
         this.week = week;
         this.produit = produit;
@@ -44,6 +42,7 @@ public class PlanActOtd implements Serializable {
         this.actionEfficace = actionEfficace;
         this.generalisationPossible = generalisationPossible;
         this.comment = comment;
+        this.atelier = atelier;
     }
 
     public Long getId() {
@@ -158,6 +157,14 @@ public class PlanActOtd implements Serializable {
         this.comment = comment;
     }
 
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
     @Override
     public String toString() {
         return "PlanActOtd{" +
@@ -175,6 +182,7 @@ public class PlanActOtd implements Serializable {
                 ", actionEfficace='" + actionEfficace + '\'' +
                 ", generalisationPossible='" + generalisationPossible + '\'' +
                 ", comment='" + comment + '\'' +
+                ", atelier='" + atelier + '\'' +
                 '}';
     }
 }

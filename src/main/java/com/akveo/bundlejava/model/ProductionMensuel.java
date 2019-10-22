@@ -18,16 +18,15 @@ public class ProductionMensuel implements Serializable {
     private Double productivite = 0D;
     private Double objectif = 0D;
     private Double ecart = 0D;
+    private String atelier;
 
-    public ProductionMensuel() {
-    }
-
-    public ProductionMensuel(Long year, Long month, Double productivite, Double objectif, Double ecart) {
+    public ProductionMensuel(Long year, Long month, Double productivite, Double objectif, Double ecart, String atelier) {
         this.year = year;
         this.month = month;
         this.productivite = productivite;
         this.objectif = objectif;
         this.ecart = ecart;
+        this.atelier = atelier;
     }
 
     public Long getId() {
@@ -78,6 +77,14 @@ public class ProductionMensuel implements Serializable {
         this.ecart = ecart;
     }
 
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
     @Override
     public String toString() {
         return "ProductionMensuel{" +
@@ -87,6 +94,7 @@ public class ProductionMensuel implements Serializable {
                 ", productivite=" + productivite +
                 ", objectif=" + objectif +
                 ", ecart=" + ecart +
+                ", atelier='" + atelier + '\'' +
                 '}';
     }
 }

@@ -20,11 +20,9 @@ public class PcdWeek implements Serializable {
     private Long pcdQte = Long.valueOf(0);
     private Long ecartEuro = Long.valueOf(0);
     private Long ecartQte = Long.valueOf(0);
+    private String atelier;
 
-    public PcdWeek() {
-    }
-
-    public PcdWeek(Long year, Long week, Long objectifEuro, Long objectifQte, Long pcdEuro, Long pcdQte, Long ecartEuro, Long ecartQte) {
+    public PcdWeek(Long year, Long week, Long objectifEuro, Long objectifQte, Long pcdEuro, Long pcdQte, Long ecartEuro, Long ecartQte, String atelier) {
         this.year = year;
         this.week = week;
         this.objectifEuro = objectifEuro;
@@ -33,6 +31,7 @@ public class PcdWeek implements Serializable {
         this.pcdQte = pcdQte;
         this.ecartEuro = ecartEuro;
         this.ecartQte = ecartQte;
+        this.atelier = atelier;
     }
 
     public Long getId() {
@@ -107,6 +106,14 @@ public class PcdWeek implements Serializable {
         this.ecartQte = ecartQte;
     }
 
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
     @Override
     public String toString() {
         return "PcdWeek{" +
@@ -119,6 +126,7 @@ public class PcdWeek implements Serializable {
                 ", pcdQte=" + pcdQte +
                 ", ecartEuro=" + ecartEuro +
                 ", ecartQte=" + ecartQte +
+                ", atelier='" + atelier + '\'' +
                 '}';
     }
 }

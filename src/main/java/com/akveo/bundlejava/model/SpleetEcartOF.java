@@ -19,8 +19,9 @@ public class SpleetEcartOF implements Serializable {
     private String newTips;
     private String comment;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+    private String atelier;
 
-    public SpleetEcartOF(Long nClient, String lot, String descProduit, int qteBase, int qteSolde, String newTips, String comment) {
+    public SpleetEcartOF(Long nClient, String lot, String descProduit, int qteBase, int qteSolde, String newTips, String comment, Long year, String atelier) {
         this.nClient = nClient;
         this.lot = lot;
         this.descProduit = descProduit;
@@ -28,17 +29,8 @@ public class SpleetEcartOF implements Serializable {
         this.qteSolde = qteSolde;
         this.newTips = newTips;
         this.comment = comment;
-    }
-
-    public SpleetEcartOF() {
-    }
-
-    public Long getYear() {
-        return year;
-    }
-
-    public void setYear(Long year) {
         this.year = year;
+        this.atelier = atelier;
     }
 
     public Long getId() {
@@ -103,5 +95,37 @@ public class SpleetEcartOF implements Serializable {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Long getYear() {
+        return year;
+    }
+
+    public void setYear(Long year) {
+        this.year = year;
+    }
+
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
+    @Override
+    public String toString() {
+        return "SpleetEcartOF{" +
+                "id=" + id +
+                ", nClient=" + nClient +
+                ", lot='" + lot + '\'' +
+                ", descProduit='" + descProduit + '\'' +
+                ", qteBase=" + qteBase +
+                ", qteSolde=" + qteSolde +
+                ", newTips='" + newTips + '\'' +
+                ", comment='" + comment + '\'' +
+                ", year=" + year +
+                ", atelier='" + atelier + '\'' +
+                '}';
     }
 }

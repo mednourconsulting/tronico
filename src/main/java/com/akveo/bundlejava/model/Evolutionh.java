@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "evolutionh")
-public class Evolutionh implements Serializable {
+public class Evolutionh<string> implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

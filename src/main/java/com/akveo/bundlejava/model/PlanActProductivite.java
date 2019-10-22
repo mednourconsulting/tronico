@@ -23,11 +23,10 @@ public class PlanActProductivite {
     private String actionEfficace;
     private String generalisationPosssible;
     private String comment;
+    private String atelier;
 
-    public PlanActProductivite() {
-    }
 
-    public PlanActProductivite(Long year, Double ecart, String produit, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPosssible, String comment) {
+    public PlanActProductivite(Long year, Double ecart, String produit, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPosssible, String comment, String atelier) {
         this.year = year;
         this.ecart = ecart;
         this.produit = produit;
@@ -41,6 +40,10 @@ public class PlanActProductivite {
         this.actionEfficace = actionEfficace;
         this.generalisationPosssible = generalisationPosssible;
         this.comment = comment;
+        this.atelier = atelier;
+    }
+
+    public PlanActProductivite() {
     }
 
     public Long getId() {
@@ -155,6 +158,14 @@ public class PlanActProductivite {
         this.comment = comment;
     }
 
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
     @Override
     public String toString() {
         return "PlanActProductivite{" +
@@ -172,6 +183,7 @@ public class PlanActProductivite {
                 ", actionEfficace='" + actionEfficace + '\'' +
                 ", generalisationPosssible='" + generalisationPosssible + '\'' +
                 ", comment='" + comment + '\'' +
+                ", atelier='" + atelier + '\'' +
                 '}';
     }
 }

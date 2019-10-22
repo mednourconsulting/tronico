@@ -18,16 +18,9 @@ public class ParetoOtdWeek implements Serializable {
     private Long bjectif=0L;
     private Long realise=0L;
     private Long ecart=0L;
+    private String atelier;
 
     public ParetoOtdWeek() {
-    }
-
-    public ParetoOtdWeek(Long year, Long week, Long bjectif, Long realise, Long ecart) {
-        this.year = year;
-        this.week = week;
-        this.bjectif = bjectif;
-        this.realise = realise;
-        this.ecart = ecart;
     }
 
     public Long getId() {
@@ -78,6 +71,14 @@ public class ParetoOtdWeek implements Serializable {
         this.ecart = ecart;
     }
 
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
     @Override
     public String toString() {
         return "ParetoOtdWeek{" +
@@ -87,6 +88,7 @@ public class ParetoOtdWeek implements Serializable {
                 ", bjectif=" + bjectif +
                 ", realise=" + realise +
                 ", ecart=" + ecart +
+                ", atelier='" + atelier + '\'' +
                 '}';
     }
 }

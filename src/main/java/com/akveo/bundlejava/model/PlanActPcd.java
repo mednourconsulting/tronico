@@ -24,8 +24,9 @@ public class PlanActPcd implements Serializable {
     private String actionEfficace;
     private String generalisationPosssible;
     private String comment;
+    private String atelier;
 
-    public PlanActPcd(Long year, Long week, Long ecartEuro, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPosssible, String comment) {
+    public PlanActPcd(Long year, Long week, Long ecartEuro, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPosssible, String comment, String atelier) {
         this.year = year;
         this.week = week;
         this.ecartEuro = ecartEuro;
@@ -39,9 +40,7 @@ public class PlanActPcd implements Serializable {
         this.actionEfficace = actionEfficace;
         this.generalisationPosssible = generalisationPosssible;
         this.comment = comment;
-    }
-
-    public PlanActPcd() {
+        this.atelier = atelier;
     }
 
     public Long getId() {
@@ -156,6 +155,14 @@ public class PlanActPcd implements Serializable {
         this.comment = comment;
     }
 
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
     @Override
     public String toString() {
         return "PlanActPcd{" +
@@ -173,6 +180,7 @@ public class PlanActPcd implements Serializable {
                 ", actionEfficace='" + actionEfficace + '\'' +
                 ", generalisationPosssible='" + generalisationPosssible + '\'' +
                 ", comment='" + comment + '\'' +
+                ", atelier='" + atelier + '\'' +
                 '}';
     }
 }

@@ -13,20 +13,32 @@ public class OtdW implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week=0L;
-    private Double otdRealise=0D;
-    private Double objectif=0D;
-    private Double ecart=0D;
+    private Long week = 0L;
+    private Double otdRealise = 0D;
+    private Double objectif = 0D;
+    private Double ecart = 0D;
+    private String atelier;
 
-    public OtdW() {
-    }
-
-    public OtdW(Long year, Long week, Double otdRealise, Double objectif, Double ecart) {
+    public OtdW(Long year, Long week, Double otdRealise, Double objectif, Double ecart, String atelier) {
         this.year = year;
         this.week = week;
         this.otdRealise = otdRealise;
         this.objectif = objectif;
         this.ecart = ecart;
+        this.atelier = atelier;
+    }
+
+    @Override
+    public String toString() {
+        return "OtdW{" +
+                "id=" + id +
+                ", year=" + year +
+                ", week=" + week +
+                ", otdRealise=" + otdRealise +
+                ", objectif=" + objectif +
+                ", ecart=" + ecart +
+                ", atelier='" + atelier + '\'' +
+                '}';
     }
 
     public Long getId() {
@@ -75,5 +87,13 @@ public class OtdW implements Serializable {
 
     public void setEcart(Double ecart) {
         this.ecart = ecart;
+    }
+
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
     }
 }
