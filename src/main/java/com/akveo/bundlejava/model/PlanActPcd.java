@@ -26,6 +26,9 @@ public class PlanActPcd implements Serializable {
     private String comment;
     private String atelier;
 
+    public PlanActPcd() {
+    }
+
     public PlanActPcd(Long year, Long week, Long ecartEuro, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPosssible, String comment, String atelier) {
         this.year = year;
         this.week = week;

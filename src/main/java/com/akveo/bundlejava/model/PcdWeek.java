@@ -12,8 +12,8 @@ public class PcdWeek implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week = Long.valueOf(0);
+    private Long year =Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+    private Long week = Long.valueOf(0) ;
     private Long objectifEuro = Long.valueOf(0);
     private Long objectifQte = Long.valueOf(0);
     private Long pcdEuro = Long.valueOf(0);
@@ -21,6 +21,9 @@ public class PcdWeek implements Serializable {
     private Long ecartEuro = Long.valueOf(0);
     private Long ecartQte = Long.valueOf(0);
     private String atelier;
+
+    public PcdWeek() {
+    }
 
     public PcdWeek(Long year, Long week, Long objectifEuro, Long objectifQte, Long pcdEuro, Long pcdQte, Long ecartEuro, Long ecartQte, String atelier) {
         this.year = year;

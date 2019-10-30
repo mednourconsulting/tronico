@@ -19,6 +19,9 @@ public class RealisationW implements Serializable {
     private Long ecart = 0L;
     private String atelier;
 
+    public RealisationW() {
+    }
+
     public RealisationW(Long year, Long week, Long heuresRealise, Long objectif, Long ecart, String atelier) {
         this.year = year;
         this.week = week;

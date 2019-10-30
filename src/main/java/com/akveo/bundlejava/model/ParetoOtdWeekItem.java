@@ -9,23 +9,26 @@ public class ParetoOtdWeekItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    // @ManyToOne
     private Produit produit;
     private Double ecartCarte=0D;
     private Double ecart=0D;
     private String raison;
     private String atelier;
+    @ManyToOne
     private ParetoOtdWeek paretoOtdWeek;
 
-    @Override
-    public String toString() {
-        return "ParetoWeek{" +
-                "id=" + id +
-                ", produit='" + produit + '\'' +
-                ", ecartCarte=" + ecartCarte +
-                ", ecart=" + ecart +
-                ", raison='" + raison + '\'' +
-                ", atelier='" + atelier + '\'' +
-                '}';
+    public ParetoOtdWeekItem() {
+    }
+
+    public ParetoOtdWeekItem(Produit produit, Double ecartCarte, Double ecart, String raison, String atelier, ParetoOtdWeek paretoOtdWeek) {
+        this.produit = produit;
+        this.ecartCarte = ecartCarte;
+        this.ecart = ecart;
+        this.raison = raison;
+        this.atelier = atelier;
+
+        this.paretoOtdWeek = paretoOtdWeek;
     }
 
     public Long getId() {
@@ -84,12 +87,16 @@ public class ParetoOtdWeekItem implements Serializable {
         this.paretoOtdWeek = paretoOtdWeek;
     }
 
-    public ParetoOtdWeekItem(Produit produit, Double ecartCarte, Double ecart, String raison, String atelier, ParetoOtdWeek paretoOtdWeek) {
-        this.produit = produit;
-        this.ecartCarte = ecartCarte;
-        this.ecart = ecart;
-        this.raison = raison;
-        this.atelier = atelier;
-        this.paretoOtdWeek = paretoOtdWeek;
+    @Override
+    public String toString() {
+        return "ParetoOtdWeekItem{" +
+                "id=" + id +
+                ", produit=" + produit +
+                ", ecartCarte=" + ecartCarte +
+                ", ecart=" + ecart +
+                ", raison='" + raison + '\'' +
+                ", atelier='" + atelier + '\'' +
+                ", paretoOtdWeek=" + paretoOtdWeek +
+                '}';
     }
 }

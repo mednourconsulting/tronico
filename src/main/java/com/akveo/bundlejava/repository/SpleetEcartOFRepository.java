@@ -10,6 +10,6 @@ import java.util.List;
 @Repository //CRud
 public interface SpleetEcartOFRepository extends JpaRepository<SpleetEcartOF, Long> {
     public List<SpleetEcartOF> findByYear(Long year);
-
     public List<SpleetEcartOF> findByComment(String comment);
+
 }

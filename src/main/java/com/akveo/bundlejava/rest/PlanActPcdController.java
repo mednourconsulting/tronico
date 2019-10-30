@@ -17,6 +17,7 @@ public class PlanActPcdController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<PlanActPcd>> getAll() {
+        List<PlanActPcd> data = planActPcdRepository.findAll();
         return ResponseEntity.ok(planActPcdRepository.findAll());
     }
 

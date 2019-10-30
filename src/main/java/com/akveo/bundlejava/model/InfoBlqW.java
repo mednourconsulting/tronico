@@ -27,6 +27,9 @@ public class InfoBlqW implements Serializable {
     private String abstRaison;
     private String atelier;
 
+    public InfoBlqW() {
+    }
+
     public InfoBlqW(Long week, Long year, String fmq, String sujetSupport, String qui, String bloquantEuro, String actMenees, String delai, Double tauxAbst, String escalader, String abstRaison, String atelier) {
         this.week = week;
         this.year = year;

@@ -19,14 +19,8 @@ public class OtdW implements Serializable {
     private Double ecart = 0D;
     private String atelier;
 
-    public OtdW(Long year, Long week, Double otdRealise, Double objectif, Double ecart, String atelier) {
-        this.year = year;
-        this.week = week;
-        this.otdRealise = otdRealise;
-        this.objectif = objectif;
-        this.ecart = ecart;
-        this.atelier = atelier;
-    }
+    public OtdW() { }
+
 
     @Override
     public String toString() {

@@ -14,7 +14,8 @@ public class PlanActOtd implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week=0L;
+    private Long week;
+    private double ecartEuro= 0D;
     private String produit;
     private String besoin;
     private String cause;
@@ -28,21 +29,7 @@ public class PlanActOtd implements Serializable {
     private String comment;
     private String atelier;
 
-    public PlanActOtd(Long year, Long week, String produit, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPossible, String comment, String atelier) {
-        this.year = year;
-        this.week = week;
-        this.produit = produit;
-        this.besoin = besoin;
-        this.cause = cause;
-        this.action = action;
-        this.qui = qui;
-        this.dateDebut = dateDebut;
-        this.dateObjectif = dateObjectif;
-        this.dateRealisation = dateRealisation;
-        this.actionEfficace = actionEfficace;
-        this.generalisationPossible = generalisationPossible;
-        this.comment = comment;
-        this.atelier = atelier;
+    public PlanActOtd() {
     }
 
     public Long getId() {
@@ -67,6 +54,14 @@ public class PlanActOtd implements Serializable {
 
     public void setWeek(Long week) {
         this.week = week;
+    }
+
+    public double getEcartEuro() {
+        return ecartEuro;
+    }
+
+    public void setEcartEuro(Long ecartEuro) {
+        this.ecartEuro = ecartEuro;
     }
 
     public String getProduit() {
@@ -165,12 +160,31 @@ public class PlanActOtd implements Serializable {
         this.atelier = atelier;
     }
 
+    public PlanActOtd(Long year, Long week, double ecartEuro, String produit, String besoin, String cause, String action, String qui, Date dateDebut, Date dateObjectif, Date dateRealisation, String actionEfficace, String generalisationPossible, String comment, String atelier) {
+        this.year = year;
+        this.week = week;
+        this.ecartEuro = ecartEuro;
+        this.produit = produit;
+        this.besoin = besoin;
+        this.cause = cause;
+        this.action = action;
+        this.qui = qui;
+        this.dateDebut = dateDebut;
+        this.dateObjectif = dateObjectif;
+        this.dateRealisation = dateRealisation;
+        this.actionEfficace = actionEfficace;
+        this.generalisationPossible = generalisationPossible;
+        this.comment = comment;
+        this.atelier = atelier;
+    }
+
     @Override
     public String toString() {
         return "PlanActOtd{" +
                 "id=" + id +
                 ", year=" + year +
                 ", week=" + week +
+                ", ecartEuro=" + ecartEuro +
                 ", produit='" + produit + '\'' +
                 ", besoin='" + besoin + '\'' +
                 ", cause='" + cause + '\'' +

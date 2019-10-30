@@ -18,17 +18,14 @@ public class UserDTO {
     @NotEmpty
     @NotNull
     private String userName;
-
     @NotEmpty
     @NotNull
     private String email;
-
     private String firstName;
     private String lastName;
     private Integer age;
     private AddressDTO address;
     private Set<String> roles;
-
     private Settings settings;
 
     public UserDTO() {
