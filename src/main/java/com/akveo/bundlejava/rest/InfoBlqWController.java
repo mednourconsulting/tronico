@@ -33,6 +33,12 @@ public class InfoBlqWController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getWeekBetween/{w1}-{w2}")
+    public ResponseEntity<List<InfoBlqW>> findByWeekBetween(@PathVariable("w1") Long w1,@PathVariable("w2") Long w2) {
+        return ResponseEntity.ok(infoBlqWRepository.findByWeekBetween(w1,w2));
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<InfoBlqW> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         InfoBlqW infoBlqWLoaded = infoBlqWRepository.findById(id).get();
