@@ -5,8 +5,10 @@ import com.akveo.bundlejava.repository.ConfigOtdWRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -17,13 +19,22 @@ public class ConfigOtdWController {
     private ConfigOtdWRepository configconfigOtdWRepository;
 
     @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/findByYear/{year}-{atelier}")
+    public ResponseEntity<ConfigOtdW> findByYear(@PathVariable("year") Long year, @PathVariable("atelier") String atelier) {
+        return ResponseEntity.ok(configconfigOtdWRepository.findByYearAndAtelier(year, atelier));
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<ConfigOtdW>> getAll() {
         return ResponseEntity.ok(configconfigOtdWRepository.findAll());
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
+    @Transactional
     public ResponseEntity<ConfigOtdW> createConfigOtdW(@RequestBody ConfigOtdW configOtdW) {
+        configconfigOtdWRepository.deleteConfigOtdWByYearAndAtelier(Long.valueOf(Calendar.getInstance().get(Calendar.YEAR)), configOtdW.getAtelier());
         return ResponseEntity.ok(configconfigOtdWRepository.save(configOtdW));
     }
     @PreAuthorize("hasAuthority('ADMIN')")

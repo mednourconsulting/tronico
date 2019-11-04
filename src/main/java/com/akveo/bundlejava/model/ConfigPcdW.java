@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Calendar;
 
 @Entity
 public class ConfigPcdW implements Serializable {
@@ -12,8 +13,17 @@ public class ConfigPcdW implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
     private String atelier;
     private Double objectif = new Double(0);
+
+    public Long getYear() {
+        return year;
+    }
+
+    public void setYear(Long year) {
+        this.year = year;
+    }
 
     public Long getId() {
         return id;
