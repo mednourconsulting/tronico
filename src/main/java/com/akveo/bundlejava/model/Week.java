@@ -1,10 +1,11 @@
 package com.akveo.bundlejava.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Calendar;
-
+@Entity
 public class Week {
     @Id
     @GeneratedValue (strategy =  GenerationType.IDENTITY)
@@ -14,7 +15,6 @@ public class Week {
 
     public Week() {
     }
-
     public Long getYear() {
         return year;
     }

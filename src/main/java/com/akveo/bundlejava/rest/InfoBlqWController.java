@@ -15,9 +15,9 @@ public class InfoBlqWController {
     private InfoBlqWRepository infoBlqWRepository;
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<InfoBlqW>> getAll() {
-        return ResponseEntity.ok(infoBlqWRepository.findAll());
+    @GetMapping("/getAll/{atelier}")
+    public ResponseEntity<List<InfoBlqW>> getAll(@PathVariable("atelier") String atelier) {
+        return ResponseEntity.ok(infoBlqWRepository.findByAtelier(atelier));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
