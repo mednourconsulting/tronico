@@ -5,16 +5,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
+import java.util.Calendar;
 @Entity
-public class Produit implements Serializable {
+public class Produit  implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy =  GenerationType.IDENTITY)
     private Long id;
-    private String desc;
+    private String produit;
 
-    public Produit(Long id, String desc) {
-        this.id = id;
-        this.desc = desc;
+    public Produit() {
+    }
+
+    public Produit(String produit) {
+        this.produit = produit;
     }
 
     public Long getId() {
@@ -25,12 +28,11 @@ public class Produit implements Serializable {
         this.id = id;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getProduit() {
+        return produit;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setProduit(String produit) {
+        this.produit = produit;
     }
-
 }

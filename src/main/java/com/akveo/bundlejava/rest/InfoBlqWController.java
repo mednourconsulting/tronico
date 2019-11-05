@@ -15,9 +15,9 @@ public class InfoBlqWController {
     private InfoBlqWRepository infoBlqWRepository;
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll/{atelier}")
-    public ResponseEntity<List<InfoBlqW>> getAll(@PathVariable("atelier") String atelier) {
-        return ResponseEntity.ok(infoBlqWRepository.findByAtelier(atelier));
+    @GetMapping("/getAll/{atelier}/{year}")
+    public ResponseEntity<List<InfoBlqW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
+        return ResponseEntity.ok(infoBlqWRepository.findByAtelierAndYear(atelier, year));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

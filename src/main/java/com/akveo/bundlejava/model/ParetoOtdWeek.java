@@ -1,11 +1,12 @@
 package com.akveo.bundlejava.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonSetter;
+
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 @Entity
@@ -14,11 +15,21 @@ public class ParetoOtdWeek implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week=0L;
-    private Long bjectif=0L;
-    private Long realise=0L;
-    private Long ecart=0L;
+    private Long week = 0L;
+    private Long bjectif = 0L;
+    private Long realise = 0L;
+    private Long ecart = 0L;
     private String atelier;
+    @OneToMany(cascade=CascadeType.ALL)
+    List<ParetoOtdWeekItem> paretoOtdWeekItemList = new ArrayList();
+
+    public List<ParetoOtdWeekItem> getParetoOtdWeekItemList() {
+        return paretoOtdWeekItemList;
+    }
+    @JsonSetter
+    public void setParetoOtdWeekItemList(List<ParetoOtdWeekItem> paretoOtdWeekItemList) {
+        this.paretoOtdWeekItemList = paretoOtdWeekItemList;
+    }
 
     public ParetoOtdWeek() {
     }

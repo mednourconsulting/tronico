@@ -1,5 +1,6 @@
 package com.akveo.bundlejava.rest;
 
+import com.akveo.bundlejava.model.ParetoOtdWeek;
 import com.akveo.bundlejava.model.ParetoOtdWeekItem;
 import com.akveo.bundlejava.repository.ParetoOtdWeekItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +20,19 @@ public class ParetoOtdWeekItemController {
         return ResponseEntity.ok(paretoOtdWeekItemRepository.findAll());
     }
     @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getParetoOtdItemByParetoOtd")
+    public ResponseEntity<List<ParetoOtdWeekItem>> getAll(@RequestBody ParetoOtdWeek paretoOtdWeek) {
+        return ResponseEntity.ok(paretoOtdWeekItemRepository.findByParetoOtdWeek(paretoOtdWeek));
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ParetoOtdWeekItem> createSpleetEcartOF(@RequestBody ParetoOtdWeekItem paretoOtdWeek) {
         return ResponseEntity.ok(paretoOtdWeekItemRepository.save(paretoOtdWeek));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/createAll")
-    public ResponseEntity<List<ParetoOtdWeekItem>> saveListSpleetEcartOF(@RequestBody List<ParetoOtdWeekItem> paretoOtdWeek) {
-        return ResponseEntity.ok(paretoOtdWeekItemRepository.saveAll( paretoOtdWeek));
+    public ResponseEntity<List<ParetoOtdWeekItem>> saveListSpleetEcartOF(@RequestBody List<ParetoOtdWeekItem> paretoOtdWeekItems) {
+        return ResponseEntity.ok(paretoOtdWeekItemRepository.saveAll( paretoOtdWeekItems));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")

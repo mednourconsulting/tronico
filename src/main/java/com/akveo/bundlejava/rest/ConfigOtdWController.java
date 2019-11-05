@@ -21,6 +21,13 @@ public class ConfigOtdWController {
     public ResponseEntity<List<ConfigOtdW>> getAll() {
         return ResponseEntity.ok(configconfigOtdWRepository.findAll());
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/findByYear/{year}-{atelier}")
+    public ResponseEntity<List<ConfigOtdW>> getAll(@PathVariable("atelier") String atelier, @PathVariable("year")  Long year) {
+        return ResponseEntity.ok(configconfigOtdWRepository.findByYearAndAtelier(atelier,year));
+    }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ConfigOtdW> createConfigOtdW(@RequestBody ConfigOtdW configOtdW) {

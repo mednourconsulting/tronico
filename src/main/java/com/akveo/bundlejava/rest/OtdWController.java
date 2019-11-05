@@ -19,9 +19,9 @@ public class OtdWController {
     @Autowired
     private OtdWRepository otdWRepository;
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<OtdW>> getAll() {
-        return ResponseEntity.ok(otdWRepository.findAll());
+    @GetMapping("/getAll/{atelier}/{year}")
+    public ResponseEntity<List<OtdW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
+        return ResponseEntity.ok(otdWRepository.findByAtelierAndYear(atelier,year));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")

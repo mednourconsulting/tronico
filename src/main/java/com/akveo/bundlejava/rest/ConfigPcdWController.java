@@ -22,6 +22,7 @@ public class ConfigPcdWController {
         return ResponseEntity.ok(configPcdWRepository.findAll());
     }
     @PreAuthorize("hasAuthority('ADMIN')")
+
     @PostMapping("/create")
     public ResponseEntity<ConfigPcdW> createConfigPcdW(@RequestBody ConfigPcdW ConfigPcdW) {
         return ResponseEntity.ok(configPcdWRepository.save(ConfigPcdW));

@@ -20,13 +20,7 @@ public class ProductionMensuel implements Serializable {
     private Double ecart = 0D;
     private String atelier;
 
-    public ProductionMensuel(Long year, Long month, Double productivite, Double objectif, Double ecart, String atelier) {
-        this.year = year;
-        this.month = month;
-        this.productivite = productivite;
-        this.objectif = objectif;
-        this.ecart = ecart;
-        this.atelier = atelier;
+    public ProductionMensuel() {
     }
 
     public Long getId() {

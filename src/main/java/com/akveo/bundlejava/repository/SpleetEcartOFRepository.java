@@ -12,4 +12,5 @@ public interface SpleetEcartOFRepository extends JpaRepository<SpleetEcartOF, Lo
     public List<SpleetEcartOF> findByYear(Long year);
     public List<SpleetEcartOF> findByComment(String comment);
 
+
 }

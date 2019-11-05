@@ -1,5 +1,8 @@
 package com.akveo.bundlejava.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -9,13 +12,14 @@ public class ParetoOtdWeekItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     private Produit produit;
     private Double ecartCarte=0D;
     private Double ecart=0D;
     private String raison;
     private String atelier;
     @ManyToOne
+    @JsonIgnore
     private ParetoOtdWeek paretoOtdWeek;
 
     public ParetoOtdWeekItem() {

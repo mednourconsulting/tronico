@@ -45,9 +45,6 @@ public class InfoBlqW implements Serializable {
         this.atelier = atelier;
     }
 
-    public InfoBlqW() {
-    }
-
     public Long getId() {
         return id;
     }

@@ -21,9 +21,9 @@ public class ProductionMensuelController {
     private ProductionMensuelService productionMensuelService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<ProductionMensuel>> getAll() {
-        return ResponseEntity.ok(productionMensuelRepository.findAll());
+    @GetMapping("/getAll/{atelier}/{year}")
+    public ResponseEntity<List<ProductionMensuel>> getAll(@PathVariable String atelier , @PathVariable Long year) {
+        return ResponseEntity.ok(productionMensuelRepository.findByAtelierAndYear(atelier , year));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
