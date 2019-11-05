@@ -6,4 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConfigPcdWRepository extends JpaRepository<ConfigPcdW,Long> {
+    public ConfigPcdW findByYearAndAtelier(Long year, String atelier);
+
+    public void deleteByYear(Long year);
+
+    public void deleteConfigPcdWByYearAndAtelier(Long year, String atelier);
 }

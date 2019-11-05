@@ -5,8 +5,10 @@ import com.akveo.bundlejava.repository.ConfigPcdWRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -21,11 +23,21 @@ public class ConfigPcdWController {
     public ResponseEntity<List<ConfigPcdW>> getAll() {
         return ResponseEntity.ok(configPcdWRepository.findAll());
     }
+
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/findByYear/{year}-{atelier}")
+    public ResponseEntity<ConfigPcdW> findByYear(@PathVariable("year") Long year, String atelier) {
+        return ResponseEntity.ok(configPcdWRepository.findByYearAndAtelier(year, atelier));
+    }
+
     @PreAuthorize("hasAuthority('ADMIN')")
 
     @PostMapping("/create")
-    public ResponseEntity<ConfigPcdW> createConfigPcdW(@RequestBody ConfigPcdW ConfigPcdW) {
-        return ResponseEntity.ok(configPcdWRepository.save(ConfigPcdW));
+    @Transactional
+    public ResponseEntity<ConfigPcdW> createConfigPcdW(@RequestBody ConfigPcdW configPcdW) {
+        configPcdWRepository.deleteConfigPcdWByYearAndAtelier(Long.valueOf(Calendar.getInstance().get(Calendar.YEAR)), configPcdW.getAtelier());
+        return ResponseEntity.ok(configPcdWRepository.save(configPcdW));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
