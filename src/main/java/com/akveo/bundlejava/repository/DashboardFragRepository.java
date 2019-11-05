@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface DashboardFragRepository extends JpaRepository<DashboardFrag, Long> {
     public List<DashboardFrag> findByWeekAndAtelier(Long week, String atelier);
+
+    public DashboardFrag findDashboardFragByAtelierAndYearAndWeek(String atelier, Long year, Long week);
 }

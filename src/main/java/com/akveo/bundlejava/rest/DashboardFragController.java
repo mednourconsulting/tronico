@@ -1,6 +1,5 @@
 package com.akveo.bundlejava.rest;
 
-import com.akveo.bundlejava.model.ConfigOtdW;
 import com.akveo.bundlejava.model.DashboardFrag;
 import com.akveo.bundlejava.repository.DashboardFragRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,21 +21,33 @@ public class DashboardFragController {
     public ResponseEntity<List<DashboardFrag>> getAll() {
         return ResponseEntity.ok(dashboardFragRepository.findAll());
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getByAtelier/{atelier}-{week}-{year}")
+    public ResponseEntity<DashboardFrag> getByAtelier(@PathVariable("atelier") String atelier,
+                                                      @PathVariable("week") Long week,
+                                                      @PathVariable("year") Long year) {
+        return ResponseEntity.ok(dashboardFragRepository.findDashboardFragByAtelierAndYearAndWeek(atelier, year, week));
+    }
+
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<DashboardFrag> createDashboardFrag(@RequestBody DashboardFrag dashboardFrag) {
         return ResponseEntity.ok(dashboardFragRepository.save(dashboardFrag));
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<DashboardFrag> updateDashboardFrag(@RequestBody DashboardFrag dashboardFrag) {
         return ResponseEntity.ok(dashboardFragRepository.save(dashboardFrag));
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<DashboardFrag> deleteDashboardFrag(@PathVariable("id") Long id) {
         DashboardFrag dashboardFragLoaded = dashboardFragRepository.findById(id).get();
-        if (dashboardFragLoaded==null){
+        if (dashboardFragLoaded == null) {
             System.out.println("NOT FOUND");
         }
         dashboardFragRepository.deleteById(id);

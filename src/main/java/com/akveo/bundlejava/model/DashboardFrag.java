@@ -34,6 +34,7 @@ public class DashboardFrag implements Serializable {
     private Long attenteInfoClient = Long.valueOf(0);
     private Long repporterSuiteDeClient = Long.valueOf(0);
     //--------------------------
+    private Long encours = Long.valueOf(0);
     private Long netFabricable = Long.valueOf(0);
     private Long enTransit = Long.valueOf(0);
     private Long monquantTa = Long.valueOf(0);
