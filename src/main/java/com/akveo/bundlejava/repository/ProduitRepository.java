@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+
 @Repository
 public interface ProduitRepository extends JpaRepository<Produit,Long> {
-
+    public List<Produit> getAllByProduit(String produit);
 }

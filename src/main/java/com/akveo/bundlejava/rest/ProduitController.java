@@ -25,4 +25,14 @@ public class ProduitController {
     public ResponseEntity<List<Produit>> getAll(){
         return ResponseEntity.ok(produitRepository.findAll());
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getByProduit/{produit}")
+    public ResponseEntity<List<Produit>> getByProduit(@PathVariable("produit") String produit){
+        return ResponseEntity.ok(produitRepository.getAllByProduit( produit));
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<Produit> getById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(produitRepository.findById(id).orElse(null));
+    }
 }

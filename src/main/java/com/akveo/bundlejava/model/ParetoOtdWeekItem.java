@@ -12,7 +12,7 @@ public class ParetoOtdWeekItem implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     private Produit produit;
     private Double ecartCarte=0D;
     private Double ecart=0D;

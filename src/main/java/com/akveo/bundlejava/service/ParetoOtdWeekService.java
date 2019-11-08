@@ -16,11 +16,11 @@ public class ParetoOtdWeekService {
     private ParetoOtdWeekRepository paretoOtdWeekRepository;
 
     public ParetoOtdWeek saveParetoOtdWeekWithItems(ParetoOtdWeek paretoOtdWeek){
+        paretoOtdWeekRepository.save(paretoOtdWeek);
         for (ParetoOtdWeekItem paretoOtdWeekItem : paretoOtdWeek.getParetoOtdWeekItemList()){
             paretoOtdWeekItem.setParetoOtdWeek(paretoOtdWeek);
             paretoOtdWeekItemRepository.save(paretoOtdWeekItem);
         }
-        paretoOtdWeekRepository.save(paretoOtdWeek);
         return paretoOtdWeek;
     }
 }

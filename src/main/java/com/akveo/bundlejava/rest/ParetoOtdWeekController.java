@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @RestController
 @RequestMapping("/paretoOtdWeek")
 @CrossOrigin("*")
@@ -27,18 +28,21 @@ public class ParetoOtdWeekController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
-    public ResponseEntity<List<ParetoOtdWeek>> getAll(@PathVariable("atelier") String atelier , @PathVariable("year") Long year) {
-        return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelierAndYear(atelier , year));
+    public ResponseEntity<List<ParetoOtdWeek>> getAllByAtelierAndYear(@PathVariable("atelier") String atelier, @PathVariable("year") Long year) {
+        return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelierAndYear(atelier, year));
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ParetoOtdWeek> createSpleetEcartOF(@RequestBody ParetoOtdWeek paretoOtdWeek) {
         return ResponseEntity.ok(paretoOtdWeekRepository.save(paretoOtdWeek));
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/saveParetoOtdWithItems")
-    @Transactional
     public ResponseEntity<ParetoOtdWeek> saveParetoOtdWithItems(@RequestBody ParetoOtdWeek paretoOtdWeek) {
+        System.out.println("------------->" + paretoOtdWeek);
+        System.out.println(paretoOtdWeek.getParetoOtdWeekItemList());
         return ResponseEntity.ok(paretoOtdWeekService.saveParetoOtdWeekWithItems(paretoOtdWeek));
     }
 
@@ -47,11 +51,12 @@ public class ParetoOtdWeekController {
     public ResponseEntity<ParetoOtdWeek> updateSpleetEcartOF(@RequestBody ParetoOtdWeek paretoOtdWeek) {
         return ResponseEntity.ok(paretoOtdWeekRepository.save(paretoOtdWeek));
     }
+
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ParetoOtdWeek> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         ParetoOtdWeek paretoOtdWeekLoaded = paretoOtdWeekRepository.findById(id).get();
-        if (paretoOtdWeekLoaded==null){
+        if (paretoOtdWeekLoaded == null) {
             System.out.println("NOT FOUND");
             ResponseEntity.notFound();
         }
