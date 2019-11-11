@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 
 @Entity
-public class DashboardFrag implements Serializable {
+public class Tra implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -47,7 +47,6 @@ public class DashboardFrag implements Serializable {
     private Long machine = Long.valueOf(0);
     private Long finisAttRiClient = Long.valueOf(0);
     private Long finisReportDelai = Long.valueOf(0);
-    private Long yM = Long.valueOf(0);
     //-------------------------------
     private Long mqecartStock = Long.valueOf(0);
     private Long mqRuptEtConsom = Long.valueOf(0);
@@ -65,16 +64,6 @@ public class DashboardFrag implements Serializable {
     //-------------------
     private Long heuresFormation = Long.valueOf(0);
     private Long heuresAmelioration = Long.valueOf(0);
-
-    public DashboardFrag() {
-        this.otd = (this.nBCarteEngage - this.nBCarteRetard) / new Double(this.nBCarteEngage);
-        this.encours = this.netFabricable + this.enTransit + this.monquantTa + this.clientMqtFc +
-                this.qualiteEncours + this.aqf + this.processDossierTra + this.testEncours + this.machine +
-                this.finisAttRiClient + this.finisReportDelai;
-        this.fabricableEncours = new Double(this.fabricable) / this.encours;
-        this.besoinEtp = this.previsions / 46;
-        this.effectifPlus = this.besoinEtp - this.etpDispo;
-    }
 
     public Long getId() {
         return id;
@@ -105,7 +94,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void sethRecusTrf(Long hRecusTrf) {
-        this.hRecusTrf = hRecusTrf;
+        this.hRecusTrf += hRecusTrf;
     }
 
     public Long gethObjectif() {
@@ -113,7 +102,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void sethObjectif(Long hObjectif) {
-        this.hObjectif = hObjectif;
+        this.hObjectif += hObjectif;
     }
 
     public Long gethRealise() {
@@ -121,7 +110,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void sethRealise(Long hRealise) {
-        this.hRealise = hRealise;
+        this.hRealise += hRealise;
     }
 
     public Long getnBCarteEngage() {
@@ -129,31 +118,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setnBCarteEngage(Long nBCarteEngage) {
-        this.nBCarteEngage = nBCarteEngage;
-    }
-
-    public Long getYear() {
-        return year;
-    }
-
-    public void setYear(Long year) {
-        this.year = year;
-    }
-
-    public Long getEncours() {
-        return encours;
-    }
-
-    public void setEncours(Long encours) {
-        this.encours = encours;
-    }
-
-    public Long getyM() {
-        return yM;
-    }
-
-    public void setyM(Long yM) {
-        this.yM = yM;
+        this.nBCarteEngage += nBCarteEngage;
     }
 
     public Long getnBCarteRetard() {
@@ -161,7 +126,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setnBCarteRetard(Long nBCarteRetard) {
-        this.nBCarteRetard = nBCarteRetard;
+        this.nBCarteRetard += nBCarteRetard;
     }
 
     public Double getOtd() {
@@ -169,7 +134,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setOtd(Double otd) {
-        this.otd = otd;
+        this.otd += otd;
     }
 
     public Long getMqtTrf() {
@@ -177,7 +142,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setMqtTrf(Long mqtTrf) {
-        this.mqtTrf = mqtTrf;
+        this.mqtTrf += mqtTrf;
     }
 
     public Long getMqtTa() {
@@ -185,7 +150,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setMqtTa(Long mqtTa) {
-        this.mqtTa = mqtTa;
+        this.mqtTa += mqtTa;
     }
 
     public Long getQualite() {
@@ -193,7 +158,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setQualite(Long qualite) {
-        this.qualite = qualite;
+        this.qualite += qualite;
     }
 
     public Long getPcd() {
@@ -201,7 +166,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setPcd(Long pcd) {
-        this.pcd = pcd;
+        this.pcd += pcd;
     }
 
     public Long getTest() {
@@ -209,7 +174,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setTest(Long test) {
-        this.test = test;
+        this.test += test;
     }
 
     public Long getBloqueDossier() {
@@ -217,7 +182,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setBloqueDossier(Long bloqueDossier) {
-        this.bloqueDossier = bloqueDossier;
+        this.bloqueDossier += bloqueDossier;
     }
 
     public Long getMaintenance() {
@@ -225,7 +190,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setMaintenance(Long maintenance) {
-        this.maintenance = maintenance;
+        this.maintenance += maintenance;
     }
 
     public Long getProcessOutillage() {
@@ -233,7 +198,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setProcessOutillage(Long processOutillage) {
-        this.processOutillage = processOutillage;
+        this.processOutillage += processOutillage;
     }
 
     public Long getRetardProduction() {
@@ -241,7 +206,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setRetardProduction(Long retardProduction) {
-        this.retardProduction = retardProduction;
+        this.retardProduction += retardProduction;
     }
 
     public Long getEcartStock() {
@@ -249,7 +214,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setEcartStock(Long ecartStock) {
-        this.ecartStock = ecartStock;
+        this.ecartStock += ecartStock;
     }
 
     public Long getAttenteInfoClient() {
@@ -257,7 +222,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setAttenteInfoClient(Long attenteInfoClient) {
-        this.attenteInfoClient = attenteInfoClient;
+        this.attenteInfoClient += attenteInfoClient;
     }
 
     public Long getRepporterSuiteDeClient() {
@@ -273,7 +238,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setNetFabricable(Long netFabricable) {
-        this.netFabricable = netFabricable;
+        this.netFabricable += netFabricable;
     }
 
     public Long getEnTransit() {
@@ -281,7 +246,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setEnTransit(Long enTransit) {
-        this.enTransit = enTransit;
+        this.enTransit += enTransit;
     }
 
     public Long getMonquantTa() {
@@ -289,7 +254,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setMonquantTa(Long monquantTa) {
-        this.monquantTa = monquantTa;
+        this.monquantTa += monquantTa;
     }
 
     public Long getClientMqtFc() {
@@ -297,7 +262,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setClientMqtFc(Long clientMqtFc) {
-        this.clientMqtFc = clientMqtFc;
+        this.clientMqtFc += clientMqtFc;
     }
 
     public Long getQualiteEncours() {
@@ -305,7 +270,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setQualiteEncours(Long qualiteEncours) {
-        this.qualiteEncours = qualiteEncours;
+        this.qualiteEncours += qualiteEncours;
     }
 
     public Long getAqf() {
@@ -313,7 +278,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setAqf(Long aqf) {
-        this.aqf = aqf;
+        this.aqf += aqf;
     }
 
     public Long getProcessDossierTra() {
@@ -321,7 +286,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setProcessDossierTra(Long processDossierTra) {
-        this.processDossierTra = processDossierTra;
+        this.processDossierTra += processDossierTra;
     }
 
     public Long getTestEncours() {
@@ -329,7 +294,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setTestEncours(Long testEncours) {
-        this.testEncours = testEncours;
+        this.testEncours += testEncours;
     }
 
     public Long getMachine() {
@@ -337,7 +302,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setMachine(Long machine) {
-        this.machine = machine;
+        this.machine += machine;
     }
 
     public Long getFinisAttRiClient() {
@@ -345,7 +310,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setFinisAttRiClient(Long finisAttRiClient) {
-        this.finisAttRiClient = finisAttRiClient;
+        this.finisAttRiClient += finisAttRiClient;
     }
 
     public Long getFinisReportDelai() {
@@ -353,7 +318,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setFinisReportDelai(Long finisReportDelai) {
-        this.finisReportDelai = finisReportDelai;
+        this.finisReportDelai += finisReportDelai;
     }
 
     public Long getMqecartStock() {
@@ -361,7 +326,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setMqecartStock(Long mqecartStock) {
-        this.mqecartStock = mqecartStock;
+        this.mqecartStock += mqecartStock;
     }
 
     public Long getMqRuptEtConsom() {
@@ -369,7 +334,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setMqRuptEtConsom(Long mqRuptEtConsom) {
-        this.mqRuptEtConsom = mqRuptEtConsom;
+        this.mqRuptEtConsom += mqRuptEtConsom;
     }
 
     public Long gethPrevus() {
@@ -377,7 +342,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void sethPrevus(Long hPrevus) {
-        this.hPrevus = hPrevus;
+        this.hPrevus += hPrevus;
     }
 
     public Long getDontRetard() {
@@ -385,7 +350,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setDontRetard(Long dontRetard) {
-        this.dontRetard = dontRetard;
+        this.dontRetard += dontRetard;
     }
 
     public Long getFabricable() {
@@ -393,7 +358,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setFabricable(Long fabricable) {
-        this.fabricable = fabricable;
+        this.fabricable += fabricable;
     }
 
     public Long getVolumeFabricableCms() {
@@ -401,7 +366,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setVolumeFabricableCms(Long volumeFabricableCms) {
-        this.volumeFabricableCms = volumeFabricableCms;
+        this.volumeFabricableCms += volumeFabricableCms;
     }
 
     public Double getFabricableEncours() {
@@ -409,7 +374,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setFabricableEncours(Double fabricableEncours) {
-        this.fabricableEncours = fabricableEncours;
+        this.fabricableEncours += fabricableEncours;
     }
 
     public Long getPrevisions() {
@@ -417,7 +382,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setPrevisions(Long previsions) {
-        this.previsions = previsions;
+        this.previsions += previsions;
     }
 
     public Long getBesoinEtp() {
@@ -425,7 +390,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setBesoinEtp(Long besoinEtp) {
-        this.besoinEtp = besoinEtp;
+        this.besoinEtp += besoinEtp;
     }
 
     public Long getEtpDispo() {
@@ -433,7 +398,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setEtpDispo(Long etpDispo) {
-        this.etpDispo = etpDispo;
+        this.etpDispo += etpDispo;
     }
 
     public Long getEffectifPlus() {
@@ -441,7 +406,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setEffectifPlus(Long effectifPlus) {
-        this.effectifPlus = effectifPlus;
+        this.effectifPlus += effectifPlus;
     }
 
     public Long getHeuresFormation() {
@@ -449,7 +414,7 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setHeuresFormation(Long heuresFormation) {
-        this.heuresFormation = heuresFormation;
+        this.heuresFormation += heuresFormation;
     }
 
     public Long getHeuresAmelioration() {
@@ -457,6 +422,6 @@ public class DashboardFrag implements Serializable {
     }
 
     public void setHeuresAmelioration(Long heuresAmelioration) {
-        this.heuresAmelioration = heuresAmelioration;
+        this.heuresAmelioration += heuresAmelioration;
     }
 }

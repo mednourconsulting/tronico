@@ -23,7 +23,7 @@ public class DashboardFragController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getByAtelier/{atelier}-{week}-{year}")
+    @GetMapping("/getByAtelier/{atelier}-{year}-{week}")
     public ResponseEntity<DashboardFrag> getByAtelier(@PathVariable("atelier") String atelier,
                                                       @PathVariable("week") Long week,
                                                       @PathVariable("year") Long year) {
