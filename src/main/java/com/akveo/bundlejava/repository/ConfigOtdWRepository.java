@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ConfigOtdWRepository extends JpaRepository<ConfigOtdW,Long> {
-    public List<ConfigOtdW> findByYearAndAtelier(String atelier, long year);
+    public ConfigOtdW findByYearAndAtelier(Long year,String atelier);
 }

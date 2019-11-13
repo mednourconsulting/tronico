@@ -19,16 +19,16 @@ public class ConfigPcdWController {
     private ConfigPcdWRepository configPcdWRepository;
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<ConfigPcdW>> getAll() {
-        return ResponseEntity.ok(configPcdWRepository.findAll());
+    @GetMapping("/getAll/{atelier}/{year}")
+    public ResponseEntity<ConfigPcdW> findByYear(@PathVariable String atelier , @PathVariable Long year ) {
+        return ResponseEntity.ok(configPcdWRepository.findByYearAndAtelier(year ,atelier));
     }
 
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/findByYear/{year}-{atelier}")
-    public ResponseEntity<ConfigPcdW> findByYear(@PathVariable("year") Long year, String atelier) {
-        return ResponseEntity.ok(configPcdWRepository.findByYearAndAtelier(year, atelier));
+    @GetMapping("/getAll")
+    public ResponseEntity<List<ConfigPcdW>> getAll() {
+        return ResponseEntity.ok(configPcdWRepository.findAll());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

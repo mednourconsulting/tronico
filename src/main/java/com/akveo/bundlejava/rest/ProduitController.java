@@ -26,6 +26,11 @@ public class ProduitController {
         return ResponseEntity.ok(produitRepository.findAll());
     }
     @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/create")
+    public ResponseEntity<Produit> createProduit(@RequestBody Produit produit){
+        return ResponseEntity.ok(produitRepository.save(produit));
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getByProduit/{produit}")
     public ResponseEntity<List<Produit>> getByProduit(@PathVariable("produit") String produit){
         return ResponseEntity.ok(produitRepository.getAllByProduit( produit));
@@ -35,4 +40,25 @@ public class ProduitController {
     public ResponseEntity<Produit> getById(@PathVariable("id") Long id){
         return ResponseEntity.ok(produitRepository.findById(id).orElse(null));
     }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/update")
+    public ResponseEntity<Produit> updatProduit(@RequestBody Produit produit) {
+        return ResponseEntity.ok(produitRepository.save(produit));
+    }
+
+
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Produit> deleteProduit(@PathVariable("id") Long id) {
+        Produit employeLoaded = produitRepository.findById(id).get();
+        if (employeLoaded==null){
+            System.out.println("NOT FOUND");
+            ResponseEntity.notFound();
+        }
+        produitRepository.deleteById(id);
+        return ResponseEntity.ok(employeLoaded);
+    }
+
 }

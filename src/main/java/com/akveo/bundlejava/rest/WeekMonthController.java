@@ -1,8 +1,7 @@
 package com.akveo.bundlejava.rest;
 
-import com.akveo.bundlejava.model.Week;
-import com.akveo.bundlejava.repository.SpleetEcartOFRepository;
-import com.akveo.bundlejava.repository.WeekRepository;
+import com.akveo.bundlejava.model.WeekMonth;
+import com.akveo.bundlejava.repository.WeekMonthRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,12 +14,12 @@ import java.util.List;
 @Controller
 @RequestMapping("/Week")
 @CrossOrigin("*")
-public class WeekController {
+public class WeekMonthController {
     @Autowired
-    private WeekRepository weekRepository;
+    private WeekMonthRepository weekMonthRepository;
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
-    public ResponseEntity<List<Week>> getAll(){
-        return ResponseEntity.ok(weekRepository.findAll());
+    public ResponseEntity<List<WeekMonth>> getAll(){
+        return ResponseEntity.ok(weekMonthRepository.findAll());
     }
 }

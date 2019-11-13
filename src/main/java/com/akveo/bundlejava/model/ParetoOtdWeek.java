@@ -33,6 +33,7 @@ public class ParetoOtdWeek implements Serializable {
 
     public ParetoOtdWeek() {
     }
+    
 
     public Long getId() {
         return id;

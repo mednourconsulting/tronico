@@ -14,38 +14,37 @@ import java.util.List;
 @RequestMapping("configOtdW")
 public class ConfigOtdWController {
     @Autowired
-    private ConfigOtdWRepository configconfigOtdWRepository;
+    private ConfigOtdWRepository configOtdWRepository;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<ConfigOtdW>> getAll() {
-        return ResponseEntity.ok(configconfigOtdWRepository.findAll());
+        return ResponseEntity.ok(configOtdWRepository.findAll());
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/findByYear/{year}-{atelier}")
-    public ResponseEntity<List<ConfigOtdW>> getAll(@PathVariable("atelier") String atelier, @PathVariable("year")  Long year) {
-        return ResponseEntity.ok(configconfigOtdWRepository.findByYearAndAtelier(atelier,year));
+    @GetMapping("/getAll/{atelier}/{year}")
+    public ResponseEntity<ConfigOtdW> findByYear(@PathVariable("atelier") String atelier , @PathVariable("year") Long year ) {
+        return ResponseEntity.ok(configOtdWRepository.findByYearAndAtelier(year,atelier));
     }
-
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<ConfigOtdW> createConfigOtdW(@RequestBody ConfigOtdW configOtdW) {
-        return ResponseEntity.ok(configconfigOtdWRepository.save(configOtdW));
+    public ResponseEntity<ConfigOtdW> createProduit(@RequestBody ConfigOtdW configOtdW){
+        return ResponseEntity.ok(configOtdWRepository.save(configOtdW));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<ConfigOtdW> updateConfigOtdW(@RequestBody ConfigOtdW configOtdW) {
-        return ResponseEntity.ok(configconfigOtdWRepository.save(configOtdW));
+        return ResponseEntity.ok(configOtdWRepository.save(configOtdW));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ConfigOtdW> deleteConfigOtdW(@PathVariable("id") Long id) {
-        ConfigOtdW configOtdWLoaded = configconfigOtdWRepository.findById(id).get();
+        ConfigOtdW configOtdWLoaded = configOtdWRepository.findById(id).get();
         if (configOtdWLoaded==null){
             System.out.println("NOT FOUND");
         }
-        configconfigOtdWRepository.deleteById(id);
+        configOtdWRepository.deleteById(id);
         return ResponseEntity.ok(configOtdWLoaded);
     }
 }

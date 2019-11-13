@@ -28,7 +28,7 @@ public class ProductionMensuelController {
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<ProductionMensuel> createSpleetEcartOF(@RequestBody ProductionMensuel productionMensuel) {
+    public ResponseEntity<ProductionMensuel> createProductionMensuel(@RequestBody ProductionMensuel productionMensuel) {
         return ResponseEntity.ok(productionMensuelRepository.save(productionMensuel));
     }
 

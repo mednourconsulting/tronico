@@ -5,6 +5,7 @@ import com.akveo.bundlejava.service.DocumentService;
 import com.akveo.bundlejava.service.ResponseMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,8 +14,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Logger;
 
-@Controller
-@RequestMapping(value = "/synthese")
+@RestController
+@CrossOrigin("http://127.0.0.1:4200")
+@RequestMapping("/documentHandler")
 public class DocumentHandler {
 
     private static final Logger LOG = Logger.getLogger(String.valueOf(DocumentHandler.class));
@@ -22,12 +24,15 @@ public class DocumentHandler {
     @Autowired
     DocumentService documentService;
 
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/upload")
     public @ResponseBody
-    ResponseMetadata handleFileUpload(@RequestParam(value = "file") MultipartFile file) throws IOException {
+    ResponseMetadata handleFileUpload(@RequestParam MultipartFile file) throws IOException {
+        System.out.println(file);
         return documentService.save(file);
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public HttpEntity<byte[]> getDocument(@PathVariable Long id) {
         HttpHeaders httpHeaders = new HttpHeaders();
