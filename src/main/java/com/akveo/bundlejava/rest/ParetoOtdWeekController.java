@@ -49,9 +49,15 @@ public class ParetoOtdWeekController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<ParetoOtdWeek> updateSpleetEcartOF(@RequestBody ParetoOtdWeek paretoOtdWeek) {
-        return ResponseEntity.ok(paretoOtdWeekRepository.save(paretoOtdWeek));
+        return ResponseEntity.ok(paretoOtdWeekService.saveParetoOtdWeekWithItems(paretoOtdWeek));
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PutMapping("/updateParetoOtdWithItems")
+    public ResponseEntity<ParetoOtdWeek> updateParetoOtdWithItems(@RequestBody ParetoOtdWeek paretoOtdWeek) {
+        System.out.println("------------->" + paretoOtdWeek);
+        System.out.println(paretoOtdWeek.getParetoOtdWeekItemList());
+        return ResponseEntity.ok(paretoOtdWeekService.saveParetoOtdWeekWithItems(paretoOtdWeek));
+    }
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ParetoOtdWeek> deleteSpleetEcartOF(@PathVariable("id") Long id) {
