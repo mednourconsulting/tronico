@@ -32,7 +32,7 @@ public class ProduitController {
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getByProduit/{produit}")
-    public ResponseEntity<List<Produit>> getByProduit(@PathVariable("produit") String produit){
+    public ResponseEntity<Produit> getByProduit(@PathVariable("produit") String produit){
         return ResponseEntity.ok(produitRepository.getAllByProduit( produit));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
