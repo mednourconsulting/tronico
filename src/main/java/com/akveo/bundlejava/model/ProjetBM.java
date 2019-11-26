@@ -15,6 +15,7 @@ public class ProjetBM implements Serializable {
     private Long id;
     private String taskName;
     private String taskDescription;
+    private String responsable;
     private Long startsAt;
     private Long endsAt;
     private String status;
@@ -29,6 +30,14 @@ public class ProjetBM implements Serializable {
 
     public void setStartsAt(Long startsAt) {
         this.startsAt = startsAt;
+    }
+
+    public String getResponsable() {
+        return responsable;
+    }
+
+    public void setResponsable(String responsable) {
+        this.responsable = responsable;
     }
 
     public Long getEndsAt() {

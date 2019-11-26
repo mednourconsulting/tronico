@@ -25,7 +25,7 @@ public class UserDTO {
     private String lastName;
     private Integer age;
     private AddressDTO address;
-    private Set<String> roles;
+    private Set<String> role;
     private Settings settings;
 
     public UserDTO() {
@@ -93,11 +93,11 @@ public class UserDTO {
     }
 
     public Set<String> getRoles() {
-        return roles;
+        return role;
     }
 
     public void setRoles(Set<String> roles) {
-        this.roles = roles;
+        this.role = roles;
     }
 
     @Override
@@ -113,7 +113,7 @@ public class UserDTO {
         if (lastName != null ? !lastName.equals(userDTO.lastName) : userDTO.lastName != null) return false;
         if (age != null ? !age.equals(userDTO.age) : userDTO.age != null) return false;
         if (address != null ? !address.equals(userDTO.address) : userDTO.address != null) return false;
-        return roles != null ? roles.equals(userDTO.roles) : userDTO.roles == null;
+        return role != null ? role.equals(userDTO.role) : userDTO.role == null;
     }
 
     @Override
@@ -124,7 +124,7 @@ public class UserDTO {
         result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
         result = 31 * result + (age != null ? age.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
-        result = 31 * result + (roles != null ? roles.hashCode() : 0);
+        result = 31 * result + (role != null ? role.hashCode() : 0);
         return result;
     }
 
@@ -137,7 +137,7 @@ public class UserDTO {
             ", lastName='" + lastName + '\'' +
             ", age=" + age +
             ", address=" + address +
-            ", roles=" + roles +
+            ", roles=" + role +
             '}';
     }
 }

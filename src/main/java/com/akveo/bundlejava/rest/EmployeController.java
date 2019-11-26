@@ -15,7 +15,7 @@ import java.util.List;
 public class EmployeController {
     @Autowired
     private  EmployeRepository employeRepository;
-    @PreAuthorize("hasAuthority('ADMIN')")
+
     @GetMapping("/getAll")
     public ResponseEntity<List<Employe>> getAll() {
         return ResponseEntity.ok(employeRepository.findAll());
