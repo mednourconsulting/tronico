@@ -16,13 +16,11 @@ public class ProjetBMController {
     @Autowired
     private ProjetBMRepository projetBMRepository;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<ProjetBM>> getAll() {
         return ResponseEntity.ok(projetBMRepository.findAll());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getByYearAndWeekBetween/{year}-{weekMin}-{weekMax}")
     public ResponseEntity<List<ProjetBM>> getByYearAndWeekBetween(@PathVariable("year") Long year,
                                                                   @PathVariable("weekMin") Long weekMin,
@@ -31,13 +29,11 @@ public class ProjetBMController {
         return ResponseEntity.ok(projetBMRepository.findByYearAndStartsAtBetween(year, weekMin, weekMax));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ProjetBM> createSpleetEcartOF(@RequestBody ProjetBM projetBM) {
         return ResponseEntity.ok(projetBMRepository.save(projetBM));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<ProjetBM> updateSpleetEcartOF(@RequestBody ProjetBM projetBM) {
         return ResponseEntity.ok(projetBMRepository.save(projetBM));
