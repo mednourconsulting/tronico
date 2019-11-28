@@ -15,15 +15,28 @@ public class PlanActOtdController {
     @Autowired
     private PlanActOtdRepository planActOtdRepository;
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<PlanActOtd>> getAll() {
-        return ResponseEntity.ok(planActOtdRepository.findAll());
+    @GetMapping("/getAll/{atelier}/{year}")
+    public ResponseEntity<List<PlanActOtd>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
+        return ResponseEntity.ok(planActOtdRepository.findByAtelierAndYear(atelier , year));
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAll/{atelier}/{year}/{week}")
+    public ResponseEntity<List<PlanActOtd>> getByWeekByAtelierByYear(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week ) {
+        return ResponseEntity.ok(planActOtdRepository.findByAtelierAndYearAndWeek(atelier , year , week));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<PlanActOtd> createSpleetEcartOF(@RequestBody PlanActOtd planActOtd) {
         return ResponseEntity.ok(planActOtdRepository.save(planActOtd));
+    }
+
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/createAll")
+    public ResponseEntity<List<PlanActOtd>> createAll(@RequestBody List<PlanActOtd> planActOtds) {
+        System.out.println(planActOtds);
+        return ResponseEntity.ok(planActOtdRepository.saveAll(planActOtds));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")

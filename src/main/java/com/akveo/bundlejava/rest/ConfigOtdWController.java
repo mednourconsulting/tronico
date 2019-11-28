@@ -16,7 +16,6 @@ public class ConfigOtdWController {
     @Autowired
     private ConfigOtdWRepository configOtdWRepository;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<ConfigOtdW>> getAll() {
         return ResponseEntity.ok(configOtdWRepository.findAll());

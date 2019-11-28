@@ -10,4 +10,7 @@ import java.util.List;
 public interface PlanActOtdRepository extends JpaRepository<PlanActOtd,Long> {
     public List<PlanActOtd> findByAtelierAndYear(String atelier, Long year);
 
+    public List<PlanActOtd> findByAtelierAndYearAndWeek(String atelier, Long year, Long week);
+
+
 }

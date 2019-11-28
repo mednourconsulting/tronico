@@ -18,7 +18,6 @@ public class ConfigProductiviteMensuelController {
     @Autowired
     private ConfigProductiviteMensuelRepository configProductiviteMensuelRepository;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<ConfigProductiviteMensuel> getAll(@PathVariable("atelier")  String atelier,@PathVariable("year")  Long year) {
         return ResponseEntity.ok(configProductiviteMensuelRepository.findByYearAndAtelier(year,atelier));

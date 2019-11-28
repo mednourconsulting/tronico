@@ -11,5 +11,5 @@ import java.util.List;
 public interface PcdWeekRepository extends JpaRepository<PcdWeek,Long> {
     public List<PcdWeek> findByYear(Long year);
     public List<PcdWeek> findByAtelierAndYear(String atelier, Long year);
-
+    public PcdWeek findByAtelierAndYearAndWeek(String atelier, Long year , Long Week);
 }

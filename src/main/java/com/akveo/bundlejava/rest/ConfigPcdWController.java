@@ -18,7 +18,6 @@ public class ConfigPcdWController {
     @Autowired
     private ConfigPcdWRepository configPcdWRepository;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<ConfigPcdW> findByYear(@PathVariable String atelier , @PathVariable Long year ) {
         return ResponseEntity.ok(configPcdWRepository.findByYearAndAtelier(year ,atelier));

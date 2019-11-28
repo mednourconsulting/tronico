@@ -33,6 +33,11 @@ public class PcdWeekController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAll/{atelier}/{year}/{week}")
+    public ResponseEntity<PcdWeek> getAllByWeek(@PathVariable("atelier") String atelier , @PathVariable("year") Long year , @PathVariable("week") Long week) {
+        return ResponseEntity.ok(pcdWeekRepository.findByAtelierAndYearAndWeek(atelier ,  year , week));
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<PcdWeek> createSpleetEcartOF(@RequestBody PcdWeek pcdWeek) {
         return ResponseEntity.ok(pcdWeekRepository.save(pcdWeek));

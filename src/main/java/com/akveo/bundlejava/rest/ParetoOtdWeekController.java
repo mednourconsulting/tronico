@@ -33,6 +33,16 @@ public class ParetoOtdWeekController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAll/{atelier}/{year}/{week}")
+    public ResponseEntity<List<ParetoOtdWeek>> getByWeekByAtelierByYear(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week ) {
+        return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelierAndYearAndWeek(atelier , year , week));
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAll/{id}")
+    public ResponseEntity<ParetoOtdWeek> getById(@PathVariable("id") Long id) {
+        return ResponseEntity.ok(paretoOtdWeekRepository.findById(id).orElse(null));
+    }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ParetoOtdWeek> createSpleetEcartOF(@RequestBody ParetoOtdWeek paretoOtdWeek) {
         return ResponseEntity.ok(paretoOtdWeekRepository.save(paretoOtdWeek));
