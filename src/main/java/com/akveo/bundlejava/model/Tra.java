@@ -424,4 +424,20 @@ public class Tra implements Serializable {
     public void setHeuresAmelioration(Long heuresAmelioration) {
         this.heuresAmelioration += heuresAmelioration;
     }
+
+    public Long getYear() {
+        return year;
+    }
+
+    public void setYear(Long year) {
+        this.year = year;
+    }
+
+    public Long getEncours() {
+        return encours;
+    }
+
+    public void setEncours(Long encours) {
+        this.encours = encours;
+    }
 }

@@ -1,7 +1,9 @@
 package com.akveo.bundlejava.rest;
 
 import com.akveo.bundlejava.model.DashboardFrag;
+import com.akveo.bundlejava.model.Tra;
 import com.akveo.bundlejava.repository.DashboardFragRepository;
+import com.akveo.bundlejava.service.DashboardFragService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -15,6 +17,8 @@ import java.util.List;
 public class DashboardFragController {
     @Autowired
     private DashboardFragRepository dashboardFragRepository;
+    @Autowired
+    private DashboardFragService dashboardFragService;
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
@@ -29,7 +33,15 @@ public class DashboardFragController {
                                                       @PathVariable("year") Long year) {
         return ResponseEntity.ok(dashboardFragRepository.findDashboardFragByAtelierAndYearAndWeek(atelier, year, week));
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getTra/{atelier1}-{atelier2}-{year}-{week}")
+    public ResponseEntity<Tra> getTra(@PathVariable("atelier1") String atelier1,
+                                      @PathVariable("atelier2") String atelier2,
+                                      @PathVariable("year") Long year,
+                                      @PathVariable("week") Long week
+    ){
+        return ResponseEntity.ok(dashboardFragService.getTra(atelier1,atelier2,year,week));
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
