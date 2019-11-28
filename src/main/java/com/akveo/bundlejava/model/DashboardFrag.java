@@ -13,14 +13,14 @@ public class DashboardFrag implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-    private Long week;
+    private Long week = Long.valueOf(0);
     private String atelier;
     private Long hRecusTrf = Long.valueOf(0);
     private Long hObjectif = Long.valueOf(0);
     private Long hRealise = Long.valueOf(0);
     private Long nBCarteEngage = Long.valueOf(0);
     private Long nBCarteRetard = Long.valueOf(0);
-    private Double otd = new Double(0);
+    private Double otd = Double.valueOf(0.00);
     //-------------------------
     private Long mqtTrf = Long.valueOf(0);
     private Long mqtTa = Long.valueOf(0);
@@ -56,7 +56,7 @@ public class DashboardFrag implements Serializable {
     private Long dontRetard = Long.valueOf(0);
     private Long fabricable = Long.valueOf(0);
     private Long volumeFabricableCms = Long.valueOf(0);
-    private Double fabricableEncours = Double.valueOf(0);
+    private Double fabricableEncours =  Double.valueOf(0.00);
     private Long previsions = Long.valueOf(0);
     //----------------------------
     private Long besoinEtp = Long.valueOf(0);
@@ -67,13 +67,13 @@ public class DashboardFrag implements Serializable {
     private Long heuresAmelioration = Long.valueOf(0);
 
     public DashboardFrag() {
-        this.otd = (this.nBCarteEngage - this.nBCarteRetard) / new Double(this.nBCarteEngage);
-        this.encours = this.netFabricable + this.enTransit + this.monquantTa + this.clientMqtFc +
-                this.qualiteEncours + this.aqf + this.processDossierTra + this.testEncours + this.machine +
-                this.finisAttRiClient + this.finisReportDelai;
-        this.fabricableEncours = new Double(this.fabricable) / this.encours;
-        this.besoinEtp = this.previsions / 46;
-        this.effectifPlus = this.besoinEtp - this.etpDispo;
+//        this.otd = (this.nBCarteEngage - this.nBCarteRetard) / new Double(this.nBCarteEngage);
+//        this.encours = this.netFabricable + this.enTransit + this.monquantTa + this.clientMqtFc +
+//                this.qualiteEncours + this.aqf + this.processDossierTra + this.testEncours + this.machine +
+//                this.finisAttRiClient + this.finisReportDelai;
+//        this.fabricableEncours = new Double(this.fabricable) / this.encours;
+//        this.besoinEtp = this.previsions / 46;
+//        this.effectifPlus = this.besoinEtp - this.etpDispo;
     }
 
     public Long getId() {
@@ -458,5 +458,59 @@ public class DashboardFrag implements Serializable {
 
     public void setHeuresAmelioration(Long heuresAmelioration) {
         this.heuresAmelioration = heuresAmelioration;
+    }
+
+    @Override
+    public String toString() {
+        return "DashboardFrag{" +
+                "id=" + id +
+                ", year=" + year +
+                ", week=" + week +
+                ", atelier='" + atelier + '\'' +
+                ", hRecusTrf=" + hRecusTrf +
+                ", hObjectif=" + hObjectif +
+                ", hRealise=" + hRealise +
+                ", nBCarteEngage=" + nBCarteEngage +
+                ", nBCarteRetard=" + nBCarteRetard +
+                ", otd=" + otd +
+                ", mqtTrf=" + mqtTrf +
+                ", mqtTa=" + mqtTa +
+                ", qualite=" + qualite +
+                ", pcd=" + pcd +
+                ", test=" + test +
+                ", bloqueDossier=" + bloqueDossier +
+                ", maintenance=" + maintenance +
+                ", processOutillage=" + processOutillage +
+                ", retardProduction=" + retardProduction +
+                ", ecartStock=" + ecartStock +
+                ", attenteInfoClient=" + attenteInfoClient +
+                ", repporterSuiteDeClient=" + repporterSuiteDeClient +
+                ", encours=" + encours +
+                ", netFabricable=" + netFabricable +
+                ", enTransit=" + enTransit +
+                ", monquantTa=" + monquantTa +
+                ", clientMqtFc=" + clientMqtFc +
+                ", qualiteEncours=" + qualiteEncours +
+                ", aqf=" + aqf +
+                ", processDossierTra=" + processDossierTra +
+                ", testEncours=" + testEncours +
+                ", machine=" + machine +
+                ", finisAttRiClient=" + finisAttRiClient +
+                ", finisReportDelai=" + finisReportDelai +
+                ", yM=" + yM +
+                ", mqecartStock=" + mqecartStock +
+                ", mqRuptEtConsom=" + mqRuptEtConsom +
+                ", hPrevus=" + hPrevus +
+                ", dontRetard=" + dontRetard +
+                ", fabricable=" + fabricable +
+                ", volumeFabricableCms=" + volumeFabricableCms +
+                ", fabricableEncours=" + fabricableEncours +
+                ", previsions=" + previsions +
+                ", besoinEtp=" + besoinEtp +
+                ", etpDispo=" + etpDispo +
+                ", effectifPlus=" + effectifPlus +
+                ", heuresFormation=" + heuresFormation +
+                ", heuresAmelioration=" + heuresAmelioration +
+                '}';
     }
 }

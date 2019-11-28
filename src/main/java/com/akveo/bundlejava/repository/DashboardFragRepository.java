@@ -11,6 +11,7 @@ public interface DashboardFragRepository extends JpaRepository<DashboardFrag, Lo
     public List<DashboardFrag> findByWeekAndAtelier(Long week, String atelier);
 
     public DashboardFrag findDashboardFragByAtelierAndYearAndWeek(String atelier, Long year, Long week);
+    public List<DashboardFrag> findDashboardFragByWeekAndYear(Long week, Long year);
 
     public List<DashboardFrag> findByYear(Long year);
 
