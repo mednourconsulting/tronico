@@ -21,6 +21,7 @@ public class DashboardFrag implements Serializable {
     private Long nBCarteEngage = Long.valueOf(0);
     private Long nBCarteRetard = Long.valueOf(0);
     private Double otd = Double.valueOf(0.00);
+    private Long ecart = Long.valueOf(0);
     //-------------------------
     private Long mqtTrf = Long.valueOf(0);
     private Long mqtTa = Long.valueOf(0);
@@ -74,6 +75,14 @@ public class DashboardFrag implements Serializable {
 //        this.fabricableEncours = new Double(this.fabricable) / this.encours;
 //        this.besoinEtp = this.previsions / 46;
 //        this.effectifPlus = this.besoinEtp - this.etpDispo;
+    }
+
+    public Long getEcart() {
+        return ecart;
+    }
+
+    public void setEcart(Long ecart) {
+        this.ecart = ecart;
     }
 
     public Long getId() {
