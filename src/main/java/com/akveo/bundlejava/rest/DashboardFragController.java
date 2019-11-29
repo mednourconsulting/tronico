@@ -1,5 +1,6 @@
 package com.akveo.bundlejava.rest;
 
+import com.akveo.bundlejava.charts.MqTrfEiffelVauban;
 import com.akveo.bundlejava.model.DashboardFrag;
 import com.akveo.bundlejava.model.Tra;
 import com.akveo.bundlejava.repository.DashboardFragRepository;
@@ -60,6 +61,14 @@ public class DashboardFragController {
     ) {
         return ResponseEntity.ok(dashboardFragService.getTra(atelier1, atelier2, year, week));
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getTra/{year}-{weekX}")
+    public ResponseEntity<List<MqTrfEiffelVauban>> getMqTrfChart(@PathVariable("year") Long year,
+                                                           @PathVariable("weekX") Long weekX
+    ) {
+        return ResponseEntity.ok(dashboardFragService.getChartDataMqTrf(weekX, year));
+    }
+
 
     @PostMapping("/create")
     public ResponseEntity<DashboardFrag> createDashboardFrag(@RequestBody DashboardFrag dashboardFrag) {
