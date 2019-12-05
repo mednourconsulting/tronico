@@ -17,8 +17,8 @@ public class DashboardFragService {
 
     public Tra getTra(String atelier1, String atelier2, Long year, Long week) {
         Tra tra = new Tra();
-        DashboardFrag frag1 = dashboardFragRepository.findDashboardFragByAtelierAndYearAndWeek(atelier1, year, week);
-        DashboardFrag frag2 = dashboardFragRepository.findDashboardFragByAtelierAndYearAndWeek(atelier2, year, week);
+        DashboardFrag frag1 = dashboardFragRepository.findByAtelierAndYearAndWeek(atelier1, year, week);
+        DashboardFrag frag2 = dashboardFragRepository.findByAtelierAndYearAndWeek(atelier2, year, week);
 
         tra.sethRecusTrf(frag1.gethRecusTrf() + frag2.gethRecusTrf());
         tra.sethObjectif(frag1.gethObjectif() + frag2.gethObjectif());
@@ -79,8 +79,8 @@ public class DashboardFragService {
         List<MqTrfEiffelVauban> mqTrfEiffelVaubans = new ArrayList<>();
         for (int i = 1; i <= weekX; i++) {
             MqTrfEiffelVauban mqTrfEiffelVauban = new MqTrfEiffelVauban();
-            DashboardFrag fragVauban = dashboardFragRepository.findDashboardFragByAtelierAndYearAndWeek("vauban", year, Long.valueOf(i));
-            DashboardFrag fragEiffel = dashboardFragRepository.findDashboardFragByAtelierAndYearAndWeek("eiffel", year, Long.valueOf(i));
+            DashboardFrag fragVauban = dashboardFragRepository.findByAtelierAndYearAndWeek("vauban", year, Long.valueOf(i));
+            DashboardFrag fragEiffel = dashboardFragRepository.findByAtelierAndYearAndWeek("eiffel", year, Long.valueOf(i));
             mqTrfEiffelVauban.setSemaine("Semaine " + i);
             mqTrfEiffelVauban.setMqTrfEiffel(fragEiffel.getMqtTrf());
             mqTrfEiffelVauban.setMqTrfVauban(fragVauban.getMqtTrf());

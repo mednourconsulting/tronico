@@ -17,8 +17,8 @@ public class Evolutionh<string> implements Serializable {
     private Double budjet=0D;
     private Integer heuresCDE = Integer.valueOf(0);
     private Integer heuresPrevus = Integer.valueOf(0);
-    private Double facture = Double.valueOf(0);
-    private Double ecart= Double.valueOf(0);
+    private Double facture = Double.valueOf(0.00);
+    private Double ecart= Double.valueOf(0.00);
 
     public Evolutionh(Long year, Long week, Double budjet, Integer heuresCDE, Integer heuresPrevus, Double facture, Double ecart) {
         this.year = year;

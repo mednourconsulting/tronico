@@ -35,7 +35,7 @@ public class DashboardFragController {
     public ResponseEntity<DashboardFrag> getByAtelier(@PathVariable("atelier") String atelier,
                                                       @PathVariable("year") Long year,@PathVariable("week") Long week) {
         System.out.println("------------------"+ week);
-        return ResponseEntity.ok(dashboardFragRepository.findDashboardFragByAtelierAndYearAndWeek(atelier, year, week));
+        return ResponseEntity.ok(dashboardFragRepository.findByAtelierAndYearAndWeek(atelier, year, week));
     }
 
     @GetMapping("/getCurrentWeek")
@@ -53,7 +53,7 @@ public class DashboardFragController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getTra/{atelier1}-{atelier2}-{year}-{week}")
+    @GetMapping("/getTra/{atelier1}/{atelier2}/{year}/{week}")
     public ResponseEntity<Tra> getTra(@PathVariable("atelier1") String atelier1,
                                       @PathVariable("atelier2") String atelier2,
                                       @PathVariable("year") Long year,

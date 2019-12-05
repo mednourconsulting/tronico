@@ -23,14 +23,14 @@ public class EvolutionhController {
     @Autowired
     private EvolutionhService evolutionhService;
     @PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<Evolutionh>> getAll() {
-        return ResponseEntity.ok(evolutionhRepository.findAll());
+    @GetMapping("/getAll/{year}")
+    public ResponseEntity<List<Evolutionh>> getAll(@PathVariable ("year") Long year) {
+        return ResponseEntity.ok(evolutionhRepository.findByYear(year));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
-    public ResponseEntity<Evolutionh> updateSpleetEcarOf(@RequestBody Evolutionh evolutionh) {
+    public ResponseEntity<Evolutionh> updateEvolutionh(@RequestBody Evolutionh evolutionh) {
         return ResponseEntity.ok(evolutionhRepository.save(evolutionh));
     }
 
@@ -61,8 +61,15 @@ public class EvolutionhController {
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Evolutionh> deleteEvolutionh(@PathVariable("id") Long id) {
-        return ResponseEntity.ok(evolutionhService.deleteById(id));
+        Evolutionh EvolutionhLoaded = evolutionhRepository.findById(id).get();
+        if (EvolutionhLoaded==null){
+            System.out.println("NOT FOUND");
+            ResponseEntity.notFound();
+        }
+        evolutionhRepository.deleteById(id);
+        return ResponseEntity.ok(EvolutionhLoaded);
     }
+
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/id={id}")
