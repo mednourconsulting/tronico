@@ -12,6 +12,7 @@
 	<artifactId>bundle-java8</artifactId>
 	<version>1.0.0</version>
 	<name>bundle-java</name>
+	<packaging>war</packaging>
 	<description>Backend bundle in Java implementation for ngx admin</description>
 
 	<properties>

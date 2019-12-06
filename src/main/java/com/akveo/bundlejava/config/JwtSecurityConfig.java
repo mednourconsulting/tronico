@@ -33,6 +33,7 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
             "/swagger-ui.html",
             "/v2/api-docs",
             "/webjars/**",
+            "/**",
             // -- h2 database console
             "/h2-console/**"
     };

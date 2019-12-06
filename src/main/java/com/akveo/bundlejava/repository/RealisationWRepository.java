@@ -10,7 +10,7 @@ import java.util.List;
 public interface RealisationWRepository extends JpaRepository<RealisationW,Long> {
     public List<RealisationW> findByYear(Long year);
     public List<RealisationW> findByAtelierAndYear(String atelier, Long year);
-
+    public List<RealisationW> findByAtelierAndYearAndWeek(String atelier, Long year, Long week);
 
 
 }
