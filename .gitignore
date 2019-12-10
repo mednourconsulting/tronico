@@ -2,7 +2,7 @@ HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
 /src/main/resources/application.properties
-
+/src/main/resources/templates
 ### STS ###
 .apt_generated
 .classpath
@@ -29,3 +29,4 @@ HELP.md
 
 ### VS Code ###
 .vscode/
+/src/main/resources/templates/

@@ -11,20 +11,17 @@ import java.util.TimeZone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @EnableScheduling
-@SuppressWarnings({"checkstyle:FinalClass", "checkstyle:HideUtilityClassConstructor"})
+//@SuppressWarnings({"checkstyle:FinalClass", "checkstyle:HideUtilityClassConstructor"})
 //@EntityScan("com.akveo.bundlejava.model")
 public class BundleJavaApplication {
-
     public static void main(String[] args) {
         Locale.setDefault(Locale.US);
         TimeZone.setDefault(TimeZone.getTimeZone("Etc/UCT"));
-
         SpringApplication.run(BundleJavaApplication.class, args);
     }
-
 }
