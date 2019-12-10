@@ -24,7 +24,11 @@ public class RealisationWRepositoryController {
     public ResponseEntity<List<RealisationW>> getAll(@PathVariable ("atelier") String atelier , @PathVariable("year") Long year) {
         return ResponseEntity.ok(realisationWRepository.findByAtelierAndYear(atelier,year));
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAll/{atelier}/{year}/{week}")
+    public ResponseEntity<List<RealisationW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week) {
+        return ResponseEntity.ok(realisationWRepository.findByAtelierAndYearAndWeek(atelier,year,week));
+    }
 
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")

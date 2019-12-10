@@ -19,7 +19,11 @@ public class InfoBlqWController {
     public ResponseEntity<List<InfoBlqW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
         return ResponseEntity.ok(infoBlqWRepository.findByAtelierAndYear(atelier, year));
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/getAll/{atelier}/{year}/{week}")
+    public ResponseEntity<List<InfoBlqW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week) {
+        return ResponseEntity.ok(infoBlqWRepository.findByAtelierAndYearAndWeek(atelier,year,week));
+    }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<InfoBlqW> createSpleetEcartOF(@RequestBody InfoBlqW infoBlqW) {
