@@ -21,6 +21,9 @@ public class SpleetEcartOF implements Serializable {
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
     private String atelier;
 
+    public SpleetEcartOF() {
+    }
+
     public SpleetEcartOF(Long nClient, String lot, String descProduit, int qteBase, int qteSolde, String newTips, String comment, Long year, String atelier) {
         this.nClient = nClient;
         this.lot = lot;

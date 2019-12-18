@@ -12,6 +12,7 @@ public class ConfigTrs implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String atelier;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
     private Double objectif;
 

@@ -17,6 +17,19 @@ public class ConfigProductiviteMensuel implements Serializable {
     private String atelier;
     private Double objectif = new Double(0);
 
+    public ConfigProductiviteMensuel() {
+    }
+
+    @Override
+    public String toString() {
+        return "ConfigProductiviteMensuel{" +
+                "id=" + id +
+                ", year=" + year +
+                ", atelier='" + atelier + '\'' +
+                ", objectif=" + objectif +
+                '}';
+    }
+
     public Long getYear() {
         return year;
     }
@@ -49,12 +62,4 @@ public class ConfigProductiviteMensuel implements Serializable {
         this.objectif = objectif;
     }
 
-    @Override
-    public String toString() {
-        return "ConfigProductiviteMensuel{" +
-                "id=" + id +
-                ", atelier='" + atelier + '\'' +
-                ", objectif=" + objectif +
-                '}';
-    }
 }

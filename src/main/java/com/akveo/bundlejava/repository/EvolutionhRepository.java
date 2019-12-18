@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface EvolutionhRepository extends JpaRepository<Evolutionh,Long> {
+    public List<Evolutionh> findByYearOrderByWeek(Long year);
+    public Evolutionh findByYearAndWeek(Long year , Long week);
     public List<Evolutionh> findByYear(Long year);
 }

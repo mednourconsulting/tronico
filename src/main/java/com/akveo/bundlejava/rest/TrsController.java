@@ -17,9 +17,9 @@ public class TrsController {
     @Autowired
     private TrsTrepository trsTrepository;
 
-    @GetMapping(value = "getAll")
-    public ResponseEntity<List<TrsCMS>> getAll(){
-        return ResponseEntity.ok(trsTrepository.findAll());
+    @GetMapping(value = "/getAll/{year}")
+    public ResponseEntity<List<TrsCMS>> getAll(@PathVariable("year") Long year){
+        return ResponseEntity.ok(trsTrepository.findByYear(year));
     }
 
     @PostMapping(value = "/create")
