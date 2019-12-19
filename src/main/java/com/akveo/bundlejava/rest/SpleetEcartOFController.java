@@ -19,26 +19,26 @@ public class SpleetEcartOFController {
     @Autowired
     private SpleetEcartOFRepository spleetEcartOFRepository;
     // get All records
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<SpleetEcartOF>> getAll(){
         return ResponseEntity.ok(spleetEcartOFRepository.findAll());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<SpleetEcartOF> createSpleetEcartOF(@RequestBody SpleetEcartOF spleetEcartOF){
         return ResponseEntity.ok(spleetEcartOFRepository.save(spleetEcartOF));
     }
 
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<SpleetEcartOF> updateSpleetEcartOF(@RequestBody SpleetEcartOF spleetEcartOF){
         return ResponseEntity.ok(spleetEcartOFRepository.save(spleetEcartOF));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<SpleetEcartOF> deleteSpleetEcartOF(@PathVariable("id") Long id){
         SpleetEcartOF spleetEcartOF=spleetEcartOFRepository.findById(id).get();

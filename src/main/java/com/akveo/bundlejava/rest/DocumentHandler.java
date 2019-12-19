@@ -24,7 +24,7 @@ public class DocumentHandler {
     @Autowired
     DocumentService documentService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/upload")
     public @ResponseBody
     ResponseMetadata handleFileUpload(@RequestParam MultipartFile file) throws IOException {
@@ -32,7 +32,7 @@ public class DocumentHandler {
         return documentService.save(file);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public HttpEntity<byte[]> getDocument(@PathVariable Long id) {
         HttpHeaders httpHeaders = new HttpHeaders();

@@ -14,36 +14,36 @@ import java.util.List;
 public class PlanActOtdController {
     @Autowired
     private PlanActOtdRepository planActOtdRepository;
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<PlanActOtd>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
         return ResponseEntity.ok(planActOtdRepository.findByAtelierAndYear(atelier , year));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}/{week}")
     public ResponseEntity<List<PlanActOtd>> getByWeekByAtelierByYear(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week ) {
         return ResponseEntity.ok(planActOtdRepository.findByAtelierAndYearAndWeek(atelier , year , week));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<PlanActOtd> createSpleetEcartOF(@RequestBody PlanActOtd planActOtd) {
         return ResponseEntity.ok(planActOtdRepository.save(planActOtd));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/createAll")
     public ResponseEntity<List<PlanActOtd>> createAll(@RequestBody List<PlanActOtd> planActOtds) {
         System.out.println(planActOtds);
         return ResponseEntity.ok(planActOtdRepository.saveAll(planActOtds));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<PlanActOtd> updateSpleetEcartOF(@RequestBody PlanActOtd planActOtd) {
         return ResponseEntity.ok(planActOtdRepository.save(planActOtd));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<PlanActOtd> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         PlanActOtd planActOtdLoaded = planActOtdRepository.findById(id).get();

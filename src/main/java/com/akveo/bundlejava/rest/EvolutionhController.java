@@ -22,13 +22,13 @@ public class EvolutionhController {
     // get All reocrds
     @Autowired
     private EvolutionhService evolutionhService;
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{year}")
     public ResponseEntity<List<Evolutionh>> getAll(@PathVariable ("year") Long year) {
         return ResponseEntity.ok(evolutionhRepository.findByYear(year));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Evolutionh> updateEvolutionh(@RequestBody Evolutionh evolutionh) {
         return ResponseEntity.ok(evolutionhRepository.save(evolutionh));
@@ -36,13 +36,13 @@ public class EvolutionhController {
 
     // update List -- for smart table ;)
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/updateList")
     public ResponseEntity<List<Evolutionh>> saveList(@RequestBody List<Evolutionh> evolutionhs) {
         return ResponseEntity.ok(evolutionhRepository.saveAll(evolutionhs));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getChartData/{year}")
     public ResponseEntity<EvolutionhChartData> getChartData(@PathVariable("year") Long year){
         System.out.println("Year" + year + evolutionhService.getChartData(year));
@@ -50,7 +50,7 @@ public class EvolutionhController {
     }
 
     // create record
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Evolutionh> createSpleetEcartOF(@RequestBody Evolutionh evolutionh) {
         evolutionh.setEcart(Double.valueOf(evolutionh.getHeuresPrevus()-evolutionh.getHeuresCDE()));
@@ -58,7 +58,7 @@ public class EvolutionhController {
     }
 
     //delete record
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Evolutionh> deleteEvolutionh(@PathVariable("id") Long id) {
         Evolutionh EvolutionhLoaded = evolutionhRepository.findById(id).get();
@@ -71,7 +71,7 @@ public class EvolutionhController {
     }
 
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/id={id}")
     public ResponseEntity<Evolutionh> deleteEvolutionParId(@PathVariable("id") Long id) {
         Evolutionh evolutionhLoaded = evolutionhRepository.findById(id).get();

@@ -20,25 +20,25 @@ public class ProductionMensuelController {
     @Autowired
     private ProductionMensuelService productionMensuelService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<ProductionMensuel>> getAll(@PathVariable String atelier , @PathVariable Long year) {
         return ResponseEntity.ok(productionMensuelRepository.findByAtelierAndYear(atelier , year));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ProductionMensuel> createProductionMensuel(@RequestBody ProductionMensuel productionMensuel) {
         return ResponseEntity.ok(productionMensuelRepository.save(productionMensuel));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<ProductionMensuel> updateSpleetEcartOF(@RequestBody ProductionMensuel productionMensuel) {
         return ResponseEntity.ok(productionMensuelRepository.save(productionMensuel));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ProductionMensuel> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         ProductionMensuel productionMensuelLoaded = productionMensuelRepository.findById(id).get();
@@ -50,7 +50,7 @@ public class ProductionMensuelController {
         return ResponseEntity.ok(productionMensuelLoaded);
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getChartData/{year}")
     public ResponseEntity<ProductionMensuelChartData> getChartData(@PathVariable("year") Long year) {
         System.out.println("+++++++++++++++++++++++++++++" + productionMensuelService.getChartData(year));

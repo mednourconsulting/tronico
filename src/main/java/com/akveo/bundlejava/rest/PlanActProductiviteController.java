@@ -14,23 +14,23 @@ import java.util.List;
 public class PlanActProductiviteController {
     @Autowired
     private PlanActProductiviteRepository planActProductiviteRepository;
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<PlanActProductivite>> getAll() {
         return ResponseEntity.ok(planActProductiviteRepository.findAll());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<PlanActProductivite> createSpleetEcartOF(@RequestBody PlanActProductivite planActProductivite ) {
         return ResponseEntity.ok(planActProductiviteRepository.save(planActProductivite));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<PlanActProductivite> updateSpleetEcartOF(@RequestBody PlanActProductivite planActProductivite) {
         return ResponseEntity.ok(planActProductiviteRepository.save(planActProductivite));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<PlanActProductivite> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         PlanActProductivite planActProductiviteLoaded = planActProductiviteRepository.findById(id).get();

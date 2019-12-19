@@ -20,35 +20,35 @@ public class ParetoOtdWeekController {
     @Autowired
     private ParetoOtdWeekService paretoOtdWeekService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<ParetoOtdWeek>> getAll() {
         return ResponseEntity.ok(paretoOtdWeekRepository.findAll());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<ParetoOtdWeek>> getAllByAtelierAndYear(@PathVariable("atelier") String atelier, @PathVariable("year") Long year) {
         return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelierAndYear(atelier, year));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}/{week}")
     public ResponseEntity<List<ParetoOtdWeek>> getByWeekByAtelierByYear(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week ) {
         return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelierAndYearAndWeek(atelier , year , week));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{id}")
     public ResponseEntity<ParetoOtdWeek> getById(@PathVariable("id") Long id) {
         return ResponseEntity.ok(paretoOtdWeekRepository.findById(id).orElse(null));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ParetoOtdWeek> createSpleetEcartOF(@RequestBody ParetoOtdWeek paretoOtdWeek) {
         return ResponseEntity.ok(paretoOtdWeekRepository.save(paretoOtdWeek));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/saveParetoOtdWithItems")
     public ResponseEntity<ParetoOtdWeek> saveParetoOtdWithItems(@RequestBody ParetoOtdWeek paretoOtdWeek) {
         System.out.println("------------->" + paretoOtdWeek);
@@ -56,19 +56,19 @@ public class ParetoOtdWeekController {
         return ResponseEntity.ok(paretoOtdWeekService.saveParetoOtdWeekWithItems(paretoOtdWeek));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<ParetoOtdWeek> updateSpleetEcartOF(@RequestBody ParetoOtdWeek paretoOtdWeek) {
         return ResponseEntity.ok(paretoOtdWeekService.saveParetoOtdWeekWithItems(paretoOtdWeek));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/updateParetoOtdWithItems")
     public ResponseEntity<ParetoOtdWeek> updateParetoOtdWithItems(@RequestBody ParetoOtdWeek paretoOtdWeek) {
         System.out.println("------------->" + paretoOtdWeek);
         System.out.println(paretoOtdWeek.getParetoOtdWeekItemList());
         return ResponseEntity.ok(paretoOtdWeekService.saveParetoOtdWeekWithItems(paretoOtdWeek));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<ParetoOtdWeek> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         ParetoOtdWeek paretoOtdWeekLoaded = paretoOtdWeekRepository.findById(id).get();

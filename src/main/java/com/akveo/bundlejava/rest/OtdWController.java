@@ -18,27 +18,27 @@ public class OtdWController {
 
     @Autowired
     private OtdWRepository otdWRepository;
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<OtdW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
         return ResponseEntity.ok(otdWRepository.findByAtelierAndYearOrderByWeek(atelier,year));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}/{week}")
     public ResponseEntity<List<OtdW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week) {
         return ResponseEntity.ok(otdWRepository.findByAtelierAndYearAndWeek(atelier,year,week));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<OtdW> createSpleetEcartOF(@RequestBody OtdW otdW) {
         return ResponseEntity.ok(otdWRepository.save(otdW));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<OtdW> updateSpleetEcartOF(@RequestBody OtdW otdW) {
         return ResponseEntity.ok(otdWRepository.save(otdW));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<OtdW> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         OtdW otdWLoaded = otdWRepository.findById(id).get();

@@ -19,28 +19,28 @@ public class RealisationWRepositoryController {
     @Autowired
     private RealisationWService realisationWService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<RealisationW>> getAll(@PathVariable ("atelier") String atelier , @PathVariable("year") Long year) {
-        return ResponseEntity.ok(realisationWRepository.findByAtelierAndYear(atelier,year));
+        return ResponseEntity.ok(realisationWRepository.findByAtelierAndYearOrderByWeek(atelier,year));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}/{week}")
     public ResponseEntity<List<RealisationW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week) {
         return ResponseEntity.ok(realisationWRepository.findByAtelierAndYearAndWeek(atelier,year,week));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<RealisationW> createSpleetEcartOF(@RequestBody RealisationW planActPcd ) {
         return ResponseEntity.ok(realisationWRepository.save(planActPcd));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<RealisationW> updateSpleetEcartOF(@RequestBody RealisationW planActPcd) {
         return ResponseEntity.ok(realisationWRepository.save(planActPcd));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<RealisationW> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         RealisationW realisationWLoaded = realisationWRepository.findById(id).get();
@@ -51,7 +51,7 @@ public class RealisationWRepositoryController {
         realisationWRepository.deleteById(id);
         return ResponseEntity.ok(realisationWLoaded);
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getChartData/{year}")
     public ResponseEntity<RealisationWChart> getChartData(@PathVariable("year") Long year){
         System.out.println(realisationWService.getChartData(year));
