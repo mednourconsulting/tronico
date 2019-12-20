@@ -24,13 +24,13 @@ public class DashboardFragController {
     @Autowired
     private DashboardFragService dashboardFragService;
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<DashboardFrag>> getAll() {
         return ResponseEntity.ok(dashboardFragRepository.findAll());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getByAtelier/{atelier}-{year}-{week}")
     public ResponseEntity<DashboardFrag> getByAtelier(@PathVariable("atelier") String atelier,
                                                       @PathVariable("year") Long year,@PathVariable("week") Long week) {
@@ -52,7 +52,7 @@ public class DashboardFragController {
         return ResponseEntity.ok(dashboardFragRepository.findDashboardFragByWeekAndYear(week, year));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getTra/{atelier1}/{atelier2}/{year}/{week}")
     public ResponseEntity<Tra> getTra(@PathVariable("atelier1") String atelier1,
                                       @PathVariable("atelier2") String atelier2,
@@ -61,7 +61,7 @@ public class DashboardFragController {
     ) {
         return ResponseEntity.ok(dashboardFragService.getTra(atelier1, atelier2, year, week));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getTra/{year}-{weekX}")
     public ResponseEntity<List<MqTrfEiffelVauban>> getMqTrfChart(@PathVariable("year") Long year,
                                                            @PathVariable("weekX") Long weekX
@@ -76,13 +76,13 @@ public class DashboardFragController {
         return ResponseEntity.ok(dashboardFragRepository.save(dashboardFrag));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<DashboardFrag> updateDashboardFrag(@RequestBody DashboardFrag dashboardFrag) {
         return ResponseEntity.ok(dashboardFragRepository.save(dashboardFrag));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<DashboardFrag> deleteDashboardFrag(@PathVariable("id") Long id) {
         DashboardFrag dashboardFragLoaded = dashboardFragRepository.findById(id).get();

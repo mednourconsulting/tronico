@@ -17,7 +17,7 @@ import java.util.List;
 public class WeekMonthController {
     @Autowired
     private WeekMonthRepository weekMonthRepository;
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<WeekMonth>> getAll(){
         return ResponseEntity.ok(weekMonthRepository.findAll());

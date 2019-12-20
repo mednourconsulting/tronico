@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ConfigTrsRepository extends JpaRepository<ConfigTrs,Long> {
     public ConfigTrs findByYear(Long year);
     public ConfigTrs deleteByYear(Long year);
+    public void deleteConfigTrsByYear(Long year);
 }

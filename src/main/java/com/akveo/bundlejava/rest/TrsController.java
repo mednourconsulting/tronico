@@ -1,29 +1,30 @@
 package com.akveo.bundlejava.rest;
 
 import com.akveo.bundlejava.model.TrsCMS;
-import com.akveo.bundlejava.repository.TraRepository;
 import com.akveo.bundlejava.repository.TrsTrepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/trs")
 @CrossOrigin("*")
 public class TrsController {
     @Autowired
     private TrsTrepository trsTrepository;
 
-    @GetMapping(value = "/getAll/{year}")
-    public ResponseEntity<List<TrsCMS>> getAll(@PathVariable("year") Long year){
-        return ResponseEntity.ok(trsTrepository.findByYear(year));
+
+    @GetMapping(value = "/getAll")
+    public ResponseEntity<List<TrsCMS>> getAll(){
+        return ResponseEntity.ok(trsTrepository.findAll());
     }
 
     @PostMapping(value = "/create")
     public ResponseEntity<TrsCMS> create(@RequestBody TrsCMS trsCMS){
+        System.out.println(trsCMS);
         return ResponseEntity.ok(trsTrepository.save(trsCMS));
     }
 

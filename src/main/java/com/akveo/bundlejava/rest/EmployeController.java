@@ -21,13 +21,13 @@ public class EmployeController {
         return ResponseEntity.ok(employeRepository.findAll());
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Employe> createSpleetEcartOF(@RequestBody Employe employe) {
         return ResponseEntity.ok(employeRepository.save(employe));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Employe> updateSpleetEcartOF(@RequestBody Employe employe) {
         return ResponseEntity.ok(employeRepository.save(employe));
@@ -35,7 +35,7 @@ public class EmployeController {
 
 
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Employe> deleteSpleetEcartOF(@PathVariable("id") Long id) {
         Employe employeLoaded = employeRepository.findById(id).get();

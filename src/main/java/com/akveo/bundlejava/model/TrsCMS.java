@@ -18,6 +18,21 @@ public class TrsCMS implements Serializable {
     private Double objectif = 0D;// en %
     private Double ecart = 0D;// en %
 
+    public TrsCMS() {
+    }
+
+    @Override
+    public String toString() {
+        return "TrsCMS{" +
+                "id=" + id +
+                ", year=" + year +
+                ", week=" + week +
+                ", trsRealise=" + trsRealise +
+                ", objectif=" + objectif +
+                ", ecart=" + ecart +
+                '}';
+    }
+
     public Long getId() {
         return id;
     }

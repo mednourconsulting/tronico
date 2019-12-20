@@ -20,28 +20,28 @@ import java.util.List;
 public class ProduitController {
     @Autowired
     private  ProduitRepository produitRepository;
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll")
     public ResponseEntity<List<Produit>> getAll(){
         return ResponseEntity.ok(produitRepository.findAll());
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Produit> createProduit(@RequestBody Produit produit){
         return ResponseEntity.ok(produitRepository.save(produit));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getByProduit/{produit}")
     public ResponseEntity<Produit> getByProduit(@PathVariable("produit") String produit){
         return ResponseEntity.ok(produitRepository.getAllByProduit( produit));
     }
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getById/{id}")
     public ResponseEntity<Produit> getById(@PathVariable("id") Long id){
         return ResponseEntity.ok(produitRepository.findById(id).orElse(null));
     }
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")
     public ResponseEntity<Produit> updatProduit(@RequestBody Produit produit) {
         return ResponseEntity.ok(produitRepository.save(produit));
@@ -49,7 +49,7 @@ public class ProduitController {
 
 
 
-    @PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasAuthority('ADMIN')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Produit> deleteProduit(@PathVariable("id") Long id) {
         Produit employeLoaded = produitRepository.findById(id).get();
@@ -60,5 +60,4 @@ public class ProduitController {
         produitRepository.deleteById(id);
         return ResponseEntity.ok(employeLoaded);
     }
-
 }
