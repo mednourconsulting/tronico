@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface PcdWeekRepository extends JpaRepository<PcdWeek,Long> {
     public List<PcdWeek> findByYear(Long year);
+    public List<PcdWeek> findByAtelier(String atelier);
     public List<PcdWeek> findByAtelierAndYear(String atelier, Long year);
     public PcdWeek findByAtelierAndYearAndWeek(String atelier, Long year , Long Week);
 }

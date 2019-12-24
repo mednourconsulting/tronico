@@ -25,7 +25,14 @@ public class ProductionMensuelController {
     public ResponseEntity<List<ProductionMensuel>> getAll(@PathVariable String atelier , @PathVariable Long year) {
         return ResponseEntity.ok(productionMensuelRepository.findByAtelierAndYear(atelier , year));
     }
-
+    @GetMapping("/get/{atelier}/{year}/{month}")
+    public ResponseEntity<ProductionMensuel> getAllByMonth(@PathVariable("atelier") String atelier , @PathVariable("year") Long year  , @PathVariable("month") Long month) {
+        return ResponseEntity.ok(productionMensuelRepository.findByAtelierAndYearAndMonth(atelier , year , month));
+    }
+    @GetMapping("/get/{atelier}")
+    public ResponseEntity<List<ProductionMensuel>> get(@PathVariable String atelier) {
+        return ResponseEntity.ok(productionMensuelRepository.findByAtelier(atelier));
+    }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<ProductionMensuel> createProductionMensuel(@RequestBody ProductionMensuel productionMensuel) {

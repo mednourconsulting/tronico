@@ -19,13 +19,20 @@ public class OtdWController {
     @Autowired
     private OtdWRepository otdWRepository;
     //@PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/get/{atelier}")
+    public ResponseEntity<List<OtdW>> get(@PathVariable("atelier") String atelier) {
+        return ResponseEntity.ok(otdWRepository.findByAtelier(atelier));
+    }
+
+
+
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<OtdW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
         return ResponseEntity.ok(otdWRepository.findByAtelierAndYearOrderByWeek(atelier,year));
     }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}/{week}")
-    public ResponseEntity<List<OtdW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week) {
+    public ResponseEntity<OtdW> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week) {
         return ResponseEntity.ok(otdWRepository.findByAtelierAndYearAndWeek(atelier,year,week));
     }
     //@PreAuthorize("hasAuthority('ADMIN')")

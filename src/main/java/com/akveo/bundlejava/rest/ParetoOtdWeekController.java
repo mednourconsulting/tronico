@@ -21,9 +21,9 @@ public class ParetoOtdWeekController {
     private ParetoOtdWeekService paretoOtdWeekService;
 
     //@PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<ParetoOtdWeek>> getAll() {
-        return ResponseEntity.ok(paretoOtdWeekRepository.findAll());
+    @GetMapping("/get/{atelier}")
+    public ResponseEntity<List<ParetoOtdWeek>> getAll(@PathVariable("atelier") String atelier) {
+        return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelier(atelier));
     }
 
     //@PreAuthorize("hasAuthority('ADMIN')")

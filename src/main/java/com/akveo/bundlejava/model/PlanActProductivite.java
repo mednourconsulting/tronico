@@ -10,6 +10,7 @@ public class PlanActProductivite {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long year = Long.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+    private Long month = 0L;
     private Double ecart = 0D;
     private String produit;
     private String besoin;
@@ -44,6 +45,14 @@ public class PlanActProductivite {
     }
 
     public PlanActProductivite() {
+    }
+
+    public Long getMonth() {
+        return month;
+    }
+
+    public void setMonth(Long month) {
+        this.month = month;
     }
 
     public Long getId() {

@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface ParetoOtdWeekRepository extends JpaRepository<ParetoOtdWeek,Long> {
     public List<ParetoOtdWeek> findByAtelierAndYear(String atelier, Long year);
+    public List<ParetoOtdWeek> findByAtelier(String atelier);
     public List<ParetoOtdWeek> findByAtelierAndYearAndWeek(String atelier, Long year, Long week);
     public Optional<ParetoOtdWeek> findById(Long id);
 

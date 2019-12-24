@@ -25,6 +25,10 @@ public class PcdWeekController {
     public ResponseEntity<List<PcdWeek>> getAll() {
         return ResponseEntity.ok(pcdWeekRepository.findAll());
     }
+    @GetMapping("/get/{atelier}")
+    public ResponseEntity<List<PcdWeek>> get(@PathVariable("atelier") String atelier) {
+        return ResponseEntity.ok(pcdWeekRepository.findByAtelier(atelier));
+    }
 
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")

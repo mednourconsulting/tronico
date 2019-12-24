@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface OtdWRepository extends JpaRepository<OtdW,Long> {
     public List<OtdW> findByAtelierAndYearOrderByWeek(String atelier, Long year);
-    public List<OtdW> findByAtelierAndYearAndWeek(String atelier, Long year, Long Week);
+    public List<OtdW> findByAtelier(String atelier);
+    public OtdW findByAtelierAndYearAndWeek(String atelier, Long year, Long Week);
 }

@@ -17,6 +17,7 @@ public class OtdW implements Serializable {
     private Double otdRealise = 0D;
     private Double objectif = 0D;
     private Double ecart = 0D;
+    private Double ecartEcart = 0D;
     private String atelier;
 
     public OtdW() { }
@@ -57,6 +58,14 @@ public class OtdW implements Serializable {
 
     public void setWeek(Long week) {
         this.week = week;
+    }
+
+    public Double getEcartEcart() {
+        return ecartEcart;
+    }
+
+    public void setEcartEcart(Double ecartEcart) {
+        this.ecartEcart = ecartEcart;
     }
 
     public Double getOtdRealise() {

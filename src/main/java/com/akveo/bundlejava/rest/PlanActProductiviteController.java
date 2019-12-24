@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.lang.management.PlatformLoggingMXBean;
 import java.util.List;
 @RestController
 @RequestMapping("/planActProductivite")
@@ -15,15 +16,24 @@ public class PlanActProductiviteController {
     @Autowired
     private PlanActProductiviteRepository planActProductiviteRepository;
     //@PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<PlanActProductivite>> getAll() {
-        return ResponseEntity.ok(planActProductiviteRepository.findAll());
+    @GetMapping("/getAll/{atelier}")
+    public ResponseEntity<List<PlanActProductivite>> getAll(@PathVariable("atelier") String atelier) {
+        return ResponseEntity.ok(planActProductiviteRepository.findByAtelier(atelier));
     }
-
+    @GetMapping("/getAll/{atelier}/{year}/{month}")
+    public ResponseEntity<List<PlanActProductivite>> get(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year , @PathVariable("month") Long month) {
+        return ResponseEntity.ok(planActProductiviteRepository.findByAtelierAndYearAndMonth(atelier,year,month));
+    }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<PlanActProductivite> createSpleetEcartOF(@RequestBody PlanActProductivite planActProductivite ) {
         return ResponseEntity.ok(planActProductiviteRepository.save(planActProductivite));
+    }
+
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    @PostMapping("/createAll")
+    public ResponseEntity<List<PlanActProductivite>> createAll(@RequestBody List<PlanActProductivite>  planActProductivite) {
+        return ResponseEntity.ok(planActProductiviteRepository.saveAll(planActProductivite));
     }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @PutMapping("/update")

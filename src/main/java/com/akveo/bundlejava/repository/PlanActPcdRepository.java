@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface PlanActPcdRepository extends JpaRepository<PlanActPcd,Long> {
     public List<PlanActPcd> findByAtelierAndYear(String atelier, Long year);
+    public List<PlanActPcd> findByAtelier(String atelier);
     public List<PlanActPcd> findByAtelierAndYearAndWeek(String atelier, Long year, Long week);
 }
 

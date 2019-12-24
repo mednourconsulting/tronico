@@ -19,7 +19,10 @@ public class PlanActOtdController {
     public ResponseEntity<List<PlanActOtd>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
         return ResponseEntity.ok(planActOtdRepository.findByAtelierAndYear(atelier , year));
     }
-
+    @GetMapping("/get/{atelier}")
+    public ResponseEntity<List<PlanActOtd>> getAll(@PathVariable("atelier") String atelier) {
+        return ResponseEntity.ok(planActOtdRepository.findByAtelier(atelier));
+    }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}/{week}")
     public ResponseEntity<List<PlanActOtd>> getByWeekByAtelierByYear(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week ) {
@@ -52,6 +55,16 @@ public class PlanActOtdController {
             ResponseEntity.notFound();
         }
         planActOtdRepository.deleteById(id);
+        return ResponseEntity.ok(planActOtdLoaded);
+    }
+    @DeleteMapping("/delete/{atelier}/{year}/{week}")
+    public ResponseEntity<List<PlanActOtd>> deleteByWeek(@PathVariable("atelier") String atelier , @PathVariable("year") Long year ,@PathVariable("week") Long week) {
+            List<PlanActOtd> planActOtdLoaded = planActOtdRepository.findByAtelierAndYearAndWeek(atelier ,year ,week);
+        if (planActOtdLoaded==null){
+            System.out.println("NOT FOUND");
+            ResponseEntity.notFound();
+        }
+        planActOtdRepository.deleteAll(planActOtdLoaded);
         return ResponseEntity.ok(planActOtdLoaded);
     }
 }
