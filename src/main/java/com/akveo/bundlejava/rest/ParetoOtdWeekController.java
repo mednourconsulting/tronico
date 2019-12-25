@@ -23,13 +23,13 @@ public class ParetoOtdWeekController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/get/{atelier}")
     public ResponseEntity<List<ParetoOtdWeek>> getAll(@PathVariable("atelier") String atelier) {
-        return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelier(atelier));
+        return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelierOrderByWeek(atelier));
     }
 
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<ParetoOtdWeek>> getAllByAtelierAndYear(@PathVariable("atelier") String atelier, @PathVariable("year") Long year) {
-        return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelierAndYear(atelier, year));
+        return ResponseEntity.ok(paretoOtdWeekRepository.findByAtelierAndYearOrderByWeek(atelier, year));
     }
 
     //@PreAuthorize("hasAuthority('ADMIN')")

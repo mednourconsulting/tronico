@@ -16,7 +16,7 @@ public class PlanActTrsController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/get/{year}")
     public ResponseEntity<List<PlanActTrs>> getAll( @PathVariable("year") Long year) {
-        return ResponseEntity.ok(planActTrsRepository.findByYear( year));
+        return ResponseEntity.ok(planActTrsRepository.findByYearOrderByWeek( year));
     }
     //@PreAuthorize("hasAuthority('ADMIN')")
 
@@ -24,10 +24,10 @@ public class PlanActTrsController {
     public ResponseEntity<List<PlanActTrs>> get() {
         return ResponseEntity.ok(planActTrsRepository.findAll());
     }
-    //@PreAuthorize("hasAuthority('ADMIN')")
+
     @GetMapping("/getAll/{year}/{week}")
     public ResponseEntity<List<PlanActTrs>> getByWeekByAtelierByYear(@PathVariable("year") Long year ,@PathVariable("week") Long week ) {
-        return ResponseEntity.ok(planActTrsRepository.findByYearAndWeek(year , week));
+        return ResponseEntity.ok(planActTrsRepository.findByYearAndWeekOrderByWeek(year , week));
     }
 
     //@PreAuthorize("hasAuthority('ADMIN')")

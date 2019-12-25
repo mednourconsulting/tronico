@@ -18,7 +18,11 @@ public class PlanActProductiviteController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}")
     public ResponseEntity<List<PlanActProductivite>> getAll(@PathVariable("atelier") String atelier) {
-        return ResponseEntity.ok(planActProductiviteRepository.findByAtelier(atelier));
+        return ResponseEntity.ok(planActProductiviteRepository.findByAtelierOrderByMonth(atelier));
+    }
+    @GetMapping("/getAll/{atelier}/{year}")
+    public ResponseEntity<List<PlanActProductivite>> getByYear(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
+        return ResponseEntity.ok(planActProductiviteRepository.findByAtelierAndYearOrderByMonth(atelier,year));
     }
     @GetMapping("/getAll/{atelier}/{year}/{month}")
     public ResponseEntity<List<PlanActProductivite>> get(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year , @PathVariable("month") Long month) {

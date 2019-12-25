@@ -17,7 +17,7 @@ public class ProductionMensuelService {
         Double totalProductivite = 0D;
         Double totalObjectif = 0D;
         Double totalEcart = 0D;
-        List<ProductionMensuel> list = productionMensuelRepository.findByYear(year);
+        List<ProductionMensuel> list = productionMensuelRepository.findByYearOrderByMonth(year);
         if (list == null) {
             System.out.println("NOT DTA for this year");
             return null;

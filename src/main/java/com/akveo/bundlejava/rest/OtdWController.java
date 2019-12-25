@@ -21,10 +21,8 @@ public class OtdWController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/get/{atelier}")
     public ResponseEntity<List<OtdW>> get(@PathVariable("atelier") String atelier) {
-        return ResponseEntity.ok(otdWRepository.findByAtelier(atelier));
+        return ResponseEntity.ok(otdWRepository.findByAtelierOrderByWeek(atelier));
     }
-
-
 
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<OtdW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
@@ -33,7 +31,7 @@ public class OtdWController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}/{week}")
     public ResponseEntity<OtdW> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year ,@PathVariable("week") Long week) {
-        return ResponseEntity.ok(otdWRepository.findByAtelierAndYearAndWeek(atelier,year,week));
+        return ResponseEntity.ok(otdWRepository.findByAtelierAndYearAndWeekOrderByWeek(atelier,year,week));
     }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")

@@ -8,8 +8,7 @@ import java.util.List;
 
 @Repository
 public interface PlanActTrsRepository extends JpaRepository<PlanActTrs,Long> {
-    public List<PlanActTrs> findByYear( Long year);
-
-    public List<PlanActTrs> findByYearAndWeek ( Long year, Long week);
+    public List<PlanActTrs> findByYearOrderByWeek( Long year);
+    public List<PlanActTrs> findByYearAndWeekOrderByWeek ( Long year, Long week);
 
 }

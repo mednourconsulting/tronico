@@ -9,8 +9,8 @@ import java.util.List;
 
 @Repository
 public interface ProductionMensuelRepository extends JpaRepository<ProductionMensuel,Long> {
-    public List<ProductionMensuel> findByYear(Long year);
-    public List<ProductionMensuel> findByAtelierAndYear(String atelier, Long year);
+    public List<ProductionMensuel> findByYearOrderByMonth(Long year);
+    public List<ProductionMensuel> findByAtelierAndYearOrderByMonth(String atelier, Long year);
     public ProductionMensuel findByAtelierAndYearAndMonth(String atelier, Long year ,Long month);
-    public List<ProductionMensuel> findByAtelier(String atelier);
+    public List<ProductionMensuel> findByAtelierOrderByMonth(String atelier);
 }

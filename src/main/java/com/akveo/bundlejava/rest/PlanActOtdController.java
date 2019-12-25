@@ -17,11 +17,11 @@ public class PlanActOtdController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<PlanActOtd>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
-        return ResponseEntity.ok(planActOtdRepository.findByAtelierAndYear(atelier , year));
+        return ResponseEntity.ok(planActOtdRepository.findByAtelierAndYearOrderByWeek(atelier , year));
     }
     @GetMapping("/get/{atelier}")
     public ResponseEntity<List<PlanActOtd>> getAll(@PathVariable("atelier") String atelier) {
-        return ResponseEntity.ok(planActOtdRepository.findByAtelier(atelier));
+        return ResponseEntity.ok(planActOtdRepository.findByAtelierOrderByWeek(atelier));
     }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}/{week}")

@@ -27,13 +27,13 @@ public class PcdWeekController {
     }
     @GetMapping("/get/{atelier}")
     public ResponseEntity<List<PcdWeek>> get(@PathVariable("atelier") String atelier) {
-        return ResponseEntity.ok(pcdWeekRepository.findByAtelier(atelier));
+        return ResponseEntity.ok(pcdWeekRepository.findByAtelierOrderByWeek(atelier));
     }
 
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<PcdWeek>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {
-        return ResponseEntity.ok(pcdWeekRepository.findByAtelierAndYear(atelier, year));
+        return ResponseEntity.ok(pcdWeekRepository.findByAtelierAndYearOrderByWeek(atelier, year));
     }
 
     //@PreAuthorize("hasAuthority('ADMIN')")

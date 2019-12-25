@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface PlanActOtdRepository extends JpaRepository<PlanActOtd,Long> {
-    public List<PlanActOtd> findByAtelierAndYear(String atelier, Long year);
-    public List<PlanActOtd> findByAtelier(String atelier);
+    public List<PlanActOtd> findByAtelierAndYearOrderByWeek(String atelier, Long year);
+    public List<PlanActOtd> findByAtelierOrderByWeek(String atelier);
     public List<PlanActOtd> findByAtelierAndYearAndWeek(String atelier, Long year, Long week);
 
 
