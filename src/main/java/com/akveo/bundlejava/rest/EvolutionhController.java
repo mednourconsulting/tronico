@@ -25,7 +25,11 @@ public class EvolutionhController {
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{year}")
     public ResponseEntity<List<Evolutionh>> getAll(@PathVariable ("year") Long year) {
-        return ResponseEntity.ok(evolutionhRepository.findByYear(year));
+        return ResponseEntity.ok(evolutionhRepository.findByYearOrderByWeek(year));
+    }
+    @GetMapping("/getAll/{year}/{week}")
+    public ResponseEntity<Evolutionh> getAll(@PathVariable ("year") Long year, @PathVariable ("week") Long week) {
+        return ResponseEntity.ok(evolutionhRepository.findByYearAndWeek(year,week));
     }
 
     //@PreAuthorize("hasAuthority('ADMIN')")
