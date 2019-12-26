@@ -18,10 +18,10 @@ public class ConfigProductiviteMensuelController {
     @Autowired
     private ConfigProductiviteMensuelRepository configProductiviteMensuelRepository;
 
-    @GetMapping("/getAll/{atelier}/{year}")
-    public ResponseEntity<ConfigProductiviteMensuel> getAll(@PathVariable("atelier")  String atelier,@PathVariable("year")  Long year) {
-        return ResponseEntity.ok(configProductiviteMensuelRepository.findByYearAndAtelier(year,atelier));
-    }
+//    @GetMapping("/getAll/{atelier}/{year}")
+//    public ResponseEntity<ConfigProductiviteMensuel> getAll(@PathVariable("atelier")  String atelier,@PathVariable("year")  Long year) {
+//        return ResponseEntity.ok(configProductiviteMensuelRepository.findByYearAndAtelier(year,atelier));
+//    }
 
 
     @PreAuthorize("hasAuthority('ADMIN')")

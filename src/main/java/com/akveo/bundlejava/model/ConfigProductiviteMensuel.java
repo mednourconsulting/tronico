@@ -15,7 +15,7 @@ public class ConfigProductiviteMensuel implements Serializable {
     private Long id;
     private Long year =Long.valueOf(Calendar.getInstance().get(Calendar.YEAR)) ;
     private String atelier;
-    private Double objectif = new Double(0);
+    private Double objectif = Double.valueOf(0.0);
 
     public ConfigProductiviteMensuel() {
     }
