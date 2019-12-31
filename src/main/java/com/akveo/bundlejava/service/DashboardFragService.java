@@ -19,7 +19,12 @@ public class DashboardFragService {
         Tra tra = new Tra();
         DashboardFrag frag1 = dashboardFragRepository.findByAtelierAndYearAndWeek(atelier1, year, week);
         DashboardFrag frag2 = dashboardFragRepository.findByAtelierAndYearAndWeek(atelier2, year, week);
-
+        if (frag1==null) {
+            frag1 = new DashboardFrag();
+        }
+        if (frag2==null) {
+            frag2 = new DashboardFrag();
+        }
         tra.sethRecusTrf(frag1.gethRecusTrf() + frag2.gethRecusTrf());
         tra.sethObjectif(frag1.gethObjectif() + frag2.gethObjectif());
         tra.sethRealise(frag1.gethRealise() + frag2.gethRealise());
