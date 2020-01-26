@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ConfigOtdWRepository extends JpaRepository<ConfigOtdW,Long> {
+    public void deleteByAtelierAndYear(String atelier, Long year);
     public ConfigOtdW findByYearAndAtelier(Long year,String atelier);
 }

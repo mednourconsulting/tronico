@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -28,7 +30,9 @@ public class ConfigOtdWController {
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/create")
+    @Transactional
     public ResponseEntity<ConfigOtdW> createProduit(@RequestBody ConfigOtdW configOtdW){
+        configOtdWRepository.deleteByAtelierAndYear(configOtdW.getAtelier(),Long.valueOf(Calendar.getInstance().get(Calendar.YEAR)));
         return ResponseEntity.ok(configOtdWRepository.save(configOtdW));
     }
     @PreAuthorize("hasAuthority('ADMIN')")
