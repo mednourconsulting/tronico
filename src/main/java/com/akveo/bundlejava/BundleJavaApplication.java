@@ -9,6 +9,7 @@ package com.akveo.bundlejava;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootApplication
 @EnableScheduling
+@EnableAdminServer
 //@SuppressWarnings({"checkstyle:FinalClass", "checkstyle:HideUtilityClassConstructor"})
 //@EntityScan("com.akveo.bundlejava.model")
 public class BundleJavaApplication {

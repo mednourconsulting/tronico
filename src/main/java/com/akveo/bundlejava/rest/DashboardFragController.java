@@ -25,9 +25,9 @@ public class DashboardFragController {
     private DashboardFragService dashboardFragService;
 
     //@PreAuthorize("hasAuthority('ADMIN')")
-    @GetMapping("/getAll")
-    public ResponseEntity<List<DashboardFrag>> getAll() {
-        return ResponseEntity.ok(dashboardFragRepository.findAll());
+    @GetMapping("/get/{atelier}")
+    public ResponseEntity<List<DashboardFrag>> get(@PathVariable("atelier") String atelier ) {
+        return ResponseEntity.ok(dashboardFragRepository.findByAtelier(atelier));
     }
 
     //@PreAuthorize("hasAuthority('ADMIN')")

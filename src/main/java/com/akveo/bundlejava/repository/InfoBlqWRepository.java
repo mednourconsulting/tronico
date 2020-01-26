@@ -10,5 +10,6 @@ import java.util.List;
 public interface InfoBlqWRepository extends JpaRepository<InfoBlqW,Long> {
     public List<InfoBlqW> findByWeekBetween(Long w1, Long w2);
     public List<InfoBlqW> findByAtelierAndYear(String atelier, Long year);
+    public List<InfoBlqW> findByAtelier(String atelier);
     public List<InfoBlqW> findByAtelierAndYearAndWeek(String atelier, Long year ,  Long week);
 }

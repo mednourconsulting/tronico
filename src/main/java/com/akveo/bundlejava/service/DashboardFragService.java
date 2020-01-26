@@ -46,7 +46,7 @@ public class DashboardFragService {
         tra.setMonquantTa(frag1.getMonquantTa() + frag2.getMonquantTa());
         tra.setClientMqtFc(frag1.getClientMqtFc() + frag2.getClientMqtFc());
         tra.setQualiteEncours(frag1.getQualiteEncours() + frag2.getQualiteEncours());
-        tra.setAqf(frag1.getAqf() + frag2.getAqf());
+        tra.setAqf(frag1.getAqfC() + frag2.getAqfC());
         tra.setProcessDossierTra(frag1.getProcessDossierTra() + frag2.getProcessDossierTra());
         tra.setTestEncours(frag1.getTestEncours() + frag2.getTestEncours());
         tra.setMachine(frag1.getMachine() + frag2.getMachine());

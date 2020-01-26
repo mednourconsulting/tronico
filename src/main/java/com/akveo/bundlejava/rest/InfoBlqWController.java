@@ -13,7 +13,11 @@ import java.util.List;
 public class InfoBlqWController {
     @Autowired
     private InfoBlqWRepository infoBlqWRepository;
-
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/get/{atelier}")
+    public ResponseEntity<List<InfoBlqW>> get(@PathVariable("atelier") String atelier ) {
+        return ResponseEntity.ok(infoBlqWRepository.findByAtelier(atelier));
+    }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<InfoBlqW>> getAll(@PathVariable("atelier") String atelier ,@PathVariable("year") Long year) {

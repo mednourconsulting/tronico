@@ -18,7 +18,11 @@ public class RealisationWRepositoryController {
     private RealisationWRepository realisationWRepository;
     @Autowired
     private RealisationWService realisationWService;
-
+    //@PreAuthorize("hasAuthority('ADMIN')")
+    @GetMapping("/get/{atelier}")
+    public ResponseEntity<List<RealisationW>> get(@PathVariable ("atelier") String atelier ) {
+        return ResponseEntity.ok(realisationWRepository.findByAtelier(atelier));
+    }
     //@PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/getAll/{atelier}/{year}")
     public ResponseEntity<List<RealisationW>> getAll(@PathVariable ("atelier") String atelier , @PathVariable("year") Long year) {

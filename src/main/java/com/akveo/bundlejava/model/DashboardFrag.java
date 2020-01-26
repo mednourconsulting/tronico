@@ -28,6 +28,7 @@ public class DashboardFrag implements Serializable {
     private Long qualite = Long.valueOf(0);
     private Long pcd = Long.valueOf(0);
     private Long test = Long.valueOf(0);
+    private Long aqt = Long.valueOf(0);
     private Long bloqueDossier = Long.valueOf(0);
     private Long maintenance = Long.valueOf(0);
     private Long processOutillage = Long.valueOf(0);
@@ -42,7 +43,7 @@ public class DashboardFrag implements Serializable {
     private Long monquantTa = Long.valueOf(0);
     private Long clientMqtFc = Long.valueOf(0);
     private Long qualiteEncours = Long.valueOf(0);
-    private Long aqf = Long.valueOf(0);
+    private Long aqfC = Long.valueOf(0);
     private Long processDossierTra = Long.valueOf(0);
     private Long testEncours = Long.valueOf(0);
     private Long machine = Long.valueOf(0);
@@ -68,21 +69,63 @@ public class DashboardFrag implements Serializable {
     private Long heuresAmelioration = Long.valueOf(0);
 
     public DashboardFrag() {
-//        this.otd = (this.nBCarteEngage - this.nBCarteRetard) / new Double(this.nBCarteEngage);
-//        this.encours = this.netFabricable + this.enTransit + this.monquantTa + this.clientMqtFc +
-//                this.qualiteEncours + this.aqf + this.processDossierTra + this.testEncours + this.machine +
-//                this.finisAttRiClient + this.finisReportDelai;
-//        this.fabricableEncours = new Double(this.fabricable) / this.encours;
-//        this.besoinEtp = this.previsions / 46;
-//        this.effectifPlus = this.besoinEtp - this.etpDispo;
+
     }
 
-    public Long getEcart() {
-        return ecart;
-    }
-
-    public void setEcart(Long ecart) {
-        this.ecart = ecart;
+    @Override
+    public String toString() {
+        return "DashboardFrag{" +
+                "id=" + id +
+                ", year=" + year +
+                ", week=" + week +
+                ", atelier='" + atelier + '\'' +
+                ", hRecusTrf=" + hRecusTrf +
+                ", hObjectif=" + hObjectif +
+                ", hRealise=" + hRealise +
+                ", nBCarteEngage=" + nBCarteEngage +
+                ", nBCarteRetard=" + nBCarteRetard +
+                ", otd=" + otd +
+                ", ecart=" + ecart +
+                ", mqtTrf=" + mqtTrf +
+                ", mqtTa=" + mqtTa +
+                ", qualite=" + qualite +
+                ", pcd=" + pcd +
+                ", test=" + test +
+                ", aqt=" + aqt +
+                ", bloqueDossier=" + bloqueDossier +
+                ", maintenance=" + maintenance +
+                ", processOutillage=" + processOutillage +
+                ", retardProduction=" + retardProduction +
+                ", ecartStock=" + ecartStock +
+                ", attenteInfoClient=" + attenteInfoClient +
+                ", repporterSuiteDeClient=" + repporterSuiteDeClient +
+                ", encours=" + encours +
+                ", netFabricable=" + netFabricable +
+                ", enTransit=" + enTransit +
+                ", monquantTa=" + monquantTa +
+                ", clientMqtFc=" + clientMqtFc +
+                ", qualiteEncours=" + qualiteEncours +
+                ", aqfC=" + aqfC +
+                ", processDossierTra=" + processDossierTra +
+                ", testEncours=" + testEncours +
+                ", machine=" + machine +
+                ", finisAttRiClient=" + finisAttRiClient +
+                ", finisReportDelai=" + finisReportDelai +
+                ", yM=" + yM +
+                ", mqecartStock=" + mqecartStock +
+                ", mqRuptEtConsom=" + mqRuptEtConsom +
+                ", hPrevus=" + hPrevus +
+                ", dontRetard=" + dontRetard +
+                ", fabricable=" + fabricable +
+                ", volumeFabricableCms=" + volumeFabricableCms +
+                ", fabricableEncours=" + fabricableEncours +
+                ", previsions=" + previsions +
+                ", besoinEtp=" + besoinEtp +
+                ", etpDispo=" + etpDispo +
+                ", effectifPlus=" + effectifPlus +
+                ", heuresFormation=" + heuresFormation +
+                ", heuresAmelioration=" + heuresAmelioration +
+                '}';
     }
 
     public Long getId() {
@@ -91,6 +134,14 @@ public class DashboardFrag implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getYear() {
+        return year;
+    }
+
+    public void setYear(Long year) {
+        this.year = year;
     }
 
     public Long getWeek() {
@@ -141,30 +192,6 @@ public class DashboardFrag implements Serializable {
         this.nBCarteEngage = nBCarteEngage;
     }
 
-    public Long getYear() {
-        return year;
-    }
-
-    public void setYear(Long year) {
-        this.year = year;
-    }
-
-    public Long getEncours() {
-        return encours;
-    }
-
-    public void setEncours(Long encours) {
-        this.encours = encours;
-    }
-
-    public Long getyM() {
-        return yM;
-    }
-
-    public void setyM(Long yM) {
-        this.yM = yM;
-    }
-
     public Long getnBCarteRetard() {
         return nBCarteRetard;
     }
@@ -179,6 +206,14 @@ public class DashboardFrag implements Serializable {
 
     public void setOtd(Double otd) {
         this.otd = otd;
+    }
+
+    public Long getEcart() {
+        return ecart;
+    }
+
+    public void setEcart(Long ecart) {
+        this.ecart = ecart;
     }
 
     public Long getMqtTrf() {
@@ -219,6 +254,14 @@ public class DashboardFrag implements Serializable {
 
     public void setTest(Long test) {
         this.test = test;
+    }
+
+    public Long getAqt() {
+        return aqt;
+    }
+
+    public void setAqt(Long aqt) {
+        this.aqt = aqt;
     }
 
     public Long getBloqueDossier() {
@@ -277,6 +320,14 @@ public class DashboardFrag implements Serializable {
         this.repporterSuiteDeClient = repporterSuiteDeClient;
     }
 
+    public Long getEncours() {
+        return encours;
+    }
+
+    public void setEncours(Long encours) {
+        this.encours = encours;
+    }
+
     public Long getNetFabricable() {
         return netFabricable;
     }
@@ -317,12 +368,12 @@ public class DashboardFrag implements Serializable {
         this.qualiteEncours = qualiteEncours;
     }
 
-    public Long getAqf() {
-        return aqf;
+    public Long getAqfC() {
+        return aqfC;
     }
 
-    public void setAqf(Long aqf) {
-        this.aqf = aqf;
+    public void setAqfC(Long aqfC) {
+        this.aqfC = aqfC;
     }
 
     public Long getProcessDossierTra() {
@@ -363,6 +414,14 @@ public class DashboardFrag implements Serializable {
 
     public void setFinisReportDelai(Long finisReportDelai) {
         this.finisReportDelai = finisReportDelai;
+    }
+
+    public Long getyM() {
+        return yM;
+    }
+
+    public void setyM(Long yM) {
+        this.yM = yM;
     }
 
     public Long getMqecartStock() {
@@ -467,59 +526,5 @@ public class DashboardFrag implements Serializable {
 
     public void setHeuresAmelioration(Long heuresAmelioration) {
         this.heuresAmelioration = heuresAmelioration;
-    }
-
-    @Override
-    public String toString() {
-        return "DashboardFrag{" +
-                "id=" + id +
-                ", year=" + year +
-                ", week=" + week +
-                ", atelier='" + atelier + '\'' +
-                ", hRecusTrf=" + hRecusTrf +
-                ", hObjectif=" + hObjectif +
-                ", hRealise=" + hRealise +
-                ", nBCarteEngage=" + nBCarteEngage +
-                ", nBCarteRetard=" + nBCarteRetard +
-                ", otd=" + otd +
-                ", mqtTrf=" + mqtTrf +
-                ", mqtTa=" + mqtTa +
-                ", qualite=" + qualite +
-                ", pcd=" + pcd +
-                ", test=" + test +
-                ", bloqueDossier=" + bloqueDossier +
-                ", maintenance=" + maintenance +
-                ", processOutillage=" + processOutillage +
-                ", retardProduction=" + retardProduction +
-                ", ecartStock=" + ecartStock +
-                ", attenteInfoClient=" + attenteInfoClient +
-                ", repporterSuiteDeClient=" + repporterSuiteDeClient +
-                ", encours=" + encours +
-                ", netFabricable=" + netFabricable +
-                ", enTransit=" + enTransit +
-                ", monquantTa=" + monquantTa +
-                ", clientMqtFc=" + clientMqtFc +
-                ", qualiteEncours=" + qualiteEncours +
-                ", aqf=" + aqf +
-                ", processDossierTra=" + processDossierTra +
-                ", testEncours=" + testEncours +
-                ", machine=" + machine +
-                ", finisAttRiClient=" + finisAttRiClient +
-                ", finisReportDelai=" + finisReportDelai +
-                ", yM=" + yM +
-                ", mqecartStock=" + mqecartStock +
-                ", mqRuptEtConsom=" + mqRuptEtConsom +
-                ", hPrevus=" + hPrevus +
-                ", dontRetard=" + dontRetard +
-                ", fabricable=" + fabricable +
-                ", volumeFabricableCms=" + volumeFabricableCms +
-                ", fabricableEncours=" + fabricableEncours +
-                ", previsions=" + previsions +
-                ", besoinEtp=" + besoinEtp +
-                ", etpDispo=" + etpDispo +
-                ", effectifPlus=" + effectifPlus +
-                ", heuresFormation=" + heuresFormation +
-                ", heuresAmelioration=" + heuresAmelioration +
-                '}';
     }
 }
