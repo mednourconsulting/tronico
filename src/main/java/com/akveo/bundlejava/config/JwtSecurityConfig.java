@@ -29,13 +29,15 @@ public class JwtSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String[] AUTH_WHITELIST = {
             // -- swagger ui
-            "/swagger-resources/**",
-            "/swagger-ui.html",
+            // "/swagger-resources/**",
+           // "/swagger-ui.html",
             "/v2/api-docs",
             "/webjars/**",
             "/**",
             // -- h2 database console
-            "/h2-console/**"
+            "/h2-console/**",
+            "/*.js",
+            "/",
     };
 
     @Autowired

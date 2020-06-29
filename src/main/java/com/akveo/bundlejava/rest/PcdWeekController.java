@@ -3,11 +3,9 @@ package com.akveo.bundlejava.rest;
 import com.akveo.bundlejava.charts.PcdWeekChartData;
 import com.akveo.bundlejava.model.PcdWeek;
 import com.akveo.bundlejava.repository.PcdWeekRepository;
-
 import com.akveo.bundlejava.service.PcdWeekService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
