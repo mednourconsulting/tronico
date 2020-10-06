@@ -1,0 +1,30 @@
+<nb-card>
+    <nb-card-header> Otd Statistique
+        <!--div class="row form-group form-check-inline">
+            <div class="col-sm-3">
+                <label class="label" for="first">D_Semaine</label>
+                <select [(ngModel)]="weekFirst" id="first" class="form-control float-left md" fullWidth>
+                    <option *ngFor="let num of collection" [ngValue]="num">S{{ num }}</option>
+                </select></div>
+            <div class="col-sm-3">
+                <label class="label" for="fin">F_Semaine</label>
+                <select [(ngModel)]="weekFin" id="fin" class="form-control float-left md" fullWidth>
+                    <option *ngFor="let num of collection" [ngValue]="num">S{{ num}}</option>
+                </select></div>
+            <div class="col-sm-3">
+                <label class="label" for="anne">Année</label>
+                <input [(ngModel)]="year" [defaultValue]="2019"  id="anne" type="number" min="2000" class="form-control md" nbInput fullWidth>
+            </div>
+            <div class="col-sm-3">
+                <button style="margin-top: 29px; width: 70px;" (click)="searchFor()" class="btn btn-primary float-right">
+                    <i class="fa fa-chart-bar"></i>
+                </button>
+            </div>
+        </div-->
+    </nb-card-header>
+    <nb-card-body>
+        <div echarts [options]="options" class="echart"></div>
+    </nb-card-body>
+    <nb-card-footer class="form-inline">
+    </nb-card-footer >
+</nb-card>

@@ -1,0 +1,133 @@
+
+
+<div *ngIf="isGranted || isAdmin" class="">
+  <div class="row equal-cols">
+
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Ajouter Spleet TRS par Semaine
+      </nb-card-header>
+      <nb-card-body>
+        <div class="full-name-inputs">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label class="label">Semaine</label>
+                <nb-select [(ngModel)]="trsCMS.week" class="type-select " nbSelect fullWidth
+                           placeholder="Semaine">
+                  <nb-option *ngFor="let t of collection" [value]="t">Semaine {{ t}}</nb-option>
+                </nb-select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="inputFirstName1" class="label">Objectif (%)</label>
+                <input [(ngModel)]="trsCMS.objectif" class="img-thumbnail" disabled="true"
+                       type="number" nbInput fullWidth
+                       id="inputFirstName1" placeholder="TRS Object">
+              </div>
+            </div></div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="inputFirstName2" class="label">Réalisation (%)</label>
+                <input [(ngModel)]="trsCMS.trsRealise" class="img-thumbnail" type="number" nbInput fullWidth
+                       id="inputFirstName2" placeholder="TRS Realise">
+              </div>
+            </div></div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="inputFirstName3" class="label">Ecart (%)</label>
+                <input value="{{ trsCMS.objectif-trsCMS.trsRealise }}" class="img-thumbnail" disabled="true" type="number"
+                       nbInput fullWidth
+                       id="inputFirstName3" placeholder="Ecart">
+              </div>
+            </div></div>
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="form-group">
+                </div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button *ngIf="isAdmin" class="btn mr-1 "  (click)="save()" type="submit" nbButton  status="info">Register</button>
+              <button class="btn btn-secondary mr-1" (click)="reset()" type="submit" nbButton  status="info" outline>Annler</button>
+            </div></div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+    <ngx-trs-chart></ngx-trs-chart>
+
+  </div>
+</div>
+
+
+  <!--nb-card>
+    <nb-card-header>
+      <div class="form-group form-check-inline">
+        <div class="col-sm-3">
+          <label class="label" for="first">D_Semaine</label>
+          <select [(ngModel)]="weekFirst" id="first" class="form-control float-left md" fullWidth>
+            <option *ngFor="let num of collection" [ngValue]="num">S{{ num }}</option>
+          </select></div>
+        <div class="col-sm-3">
+          <label class="label" for="fin">F_Semaine</label>
+          <select [(ngModel)]="weekFin" id="fin" class="form-control float-left md" fullWidth>
+            <option *ngFor="let num of collection" [ngValue]="num">S{{ num}}</option>
+          </select></div>
+        <div class="col-sm-3">
+          <label class="label" for="anne">Année</label>
+          <input [(ngModel)]="year" id="anne" type="number" min="2000" class="form-control md" nbInput fullWidth>
+        </div>
+        <div class="col-sm-3">
+          <button style="margin-top: 29px; width: 70px;" (click)="searchFor()" class="btn btn-primary float-right">
+            <i class="fa fa-chart-bar"></i>
+          </button>
+        </div>
+      </div>
+    </nb-card-header>
+
+    <nb-card-body>
+      <div class="row"> <div class="col-sm-3">
+        <label class="label" for="chart">Type de graphique</label>
+        <select [(ngModel)]="stackedChart.typeChart" id="chart" class="form-control float-left md" fullWidth>
+          <option *ngFor="let type of chartType" [ngValue]="type.type">{{ type.name }}</option>
+        </select></div>
+      </div>
+      <google-chart
+        [title]="stackedChart.title"
+        [type]="stackedChart.typeChart"
+        [data]="stackedChart.data"
+        [columnNames]="stackedChart.columnNames"
+        [options]="stackedChart.options"
+        [width]="stackedChart.width"
+        [height]="stackedChart.height">
+      </google-chart>
+    </nb-card-body>
+    <nb-card-footer class="form-inline">
+    </nb-card-footer>
+  </nb-card-->
+<nb-card>
+  <nb-card-header>
+    <div class="row">
+      <div class="col-sm-6">
+        La Table des Donnés de Réalisation par Semaine
+      </div>
+    </div>
+  </nb-card-header>
+  <nb-card-body>
+
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (createConfirm)="createConfirm($event)"
+      (deleteConfirm)="onDeleteConfirm($event)"
+      (editConfirm)="onSaveConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+</div>

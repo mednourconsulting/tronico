@@ -1,0 +1,138 @@
+<div *ngIf="isGranted || isAdmin" class="">
+  <div class="row ">
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-header>
+          <div class="row">
+            <div class="col-sm-4">Pareto OTD par Semine</div>
+            <div class="col-sm-4"><button (click)="save()" class="btn btn-primary fa-pull-right" >
+              <i class="fa fa-plus-square"></i> Add
+            </button></div>
+            <div class="col-sm-4"> <button (click)="update()" class="btn btn-outline-primary" >
+              <i class="fa fa-eraser"></i> Vider</button></div>
+          </div>
+
+        </nb-card-header>
+        <nb-card-body>
+          <div class="full-name-inputs">
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="inputFirstName" class="label">Semaine</label>
+                  <nb-select [(ngModel)]="paretoOtd.week" class="type-select " [disabled]="select != null" id="inputFirstName" nbSelect fullWidth
+                             placeholder="Semaine" >
+                    <nb-option *ngFor="let t of collection" [value]="t" [disabled]="select != null">Semaien {{ t}}</nb-option>
+                  </nb-select>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="inputFirstName1" class="label">Objctif (carte)</label>
+                  <input [(ngModel)]="paretoOtd.bjectif" class="img-thumbnail" type="number" nbInput fullWidth
+                         id="inputFirstName1" placeholder="Otd Object">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="inputFirstName2" class="label">Realisation (carte)</label>
+                  <input [(ngModel)]="paretoOtd.realise" class="img-thumbnail" type="number" nbInput fullWidth
+                         id="inputFirstName2" placeholder="OTD Realise">
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group">
+                  <label for="inputFirstName3" class="label">Ecart (%)</label>
+                  <input value="{{((paretoOtd.bjectif-paretoOtd.realise)/paretoOtd.bjectif )*100}}" step ="0.01" class="img-thumbnail" type="number" nbInput fullWidth
+                         id="inputFirstName3" placeholder="Ecart" disabled="true">
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+      <nb-card>
+      <nb-card-header>
+        <div class="row">
+          <div class="col-sm-6">Justification par Produit</div>
+          <div class="col-sm-6"><button *ngIf="edited==true" (click)="save_justif()" class="btn btn-outline-primary fa-pull-right" >
+            <i class="fa fa-plus-circle"></i>Add</button></div></div>
+      </nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table *ngIf="edited==true"
+                         [settings]="settings_items"
+                         [source]="sourceItems"
+                         (createConfirm)="OnCreateConfirmItems($event)"
+                         (deleteConfirm)="onDeleteConfirmItems($event)"
+                         (editConfirm)="onSaveConfirmItems($event)"
+        ></ng2-smart-table>
+      </nb-card-body>
+    </nb-card>
+    </div>
+    <div class="col-sm-6">
+      <ngx-pareto-chart atelier="{{atelier}}"></ngx-pareto-chart>
+    </div>
+  </div>
+
+
+
+
+    <!--nb-card>
+      <nb-card-header>
+        <div class="row form-group form-check-inline">
+          <div class="col-sm-3">
+            <label class="label" for="first">D_Semaine</label>
+            <select [(ngModel)]="weekFirst" id="first" class="form-control float-left md" fullWidth>
+              <option *ngFor="let num of collection" [ngValue]="num">S{{ num }}</option>
+            </select></div>
+          <div class="col-sm-3">
+            <label class="label" for="fin">F_Semaine</label>
+            <select [(ngModel)]="weekFin" id="fin" class="form-control float-left md" fullWidth>
+              <option *ngFor="let num of collection" [ngValue]="num">S{{ num}}</option>
+            </select></div>
+          <div class="col-sm-3">
+            <label class="label" for="anne">Année</label>
+            <input [(ngModel)]="year" [defaultValue]="2019"  id="anne" type="number" min="2000" class="form-control md" nbInput fullWidth>
+          </div>
+          <div class="col-sm-3">
+            <button style="margin-top: 29px; width: 70px;" (click)="searchFor()" class="btn btn-primary float-right">
+              <i class="fa fa-chart-bar"></i>
+            </button>
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <google-chart
+          [title]="stackedChart.title"
+          [type]="stackedChart.typeChart"
+          [data]="stackedChart.data"
+          [columnNames]="stackedChart.columnNames"
+          [options]="stackedChart.options"
+          [width]="stackedChart.width"
+          [height]="stackedChart.height">
+        </google-chart>
+      </nb-card-body>
+      <nb-card-footer class="form-inline">
+      </nb-card-footer >
+    </nb-card-->
+
+    <nb-card>
+  <nb-card-body>
+
+        <ng2-smart-table (userRowSelect)="onRowSelect($event)"
+                         (createConfirm)="OnCreateConfirm($event)"
+                         [settings]="settings"
+                         [source]="source"
+                         (deleteConfirm)="onDeleteConfirm($event)"
+                         (editConfirm)="onSaveConfirm($event)">
+        </ng2-smart-table>
+</nb-card-body>
+</nb-card>
+    <nb-card>
+      <nb-card-body>
+    <ng2-smart-table (editConfirm)="onSaveConfirm_injection($event)"
+                         [settings]="settingsItemsAffichage"
+                         [source]="sourceItems">
+        </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+</div>

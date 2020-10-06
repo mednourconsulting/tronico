@@ -1,0 +1,174 @@
+<div *ngIf="isGranted || isAdmin" class="">
+  <nb-card>
+
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label  class="label">Semaine</label>
+            <nb-select  [(ngModel)]="week" class="type-select "  nbSelect fullWidth
+                        placeholder="Semaine" >
+              <nb-option *ngFor="let t of Week" [value]="t" >Semaine {{ t}}</nb-option>
+            </nb-select></div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName1" class="label">Année</label>
+            <input [(ngModel)]="year" value="paretoEcartToJustify.week" class="img-thumbnail" type="number" nbInput fullWidth id="inputFirstName1" placeholder="Année">
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button style="margin-top: 28px;" (click)="recherche()" class="btn btn-outline-primary fa-pull-right" ><i class="fa fa-search"></i>Recherche</button>
+          </div>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <div *ngIf="findIt== true">
+    <nb-card>
+      <nb-card-header>
+        <div class="row">
+          <div class="col-sm-6">Plan Action OTD</div>
+          <div class="col-sm-6"><button (click)="save()" class="btn btn-outline-primary fa-pull-right" ><i class="fa fa-plus-circle"></i> Add</button></div>
+        </div>
+      </nb-card-header>
+    </nb-card>
+
+    <nb-card *ngFor="let item of planActOtd">
+      <nb-card-body >
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputFirstName9" class="label">Semaine</label>
+              <input [(ngModel)]="item.week" [disabled]="true" class="img-thumbnail" type="number" nbInput fullWidth id="inputFirstName9" placeholder="Ecart Euro">
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputLastName8" class="label">Ecart (Euro)</label>
+              <input [(ngModel)]="item.ecartEuro" [disabled]="true" class="img-thumbnail" type="number" nbInput fullWidth id="inputLastName8" placeholder="Ecart Euro">
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputLastName12" class="label">Produit</label>
+              <input [(ngModel)]="item.produit"  class="img-thumbnail" type="text" nbInput fullWidth id="inputLastName12" placeholder="produit">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputLastName1" class="label">Besoin</label>
+              <textarea [(ngModel)]="item.besoin" class="img-thumbnail" type="text" nbInput fullWidth id="inputLastName1" placeholder="Besoin">
+          </textarea>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputEmail" class="label">Cause</label>
+              <textarea [(ngModel)]="item.cause" class="img-thumbnail" type="text" nbInput fullWidth id="inputEmail" placeholder="Cause"></textarea>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">Action</label>
+              <textarea [(ngModel)]="item.action"class="img-thumbnail" type="text-area" nbInput fullWidth id="inputWebsite" placeholder="Action"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputWebsite3" class="label">Qui</label>
+              <input [(ngModel)]="item.qui" class="img-thumbnail" type="text" nbInput fullWidth id="inputWebsite3" placeholder="Qui">
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputEmail1" class="label">Date début</label>
+              <input [(ngModel)]="item.dateDebut" class="img-thumbnail" type="date" nbInput fullWidth id="inputEmail1" placeholder="Date début">
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputWebsite2" class="label">Date objectif</label>
+              <input [(ngModel)]="item.dateObjectif" class="img-thumbnail" type="date" nbInput fullWidth id="inputWebsite2" placeholder="Date objectif">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputWebsite1" class="label">Date réalisation</label>
+              <input [(ngModel)]="item.dateRealisation" class="img-thumbnail" type="date" nbInput fullWidth id="inputWebsite1" placeholder="Date réalisation">
+            </div>
+          </div>
+
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputWebsite31" class="label">Action efficace</label>
+              <input [(ngModel)]="item.actionEfficace" class="img-thumbnail" type="text" nbInput fullWidth id="inputWebsite31" placeholder="Action efficace">
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputWebsite34" class="label">Généralisation possible</label>
+              <input [(ngModel)]="item.generalisationPossible" class="img-thumbnail" type="text" nbInput fullWidth id="inputWebsite34" placeholder="Généralisation possible">
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="form-group">
+              <label for="inputWebsite35" class="label">Commentaire</label>
+              <textarea [(ngModel)]="item.comment" class="img-thumbnail" type="text" nbInput fullWidth id="inputWebsite35" placeholder="Commentaire">
+          </textarea>
+            </div>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <nb-card>
+    <nb-card-body>
+      <ng2-smart-table
+
+        [settings]="settings"
+        [source]="source"
+        (createConfirm)="onCreateConfirm($event)"
+        (deleteConfirm)="onDeleteConfirm($event)"
+        (editConfirm)="onSaveConfirm($event)">
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+</div>
+
+
+
+
+
+
+
+

@@ -1,0 +1,142 @@
+<div *ngIf="isGranted || isAdmin">
+
+<nb-card>
+  <nb-card-header>
+      Info Bloquent
+  </nb-card-header>
+  <nb-card-body>
+    <div class="full-name-inputs">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label  class="label">Semaine</label>
+            <nb-select  [(ngModel)]="infoBloq.week" class="type-select "  nbSelect fullWidth
+                        placeholder="Semaine" >
+              <nb-option *ngFor="let t of Week" [value]="t" >Semaine {{ t }}</nb-option>
+            </nb-select>
+
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName2" class="label">Fait Marquants</label>
+            <textarea [(ngModel)]="infoBloq.fmq" class="img-thumbnail" type="text" nbInput fullWidth
+                      id="inputFirstName2" placeholder="Fait Marquants">
+            </textarea>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName3" class="label">Sujet dont Besoin en Support</label>
+            <textarea [(ngModel)]="infoBloq.sujetSupport" class="img-thumbnail" type="text" nbInput fullWidth
+                      id="inputFirstName3" placeholder="sujet"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="label">Qui</label>
+            <nb-select  [(ngModel)]="infoBloq.qui" class="type-select "  nbSelect fullWidth
+                        placeholder="responsible" >
+              <nb-option *ngFor="let t of collection" [value]="t.title" >{{ t.title }}</nb-option>
+            </nb-select>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="label">Bloquant Euro</label>
+            <input [(ngModel)]="infoBloq.bloquantEuro" class="img-thumbnail" type="text" nbInput fullWidth
+                   placeholder="Bloquant">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="label">Actiuon Meness</label>
+            <textarea [(ngModel)]="infoBloq.actMenees" class="img-thumbnail" type="text" nbInput fullWidth
+                      placeholder="ActionMeness"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="label">Taux ABS</label>
+            <input [(ngModel)]="infoBloq.tauxAbst" class="img-thumbnail" type="number" nbInput fullWidth
+                   placeholder="Taux Abs">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="label">Delai</label>
+            <input [(ngModel)]="infoBloq.delai" class="img-thumbnail" type="text" nbInput fullWidth
+                   placeholder="Delai">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="label">Escalader</label>
+            <textarea [(ngModel)]="infoBloq.escalader" class="img-thumbnail" type="text" nbInput fullWidth
+                      placeholder="Escalader"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label class="label">Absentéisme Raison</label>
+            <textarea [(ngModel)]="infoBloq.abstRaison" class="img-thumbnail" type="text" nbInput fullWidth
+                      placeholder="raison"></textarea>
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button *ngIf="isAdmin" class="btn mr-1 "  (click)="save()" type="submit" nbButton  status="info">Register</button>
+        <button class="btn btn-secondary mr-1" (click)="reset()" type="submit" nbButton  status="info" outline>Annler</button>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-header>
+
+
+<div class="row">
+  <div class="col-sm-6">
+    La table des donnés d'Info bloquent
+  </div>
+  <!--div class="col-sm-6">
+    <div class="row">
+      <div class="col-sm-6">
+        <input [(ngModel)]="year" class="img-thumbnail" type="text" nbInput fullWidth
+               placeholder="Année">
+      </div>
+      <div class="col-sm-6">
+        <button  (click)="search()" class="btn btn-outline-primary fa-pull-right"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+  </div-->
+</div>
+  </nb-card-header>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (createConfirm)="onCreateConfirm($event)"
+      (deleteConfirm)="onDeleteConfirm($event)"
+      (editConfirm)="onSaveConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+
+
+</div>

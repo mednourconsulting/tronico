@@ -1,0 +1,385 @@
+Index: src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.html	(date 1576681974580)
++++ src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.html	(date 1576681974580)
+@@ -0,0 +1,1 @@
++<p>plan-act-trs works!</p>
+Index: src/app/@core/backend/common/services/spleetEcartOF.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/@core/backend/common/services/spleetEcartOF.service.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/@core/backend/common/services/spleetEcartOF.service.ts	(date 1576690559107)
+@@ -3,7 +3,6 @@
+ import {Observable, throwError} from 'rxjs';
+ import {HttpHeaders} from '@angular/common/http';
+ import {catchError, retry} from 'rxjs/operators';
+-import {BarChartData} from './BarChartData';
+ import {SpleetEcartOF} from '../../../../pages/model/SpleetEcartOF';
+ 
+ @Injectable()
+Index: src/app/pages/mycomponents/trs-cms/trs-cms.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/trs-cms/trs-cms.component.html	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/pages/mycomponents/trs-cms/trs-cms.component.html	(date 1576688360806)
+@@ -105,16 +105,6 @@
+       <div class="col-sm-6">
+         La Table des Donnés de Réalisation par Semaine
+       </div>
+-      <div class="col-sm-6">
+-        <div class="row">
+-          <div class="col-sm-6">
+-            <input [(ngModel)]="year" [defaultValue]="2019" class="img-thumbnail" type="text" nbInput
+-                   placeholder="années"></div>
+-          <div class="col-sm-6">
+-            <button (click)="search()" class="btn btn-outline-primary"><i class="fa fa-search"></i> search</button>
+-          </div>
+-        </div>
+-      </div>
+     </div>
+   </nb-card-header>
+   <nb-card-body>
+Index: src/app/pages/mycomponents/trs-cms/trs-cms.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/trs-cms/trs-cms.component.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/pages/mycomponents/trs-cms/trs-cms.component.ts	(date 1576692557603)
+@@ -84,19 +84,21 @@
+     this.configTrsService.findByYear(new Date().getFullYear()).subscribe(data => {
+       this.trsCMS.objectif = data.objectif;
+     });
++    this.trsService.getAll().subscribe( data => { this.source = data ; });
+   }
+ 
+-  createConfirm($event: any) {
++  createConfirm(event: any) {
++    this.trsService.findByYearByWeek(new Date().getFullYear()  , event.newData.week).subscribe( data => { });
++    this.trsService.create(event.newData).subscribe(data => { });
++    this.toastr.success('Objectif TRS est Ajoute ', 'Config TRS Ajouté');
+   }
+ 
+   onDeleteConfirm($event: any) {
+   }
+ 
+   save() {
+-    this.trsService.create(this.trsCMS).subscribe(data => {
+-      console.log(data);
+-    });
+-    this.toastr.success('Objectif TRS est modifié', 'Config TRS Ajouté');
++    this.trsService.create(this.trsCMS).subscribe(data => { });
++    this.toastr.success('Objectif TRS est Ajoute ', 'Config TRS Ajouté');
+   }
+ 
+   searchFor() {
+Index: src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.ts	(date 1576681974581)
++++ src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.ts	(date 1576681974581)
+@@ -0,0 +1,15 @@
++import { Component, OnInit } from '@angular/core';
++
++@Component({
++  selector: 'ngx-plan-act-trs',
++  templateUrl: './plan-act-trs.component.html',
++  styleUrls: ['./plan-act-trs.component.scss']
++})
++export class PlanActTrsComponent implements OnInit {
++
++  constructor() { }
++
++  ngOnInit() {
++  }
++
++}
+Index: src/app/pages/mycomponents/trs-cms/trs-cms.component.spec.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/trs-cms/trs-cms.component.spec.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/pages/mycomponents/trs-cms/trs-cms.component.spec.ts	(date 1576686499508)
+@@ -8,7 +8,7 @@
+ 
+   beforeEach(async(() => {
+     TestBed.configureTestingModule({
+-      declarations: [ TrsCMSComponent ]
++      declarations: [ TrsCMSComponent ],
+     })
+     .compileComponents();
+   }));
+Index: src/app/@core/backend/common/services/ConfigProductiviteMensuel.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/@core/backend/common/services/ConfigProductiviteMensuel.service.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/@core/backend/common/services/ConfigProductiviteMensuel.service.ts	(date 1576688857442)
+@@ -29,8 +29,8 @@
+       );
+   }
+ 
+-  public findByYear(year: number, atelier: string): Observable<any> {
+-    return this.http.get(this.baseurl + '/findByYear/' + year + '-' + atelier)
++  public findByYear(atelier: String , year: number): Observable<any> {
++    return this.http.get(this.baseurl + '/findByYear/' + year )
+       .pipe(
+         retry(1),
+         catchError(this.errorHandl),
+Index: src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.spec.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.spec.ts	(date 1576681974580)
++++ src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.spec.ts	(date 1576681974580)
+@@ -0,0 +1,25 @@
++import { async, ComponentFixture, TestBed } from '@angular/core/testing';
++
++import { PlanActTrsComponent } from './plan-act-trs.component';
++
++describe('PlanActTrsComponent', () => {
++  let component: PlanActTrsComponent;
++  let fixture: ComponentFixture<PlanActTrsComponent>;
++
++  beforeEach(async(() => {
++    TestBed.configureTestingModule({
++      declarations: [ PlanActTrsComponent ]
++    })
++    .compileComponents();
++  }));
++
++  beforeEach(() => {
++    fixture = TestBed.createComponent(PlanActTrsComponent);
++    component = fixture.componentInstance;
++    fixture.detectChanges();
++  });
++
++  it('should create', () => {
++    expect(component).toBeTruthy();
++  });
++});
+Index: src/app/pages/mycomponents/realisation/realisation.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/realisation/realisation.component.html	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/pages/mycomponents/realisation/realisation.component.html	(date 1576687888664)
+@@ -32,7 +32,7 @@
+             </div>
+             <div class="col-lg-6">
+               <label class="label">Ecart (%)</label>
+-              <input value="{{realisationW.objectif-realisationW.heuresRealise}}"
++              <input value="{{realisationW.objectif - realisationW.heuresRealise}}"
+                      disabled="true"
+                      class="img-thumbnail"
+                      type="number"
+Index: src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.scss
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.scss	(date 1576681974579)
++++ src/app/pages/mycomponents/plan-act-trs/plan-act-trs.component.scss	(date 1576681974579)
+@@ -0,0 +1,0 @@
+Index: src/app/pages/mycomponents/realisation/realisation.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/realisation/realisation.component.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/pages/mycomponents/realisation/realisation.component.ts	(date 1576687440633)
+@@ -15,8 +15,6 @@
+ export class RealisationComponent implements OnInit {
+   @Input() atelier: string;
+   realisationW: RealisationW = new  RealisationW();
+-
+-  total: any;
+   source: LocalDataSource = new LocalDataSource();
+   settings = {
+     add: {
+@@ -74,8 +72,6 @@
+   year: any;
+   chartType =  [{type : 'LineChart', name : 'Line'}, {type : 'AreaChart', name : 'Area '}, {type : 'BarChart' , name : 'Bar'},
+     {type : 'ColumnChart' , name : 'Column'} ] ;
+-  // chart attribues :
+-
+   stackedChart = {
+     title: 'Realisation',
+     typeChart: 'AreaChart',
+@@ -102,7 +98,6 @@
+ 
+   ngOnInit() {
+     this.init();
+-    this.realisationW = new RealisationW();
+   }
+   createConfirm(event: any) {
+     if (event.newData.week) {
+@@ -136,23 +131,17 @@
+   }
+ 
+   save() {
+-    if (this.realisationW.week) {
+-      this.service.getAllWeek(this.atelier , (new Date).getFullYear() , this.realisationW.week).subscribe( data => {
+-        console.log(this.realisationW.week);
+-        console.log(data);
+-        if  ( Object.keys(data).length === 0 ) {
++    this.service.getAllWeek(this.atelier , (new Date).getFullYear() , this.realisationW.week).subscribe( data => {
++      if  (Object.keys(data).length === 0) {
+     this.realisationW.ecart = this.realisationW.objectif - this.realisationW.heuresRealise;
+     this.realisationW.atelier = this.atelier;
+     this.realisationW.year = new Date().getFullYear();
+-    this.service.create(this.realisationW).subscribe(obj => {});
++    this.service.create(this.realisationW).subscribe(obj => { console.log(this.realisationW); });
+     this.toastr.success('Ajouté avec succès', 'create');
+         } else {
+           this.toastr.warning('les données concernant la semaine que vous insérez sont existe dans la base de donnes ', 'Attention');
+         }
+       });
+-    } else {
+-      this.toastr.warning('les données concernant la semaine que vous insérez n\'est pas correct', 'Attention');
+-    }
+     this.ngOnInit();
+   }
+   onSaveConfirm(event: any) {
+@@ -160,7 +149,7 @@
+       this.service.getAllWeek(this.atelier , (new Date).getFullYear() , event.newData.week).subscribe( data => {
+         console.log(event.newData.week);
+         console.log(data);
+-        if  ( Object.keys(data).length === 1 ) {
++        if  (data !== null ) {
+     event.newData.atelier = this.atelier;
+     event.newData.ecart = event.newData.objectif - event.newData.heuresRealise;
+     event.confirm.resolve(event.newData);
+@@ -177,7 +166,7 @@
+   }
+ 
+   searchFor() {
+-    if (this.weekFirst < this.weekFin ) {
++    if (this.weekFirst <= this.weekFin ) {
+       this.service.getAll( this.atelier , this.year ).subscribe( data => {
+         if (Object.keys(data).length === 0 ) {
+           this.toastr.info('il n\'y a aucun d\'information au les semaines specifie ', 'Info');
+Index: src/app/@core/backend/common/services/TrsCMS.service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/@core/backend/common/services/TrsCMS.service.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/@core/backend/common/services/TrsCMS.service.ts	(date 1576692567796)
+@@ -1,11 +1,10 @@
+ import {Injectable} from '@angular/core';
+ import {HttpService} from '../api/http.service';
+-import {OtdW} from '../../../../pages/model/otdW';
+ import {Observable, throwError} from 'rxjs';
+ import {HttpHeaders} from '@angular/common/http';
+ import {catchError, retry} from 'rxjs/operators';
+-import {BarChartData} from './BarChartData';
+ import {TrsCMS} from '../../../../pages/model/TrsCMS';
++import {ConfigTrs} from '../../../../pages/model/ConfigTrs';
+ 
+ 
+ @Injectable()
+@@ -25,8 +24,7 @@
+   }
+ 
+   // POST JSON.stringify(data)
+-  public create(data: TrsCMS): Observable<TrsCMS> {
+-    console.log(data);
++  public create(data: TrsCMS): Observable<any> {
+     return this.http.post(this.baseurl + '/create', data, this.httpOptions)
+       .pipe(
+         retry(1),
+@@ -43,8 +41,8 @@
+       );
+   }
+   // GET
+-  public getAll(data: number): Observable<any> {
+-    return this.http.get('${this.baseurl}/getAll/' + data )
++  public getAll(): Observable<any> {
++    return this.http.get(this.baseurl + '/getAll/')
+       .pipe(
+         retry(1),
+         catchError(this.errorHandl),
+@@ -60,6 +58,13 @@
+       );
+     console.log(data);
+   }
++  public findByYearByWeek(year: number  , week: number ): Observable<ConfigTrs> {
++    return this.http.get(this.baseurl + '/getObjectifByYear/' + year)
++      .pipe(
++        retry(1),
++        catchError(this.errorHandl),
++      );
++  }
+ 
+   // DELETE
+   public delete(id: number) {
+Index: src/app/pages/mycomponents/prametrage/prametrage.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/prametrage/prametrage.component.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/pages/mycomponents/prametrage/prametrage.component.ts	(date 1576688857448)
+@@ -130,7 +130,7 @@
+         console.log(this.configTrs);
+       }
+     });
+-    this.configProductiviteMensuelService.getAll(this.atelier, this.currentYear).subscribe(data => {
++    this.configProductiviteMensuelService.findByYear(this.atelier , this.currentYear).subscribe(data => {
+       if (data) {
+         this.configProductiviteMensuel = data;
+       } else {
+Index: src/app/@core/backend/common/services/ConfigTrsService.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/@core/backend/common/services/ConfigTrsService.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/@core/backend/common/services/ConfigTrsService.ts	(date 1576692511629)
+@@ -30,8 +30,8 @@
+       );
+   }
+   // POST JSON.stringify(data)
+-  public getAll(atelier: String , year: number): Observable<ConfigTrs> {
+-    return this.http.get(this.baseurl + '/getAll/' + atelier + '/' + year )
++  public getAll(): Observable<ConfigTrs> {
++    return this.http.get(this.baseurl + '/getAll/'  )
+       .pipe(
+         retry(1),
+         catchError(this.errorHandl),
+Index: src/app/pages/mycomponents/mycomponents.module.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/mycomponents/mycomponents.module.ts	(revision 156e2163cb1a0a4b2234678dedf4dea985a1325c)
++++ src/app/pages/mycomponents/mycomponents.module.ts	(date 1576681974582)
+@@ -28,12 +28,13 @@
+ import {DashboardFragComponent} from './dashboard-frag/dashboard-frag.component';
+ import {GoogleChartsModule} from 'angular-google-charts';
+ import { TrsCMSComponent } from './trs-cms/trs-cms.component';
++import { PlanActTrsComponent } from './plan-act-trs/plan-act-trs.component';
+ 
+ 
+ @NgModule({
+   declarations: [InfoBloqComponent, RealisationComponent, OtdWComponent, ParetoOtdComponent,
+      PlanActOtdComponent, PcdWComponent, PlanActPcdComponent, SyntheseComponent,
+-    ProjectBMComponent, ProductiviteMComponent, PlanActProductiviteComponent, PrametrageComponent, DashboardFragComponent, TrsCMSComponent],
++    ProjectBMComponent, ProductiviteMComponent, PlanActProductiviteComponent, PrametrageComponent, DashboardFragComponent, TrsCMSComponent, PlanActTrsComponent],
+   imports: [
+     CommonModule,
+     NbCardModule,

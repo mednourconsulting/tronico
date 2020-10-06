@@ -1,0 +1,951 @@
+<!--<span *ngIf="tra==null" class="alert alert-info">
+              Tra not found
+            </span>
+<span *ngIf="fragDashboardEiffel==null" class="alert alert-info">
+              eiffel data not found
+            </span>
+<span *ngIf="fragDashboardVauban==null" class="alert alert-info">
+              vauban data not found
+            </span>
+<span *ngIf="fragDashboardCMS==null" class="alert alert-info">
+              cms data not found
+            </span>
+<span *ngIf="fragDashboardMagasin==null" class="alert alert-info">
+              magasin data not found
+            </span>
+<span *ngIf="fragDashboardTechnique==null" class="alert alert-info">
+              technique data not found
+            </span>
+<span *ngIf="fragDashboardTest==null" class="alert alert-info">
+              test data not found
+            </span>
+<div *ngIf="isAdmin">
+  <nb-tabset>
+    <nb-tab tabTitle="Analytics">
+      <nb-accordion multi>
+        <nb-accordion-item #item>
+          <nb-accordion-item-header>
+            Analytics PCD & OTD
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="row">
+              <div class="col-lg-6">
+                <nb-card>
+                  <nb-card-header>
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="label" for="first">D_Semaine</label>
+                        <select [(ngModel)]="weekFirst.weekFirstOtd" id="first" class="form-control float-right" >
+                          <option *ngFor="let num of weeks" [ngValue]="num">S{{ num }}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="fin">F_Semaine</label>
+                        <select [(ngModel)]="weekFin.weekFinOtd" id="fin" class="form-control float-right" >
+                          <option *ngFor="let num of weeks" [ngValue]="num">S{{ num}}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="ann1">Année</label>
+                        <input [(ngModel)]="year.yearOtd " [defaultValue]="2019"  id="ann1" type="number" min="2000" class="form-control float-right" nbInput >
+                      </div>
+                      <div class="col-sm-3">
+                        <button style="margin-top: 29px; width: 70px;" (click)="searchForOtd()" class="btn btn-primary float-right">
+                          <i class="fa fa-chart-bar"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="label" for="chart1">Type</label>
+                        <select [(ngModel)]="stackedChartOtd.typeChart" id="chart1" class="form-control float-right" >
+                          <option *ngFor="let type of chartType" [ngValue]="type.type">{{ type.name }}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="chart">Atelier</label>
+                        <select [(ngModel)]="atelier.atelierOtd" id="chart" class="form-control float-right" >
+                          <option *ngFor="let type of listAtelier" [ngValue]="type">{{ type }}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <google-chart #chart
+                                  [title]="stackedChartOtd.title"
+                                  [type]="stackedChartOtd.typeChart"
+                                  [data]="stackedChartOtd.data"
+                                  [columnNames]="stackedChartOtd.columnNames"
+                                  [options]="stackedChartOtd.options"
+                                  [width]="stackedChartOtd.width"
+                                  [height]="stackedChartOtd.height">
+                    </google-chart>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+              <div class="col-lg-6">
+                <nb-card>
+                  <nb-card-header>
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="label" for="first2">D_Semaine</label>
+                        <select [(ngModel)]="weekFirst.weekFirstsPcd" id="first2" class="form-control float-right" >
+                          <option *ngFor="let num of weeks" [ngValue]="num">S{{ num }}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="fin2">F_Semaine</label>
+                        <select [(ngModel)]="weekFin.weekFinPcd" id="fin2" class="form-control float-right" >
+                          <option *ngFor="let num of weeks" [ngValue]="num">S{{ num}}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="ann2">Année</label>
+                        <input [(ngModel)]="year.yearPcd" [defaultValue]="2019"  id="ann2" type="number" min="2000" class="form-control float-right" nbInput >
+                      </div>
+                      <div class="col-sm-3">
+                        <button style="margin-top: 29px; width: 70px;" (click)="searchForPcd()" class="btn btn-primary float-right">
+                          <i class="fa fa-chart-bar"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="label" for="chart2">Type</label>
+                        <select [(ngModel)]="stackedChartPcd.typeChart" id="chart2" class="form-control float-right" >
+                          <option *ngFor="let type of chartType" [ngValue]="type.type">{{ type.name }}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="atelier">Atelier</label>
+                        <select [(ngModel)]="atelier.atelierPcd" id="atelier" class="form-control float-right" >
+                          <option *ngFor="let type of listAtelier" [ngValue]="type">{{ type }}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <google-chart #chart
+                                  [title]="stackedChartPcd.title"
+                                  [type]="stackedChartPcd.typeChart"
+                                  [data]="stackedChartPcd.data"
+                                  [columnNames]="stackedChartPcd.columnNames"
+                                  [options]="stackedChartPcd.options"
+                                  [width]="stackedChartPcd.width"
+                                  [height]="stackedChartPcd.height">
+                    </google-chart>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+
+      <br>
+
+      <nb-accordion multi>
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            Analytics Evolution des heures & TRS
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="row">
+              <div class="col-lg-6">
+                <nb-card>
+                  <nb-card-header>
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="label" for="firstEvo">D_Semaine</label>
+                        <select [(ngModel)]="weekFirst.weekFirstEVH" id="firstEvo" class="form-control float-right" >
+                          <option *ngFor="let num of weeks" [ngValue]="num">S{{ num }}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="finEvo">F_Semaine</label>
+                        <select [(ngModel)]="weekFin.weekFinEVH" id="finEvo" class="form-control float-right" >
+                          <option *ngFor="let num of weeks" [ngValue]="num">S{{ num}}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="annEvo">Année</label>
+                        <input [(ngModel)]="year.yearEVH " [defaultValue]="2019"  id="annEvo" type="number" min="2000" class="form-control float-right" nbInput >
+                      </div>
+                      <div class="col-sm-3">
+                        <button style="margin-top: 29px; width: 70px;" (click)="searchForEHV()" class="btn btn-primary float-right">
+                          <i class="fa fa-chart-bar"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="label" for="chartEVH">Type</label>
+                        <select [(ngModel)]="stackedChartEVH1.typeChart" id="chartEVH" class="form-control float-right" >
+                          <option *ngFor="let type of chartType" [ngValue]="type.type">{{ type.name }}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="atelierEVO">Atelier</label>
+                        <select [(ngModel)]="atelier.atelierEVH" id="atelierEVO" class="form-control float-right" >
+                          <option *ngFor="let type of listAtelier" [ngValue]="type">{{ type }}</option>
+                        </select>
+                      </div>
+                    </div>
+                    <google-chart #chart
+                                  [title]="stackedChartEVH1.title"
+                                  [type]="stackedChartEVH1.typeChart"
+                                  [data]="stackedChartEVH1.data"
+                                  [columnNames]="stackedChartEVH1.columnNames"
+                                  [options]="stackedChartEVH1.options"
+                                  [width]="stackedChartEVH1.width"
+                                  [height]="stackedChartEVH1.height">
+                    </google-chart>
+
+                    <google-chart #chart
+                                  [title]="stackedChartEVH2.title"
+                                  [type]="stackedChartEVH1.typeChart"
+                                  [data]="stackedChartEVH2.data"
+                                  [columnNames]="stackedChartEVH2.columnNames"
+                                  [options]="stackedChartEVH2.options"
+                                  [width]="stackedChartEVH2.width"
+                                  [height]="stackedChartEVH2.height">
+                    </google-chart>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+              <div class="col-lg-6">
+                <nb-card>
+                  <nb-card-header>
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="label" for="firstTRS">D_Semaine</label>
+                        <select [(ngModel)]="weekFirst.weekFirstsTrs" id="firstTRS" class="form-control float-right" >
+                          <option *ngFor="let num of weeks" [ngValue]="num">S{{ num }}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="finTRS">F_Semaine</label>
+                        <select [(ngModel)]="weekFin.weekFinTrs" id="finTRS" class="form-control float-right" >
+                          <option *ngFor="let num of weeks" [ngValue]="num">S{{ num}}</option>
+                        </select></div>
+                      <div class="col-lg-3">
+                        <label class="label" for="annTRS">Année</label>
+                        <input [(ngModel)]="year.yearTrs" [defaultValue]="2019"  id="annTRS" type="number" min="2000" class="form-control float-right" nbInput >
+                      </div>
+                      <div class="col-sm-3">
+                        <button style="margin-top: 29px; width: 70px;" (click)="searchForTrs()" class="btn btn-primary float-right">
+                          <i class="fa fa-chart-bar"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </nb-card-header>
+                  <nb-card-body>
+                    <div class="row">
+                      <div class="col-lg-3">
+                        <label class="label" for="chartTrs">Type</label>
+                        <select [(ngModel)]="stackedChartTrs.typeChart" id="chartTrs" class="form-control float-right" >
+                          <option *ngFor="let type of chartType" [ngValue]="type.type">{{ type.name }}</option>
+                        </select></div>
+                    </div>
+                    <google-chart #chart
+                                  [title]="stackedChartTrs.title"
+                                  [type]="stackedChartTrs.typeChart"
+                                  [data]="stackedChartTrs.data"
+                                  [columnNames]="stackedChartTrs.columnNames"
+                                  [options]="stackedChartTrs.options"
+                                  [width]="stackedChartTrs.width"
+                                  [height]="stackedChartTrs.height">
+                    </google-chart>
+                  </nb-card-body>
+                </nb-card>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+
+        </nb-accordion-item>
+      </nb-accordion>
+    </nb-tab>
+    <nb-tab tabTitle="Tableau de reporting">
+      <br><br>
+      <nb-card>
+        <nb-accordion multi>
+          <nb-accordion-item>
+            <nb-accordion-item-header>
+              Rechercher
+            </nb-accordion-item-header>
+            <nb-accordion-item-body>
+              <div class="row">
+                <div class="col-lg-4">
+                  <label class="label" for="at">Semaine</label>
+                  <select [(ngModel)]="week" id="at" class="form-control float-right md" fullWidth>
+                    <option *ngFor="let num of weeks" [ngValue]="num">S:{{ num }}</option>
+                  </select>
+                </div>
+                <div class="col-lg-4">
+                  <label class="label" for="anne">Année</label>
+                  <input [(ngModel)]="year.yearD" id="anne" type="number" min="2000"  class="form-control float-right md" nbInput fullWidth>
+                </div>
+                <div class="col-lg-4">
+                  <button (click)="searchFor()"  class="form-control float-right md"><i class="fa fa-search"></i>Rechercher
+                  </button></div>
+              </div>
+            </nb-accordion-item-body></nb-accordion-item></nb-accordion>
+      </nb-card>
+      <nb-accordion multi>
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            REALISATIONS
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="float-left value marginize">H. Reçues de TRF :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.hRecusTrf }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.hRecusTrf }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.hRecusTrf }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.hRecusTrf }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.hRecusTrf }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.hRecusTrf }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.hRecusTrf }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">H. Engagées/objectif :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.hObjectif }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.hObjectif }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.hObjectif }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.hObjectif }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.hObjectif }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.hObjectif }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.hObjectif }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">H. Réalisées(ou OF) :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.hRealise }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.hRealise }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.hRealise }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.hRealise }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.hRealise }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.hRealise }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.hRealise }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Nb Cartes Engagées ou OF :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.nBCarteEngage }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.nBCarteEngage }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.nBCarteEngage }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.nBCarteEngage }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.nBCarteEngage }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.nBCarteEngage }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.nBCarteEngage }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Nb Cartes en Retard :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.nBCarteRetard }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.nBCarteRetard }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.nBCarteRetard }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.nBCarteRetard }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.nBCarteRetard }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.nBCarteRetard }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.nBCarteRetard }}</div>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            OTD
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="float-left value marginize">OTD :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ this.tra.otd }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ this.fragDashboardEiffel.otd }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ this.fragDashboardVauban.otd }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ this.fragDashboardCMS.otd}}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ this.fragDashboardMagasin.otd}}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ this.fragDashboardTechnique.otd}}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ this.fragDashboardTest.otd}}</div>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+
+
+        <br>
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            CHARGE-CAPACITE
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="float-left value marginize">BESOIN EN ETP/102% :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.besoinEtp }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.besoinEtp }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.besoinEtp }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.besoinEtp }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.besoinEtp }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.besoinEtp }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.besoinEtp }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">ETP DISPO :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.etpDispo }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.etpDispo }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.etpDispo }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.etpDispo }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.etpDispo }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.etpDispo }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.etpDispo }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">EFFECTIIF EN PLUS :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.effectifPlus }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.effectifPlus }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.effectifPlus}}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.effectifPlus}}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.effectifPlus}}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.effectifPlus}}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.effectifPlus}}</div>
+              </div>
+
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+        <br>
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            EFFICIENCY GAP
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="float-left value marginize">heures formation :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.heuresFormation }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.heuresFormation }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.heuresFormation }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.heuresFormation }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.heuresFormation }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.heuresFormation }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.heuresFormation }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Heures Améliorationcont :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.heuresAmelioration }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.heuresAmelioration }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.heuresAmelioration }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.heuresAmelioration }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.heuresAmelioration }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.heuresAmelioration }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.heuresAmelioration }}</div>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+        <br>
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            ECARTS
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="float-left value marginize">ECART :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ this.tra.ecart}}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ this.fragDashboardEiffel.ecart}}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ this.fragDashboardVauban.ecart }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ this.fragDashboardCMS.ecart}}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ this.fragDashboardMagasin.ecart}}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ this.fragDashboardTechnique.ecart}}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ this.fragDashboardTest.ecart}}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">MQT TRF :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.mqtTrf }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.mqtTrf }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.mqtTrf }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.mqtTrf }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.mqtTrf }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.mqtTrf }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.mqtTrf }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">MQT TA :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.mqtTa }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.mqtTa }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.mqtTa }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.mqtTa }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.mqtTa }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.mqtTa }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.mqtTa }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">QUALITE :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.qualite }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.qualite }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.qualite }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.qualite }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.qualite }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.qualite }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.qualite }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">PCD :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.pcd }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.pcd }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.pcd }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.pcd }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.pcd }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.pcd }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.pcd }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">TEST :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.test }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.test }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.test }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.test }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.test }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.test }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.test }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">BLOQUE/ Dossier :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.bloqueDossier }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.bloqueDossier }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.bloqueDossier }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.bloqueDossier }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.bloqueDossier }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.bloqueDossier }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.bloqueDossier }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value  marginize">MAINTENANCE :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.maintenance }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.maintenance }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.maintenance }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.maintenance }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.maintenance }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.maintenance }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.maintenance }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">PROCESS / OUTILLAGE :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.processOutillage }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.processOutillage }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.processOutillage }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.processOutillage }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.processOutillage }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.processOutillage }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.processOutillage }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">RETARD PRODUCTION :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.retardProduction }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.retardProduction }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.retardProduction }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.retardProduction }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.retardProduction }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.retardProduction }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.retardProduction }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">ECART STOCK :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.ecartStock }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.ecartStock }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.ecartStock }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.ecartStock }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.ecartStock }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.ecartStock }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.ecartStock }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">ATTENTE INFO CLIENT/ RI :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.attenteInfoClient }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.attenteInfoClient }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.attenteInfoClient }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.attenteInfoClient }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.attenteInfoClient }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.attenteInfoClient }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.attenteInfoClient }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">REPORTER suite de client :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.repporterSuiteDeClient }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.repporterSuiteDeClient }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.repporterSuiteDeClient }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.repporterSuiteDeClient }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.repporterSuiteDeClient }}</div>
+                <div nbTooltip="Technique"
+                     class="float-left spacer">{{ fragDashboardTechnique.repporterSuiteDeClient }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.repporterSuiteDeClient }}</div>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+        <br>
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            ENCOURS
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="float-left value marginize">ENCOURS :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.encours }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.encours }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.encours }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.encours }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.encours }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.encours }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.encours }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">NET FABRICABLE :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.netFabricable }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.netFabricable }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.netFabricable }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.netFabricable }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.netFabricable }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.netFabricable }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.netFabricable }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">En transit(H) :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.enTransit }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.enTransit }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.enTransit }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.enTransit }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.enTransit }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.enTransit }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.enTransit }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Manquant TA(S) :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.monquantTa }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.monquantTa }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.monquantTa }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.monquantTa }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.monquantTa }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.monquantTa }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.monquantTa }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Manquant TA(S) :Qualité(Q) :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.qualiteEncours }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.qualiteEncours }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.qualiteEncours }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.qualiteEncours }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.qualiteEncours }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.qualiteEncours }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.qualiteEncours }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="caption">
+                  AQF( C) :
+                </div>
+                <div class="float-left value marginize">Manquant TA(S) :Qualité(Q)</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.aqf }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.aqf }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.aqf }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.aqf }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.aqf }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.aqf }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.qualiteEncours }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Process / Dossiers / OT TRA :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.processDossierTra }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.processDossierTra }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.processDossierTra }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.processDossierTra }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.processDossierTra }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.processDossierTra }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.processDossierTra }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">TEST(T) :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.testEncours }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.testEncours }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.testEncours }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.testEncours }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.testEncours }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.testEncours }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.testEncours }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Machine(R) :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.machine }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.machine }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.machine }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.machine }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.machine }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.machine }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.machine }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">FINIS ATTENTE RI CLIENT :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.finisAttRiClient }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.finisAttRiClient }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.finisAttRiClient }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.finisAttRiClient }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.finisAttRiClient }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.finisAttRiClient }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.finisAttRiClient }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">FINIS REPORT DE DELAI :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.finisReportDelai }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.finisReportDelai }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.finisReportDelai }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.finisReportDelai }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.finisReportDelai }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.finisReportDelai }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.finisReportDelai }}</div>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+        <br>
+
+        <nb-accordion-item>
+          <nb-accordion-item-header>
+            PREVISIONS S40
+          </nb-accordion-item-header>
+          <nb-accordion-item-body>
+            <div class="list-group">
+              <div class="list-group-item">
+                <div class="float-left value marginize">MQ/ Ecart de Stock :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.ecartStock }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.ecartStock }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.ecartStock }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.ecartStock }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.ecartStock }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.ecartStock }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.ecartStock }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">MQ RUPT PEREMP & CONSOM :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.mqRuptEtConsom }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.mqRuptEtConsom }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.mqRuptEtConsom }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.mqRuptEtConsom }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.mqRuptEtConsom }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.mqRuptEtConsom }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.mqRuptEtConsom }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Heures Prévues :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.hPrevus }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.hPrevus }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.hPrevus }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.hPrevus }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.hPrevus }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.hPrevus }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.hPrevus }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Dont Retard :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.dontRetard }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.dontRetard }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.dontRetard }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.dontRetard }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.dontRetard }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.dontRetard }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.dontRetard }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">Fabricable (Net FAB +H) :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.fabricable }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.fabricable }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.fabricable }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.fabricable }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.fabricable }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.fabricable }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.fabricable }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize"> Volume Fabricable CMS :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.volumeFabricableCms }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.volumeFabricableCms }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.volumeFabricableCms }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.volumeFabricableCms }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.volumeFabricableCms }}</div>
+                <div nbTooltip="Technique"
+                     class="float-left spacer">{{ fragDashboardTechnique.volumeFabricableCms }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.volumeFabricableCms }}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize"> % Fabricable de l'encours :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.fabricableEncours}}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.fabricableEncours}}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.fabricableEncours}}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.fabricableEncours}}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.fabricableEncours}}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.fabricableEncours}}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.fabricableEncours}}</div>
+              </div>
+              <div class="list-group-item">
+                <div class="float-left value marginize">PREVISION :</div>
+                <div nbTooltip="Tra" class="float-left spacer">{{ tra.previsions }}</div>
+                <div nbTooltip="Eiffel" class="float-left spacer">{{ fragDashboardEiffel.previsions }}</div>
+                <div nbTooltip="Vauban" class="float-left spacer">{{ fragDashboardVauban.previsions }}</div>
+                <div nbTooltip="CMS" class="float-left spacer">{{ fragDashboardCMS.previsions }}</div>
+                <div nbTooltip="Magasin" class="float-left spacer">{{ fragDashboardMagasin.previsions }}</div>
+                <div nbTooltip="Technique" class="float-left spacer">{{ fragDashboardTechnique.previsions }}</div>
+                <div nbTooltip="Test" class="float-left spacer">{{ fragDashboardTest.previsions }}</div>
+              </div>
+            </div>
+          </nb-accordion-item-body>
+        </nb-accordion-item>
+      </nb-accordion>
+    </nb-tab>
+  </nb-tabset>
+</div>-->
+
+
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0" (click)="dashboard()"> PRODUCTION</h5>
+                </div>
+                <div class="col-lg-auto">
+                  <i class="fa fa-percent icon"></i>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0" (click)="chart('cms')">CMS</h5>
+                </div>
+                <div class="col-lg-auto">
+                  <i class="fa fa-chart-bar icon" (click)="chart('cms')"></i>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Eiffel</h5>
+                </div>
+                <div class="col-lg-auto">
+                  <i class="fa fa-chart-bar icon" (click)="chart('eiffel')"></i>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                <span class="text-nowrap">Since last week</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Magasin</h5>
+                </div>
+                <div class="col-lg-auto">
+                  <i class="fa fa-chart-bar icon" (click)="chart('magasin')"></i>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
+                <span class="text-nowrap">Since yesterday</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="header bg-gradient-danger pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <div class="row">
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">test</h5>
+                </div>
+                <div class="col-lg-auto">
+                  <i class="fa fa-chart-bar icon" (click)="chart('test')"></i>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase  text-muted mb-0">Technique</h5>
+                </div>
+                <div class="col-lg-auto">
+                  <i class="fa fa-chart-bar icon" (click)="chart('technique')"></i>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
+                <span class="text-nowrap">Since last week</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-4 col-lg-6" (click)="chart('vaubon')">
+          <div class="card card-stats mb-4 mb-xl-0">
+            <div class="card-body">
+              <div class="row">
+                <div class="col">
+                  <h5 class="card-title text-uppercase text-muted mb-0">Vaubon</h5>
+                </div>
+                <div class="col-lg-auto">
+                  <i class="fa fa-chart-bar icon" ></i>
+                </div>
+              </div>
+              <p class="mt-3 mb-0 text-muted text-sm">
+                <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
+                <span class="text-nowrap">Since last month</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

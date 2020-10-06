@@ -1,0 +1,121 @@
+<div *ngIf="isGranted || isAdmin" class="">
+  <nb-card>
+    <nb-card-header>
+      <div class="row">
+        <div class="col-lg-3">
+          <label for="semin" class="label">Semaine min</label>
+          <input [(ngModel)]="weekMin" class="img-thumbnail" type="number" nbInput fullWidth
+                 id="semin" placeholder="Week min"></div>
+
+        <div class="col-lg-3">
+          <label for="semax" class="label">Semaine max</label>
+          <input [(ngModel)]="weekMax" class="img-thumbnail" type="number" nbInput fullWidth
+                 id="semax" placeholder="Week max">
+        </div>
+        <div class="col-lg-3">
+
+          <label for="ann" class="label">Année</label>
+          <input [(ngModel)]="year" class="img-thumbnail" type="number" nbInput fullWidth
+                 id="ann" placeholder="Année">
+        </div>
+        <div class="col-lg-3">
+          <br>
+          <button (click)="getByYearAndWeekBetween()" style="margin-top: 10px;" id="btn" class="btn btn-outline-success float-right"><i class="fa fa-search"></i>search</button>
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <div *ngIf="projetBM.advancement>100" class="alert alert-danger">
+        <h5>Merci d'entrer une valeur iférieur à 100%</h5>
+      </div>
+      <div class="row">
+
+        <div class="col-lg-3">
+          <label for="titre" class="label">Titre</label>
+          <input [(ngModel)]="projetBM.taskName" class="img-thumbnail" type="text" nbInput fullWidth required="true"
+                 id="titre" placeholder="Titre">
+        </div>
+
+        <div class="col-lg-3">
+          <label for="cal" class="label">Semaine début</label>
+          <input [(ngModel)]="projetBM.startsAt" class="img-thumbnail" type="number" nbInput fullWidth required="true"
+                 [disabled]="isAdmin==false" id="cal" placeholder="Date début">
+        </div>
+        <div class="col-lg-3">
+          <label for="calend" class="label">Semaine fin</label>
+          <input id="calend" [(ngModel)]="projetBM.endsAt" class="img-thumbnail" type="number" nbInput fullWidth
+                 [disabled]="isAdmin==false" placeholder="Date fin">
+        </div>
+
+        <div class="col-lg-3">
+          <label for="desc" class="label">Description</label>
+          <textarea [(ngModel)]="projetBM.taskDescription" class="img-thumbnail" type="text" nbInput fullWidth
+                    required="true"
+                    id="desc" placeholder="Description"></textarea>
+        </div>
+        <div class="col-lg-3">
+          <label for="av" class="label">Avancement %</label>
+          <input [(ngModel)]="projetBM.advancement" class="img-thumbnail" type="number" nbInput fullWidth min="0"
+                 required="true"
+                 id="av" placeholder="Avancement %">
+        </div>
+        <div class="col-lg-3">
+          <label for="responsable" class="label">Qui</label>
+          <select [(ngModel)]="projetBM.responsable" fullWidth class="img-thumbnail form-control" required="true"
+                  id="responsable" placeholder="responsable">
+            <option *ngFor="let employe of listEmploye" [value]="employe">{{ employe }}</option>
+          </select>
+        </div>
+        <div class="col-lg-3">
+          <label class="label" for="act">Action</label><br>
+          <button [disabled]="projetBM.endsAt<projetBM.startsAt?true:false" id="act" (click)="save()"
+                  class="btn btn-outline-primary"><i class="fa fa-plus-circle"></i>Save
+          </button>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+  <br>
+
+  <nb-card>
+    <nb-card-body>
+      <table class="table">
+        <tr class="text-info">
+          <td>Titre</td>
+          <td>Description</td>
+          <td>Début</td>
+          <td>Fin</td>
+          <td>Responable</td>
+          <td>Avancement</td>
+          <td>Actions</td>
+        </tr>
+        <tr *ngFor="let item of projetBMList; trackBy: trackByFunction">
+          <td>{{ item.taskName }}</td>
+          <td>{{ item.taskDescription }}</td>
+          <td>{{ item.startsAt }} </td>
+          <td>{{ item.endsAt }} </td>
+          <td>{{ item.responsable }} </td>
+          <td>
+            <div class="progress" style="width: 500px;">
+              <div [style.width.px]="item.advancement*5" [ngClass]="{
+  'bg-primary': item.status == 'encours',
+  'bg-success': item.status == 'termine',
+  'bg-danger': item.status == 'annule'
+}" [class.progress-bar]="true" role="progressbar" aria-valuemin="25" aria-now="50"
+                   aria-valuemax="100">{{ item.advancement }}%
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group btn-group-sm float-right" role="group" aria-label="...">
+              <button (click)="update(item)" class="btn btn-outline-primary"><i class="fas fa-edit"></i></button>
+              <button (click)="annulerProjet(item)" class="btn btn-outline-warning"><i class="fas fa-ban"></i></button>
+              <button (click)="delete(item)" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </nb-card-body>
+  </nb-card>
+</div>
+

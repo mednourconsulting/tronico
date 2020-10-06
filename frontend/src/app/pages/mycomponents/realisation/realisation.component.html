@@ -1,0 +1,151 @@
+<div *ngIf="isGranted || isAdmin" class="">
+<div class="row equal-cols">
+  <div class="col-lg-6">
+    <nb-card>
+      <nb-card-header>Réalisation
+      </nb-card-header>
+      <nb-card-body>
+        <div class="">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label  class="label">Semaine</label>
+                <nb-select  [(ngModel)]="realisationW.week" class="type-select "  nbSelect fullWidth
+                            placeholder="Semaine" >
+                  <nb-option *ngFor="let t of collection" [value]="t" >Semaine {{ t }}</nb-option>
+                </nb-select>
+
+              </div>
+            </div></div>
+            <div class="row">
+            <div class="col-sm-12">
+              <label class="label">Réalisation (Heure)</label>
+              <input [(ngModel)]="realisationW.heuresRealise" class="img-thumbnail" type="number" nbInput fullWidth
+                     placeholder="Heures réalisées">
+            </div></div>
+          <div class="row">
+
+          <div class="col-sm-12">
+              <label class="label">Objéctif (Heure)</label>
+              <input [(ngModel)]="realisationW.objectif" class="img-thumbnail" type="number" nbInput fullWidth
+                     placeholder="Objéctif">
+          </div></div>
+          <div class="row">
+          <div class="col-sm-12">
+              <label class="label">Ecart (%)</label>
+              <input value="{{realisationW.objectif - realisationW.heuresRealise}}"
+                     disabled="true"
+                     class="img-thumbnail"
+                     type="number"
+                     nbInput fullWidth
+                     placeholder="Ecart">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button *ngIf="isAdmin" class="btn mr-1 "  (click)="save()" type="submit" nbButton  status="info">Register</button>
+            <button class="btn btn-secondary mr-1" (click)="reset()" type="submit" nbButton  status="info" outline>Annler</button>
+          </div>
+        </div>
+      </nb-card-body>
+    </nb-card>
+  </div>
+  <div class="col-lg-6">
+<ngx-realisation-chart atelier="{{atelier}}"></ngx-realisation-chart>
+  </div>
+</div>
+
+      <!--  <nb-card>
+          <nb-card-header>
+            <nb-select (selectedChange)="chart($event)" class="type-select fa-pull-right" #singleSelect pull.right="right">
+              <nb-option *ngFor="let t of collection" [value]="t.value">{{ t.title }}</nb-option>
+            </nb-select>
+          </nb-card-header>
+          <google-chart #chart
+                        [title]="titre"
+                        [type]="type"
+                        [data]="data"
+                        [columnNames]="columnNames"
+                        [options]="options"
+                        [width]="width"
+                        [height]="height">
+          </google-chart>
+          <nb-card-body>
+            <chart type="bar" [data]="data" [options]="options"></chart>
+          </nb-card-body>
+          <nb-card-footer class="form-inline">
+          </nb-card-footer>
+
+        </nb-card> -->
+      <!--nb-card>
+        <nb-card-header>
+          <div class="row form-group form-check-inline">
+            <div class="col-sm-3">
+              <label class="label" for="first">D_Semaine</label>
+              <select [(ngModel)]="weekFirst"  id="first" class="form-control float-left md" fullWidth>
+                <option *ngFor="let num of collection" [ngValue]="num">Semaine{{ num }}</option>
+              </select></div>
+            <div class="col-sm-3">
+              <label class="label" for="fin">F_Semaine</label>
+              <select [(ngModel)]="weekFin"  id="fin" class="form-control float-left md" fullWidth >
+                <option *ngFor="let num of collection" [ngValue]="num">Semaine{{ num}}</option>
+              </select></div>
+            <div class="col-sm-3">
+              <label class="label" for="anne">Année</label>
+              <input [(ngModel)]="year"   id="anne" type="number" min="2000" class="form-control md" nbInput fullWidth>
+            </div>
+            <div class="col-sm-3">
+              <button style="margin-top: 29px; width: 70px;" (click)="searchFor()" class="btn btn-primary float-right">
+                <i class="fa fa-chart-bar"></i>
+              </button>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-sm-3">
+              <label class="label" for="chart">Type de graphique</label>
+              <select [(ngModel)]="stackedChart.typeChart" id="chart" class="form-control float-left md" fullWidth>
+                <option *ngFor="let type of chartType" [ngValue]="type.type">{{ type.name }}</option>
+              </select></div>
+          </div>
+          <google-chart
+            [title]="stackedChart.title"
+            [type]="stackedChart.typeChart"
+            [data]="stackedChart.data"
+            [columnNames]="stackedChart.columnNames"
+            [options]="stackedChart.options"
+            [width]="stackedChart.width"
+            [height]="stackedChart.height">
+          </google-chart>
+        </nb-card-body>
+      </nb-card-->
+
+  <nb-card>
+    <nb-card-header>
+      <div class="row">
+        <div class="col-sm-6">
+          La Table des Donnés de Réalisation par Semaine
+        </div>
+      </div>
+    </nb-card-header>
+    <nb-card-body>
+      <ng2-smart-table
+        (createConfirm)="createConfirm($event)"
+        [settings]="settings"
+        [source]="source"
+        (deleteConfirm)="onDeleteConfirm($event)"
+        (editConfirm)="onSaveConfirm($event)">
+      </ng2-smart-table>
+
+    </nb-card-body>
+  </nb-card>
+
+</div>
+
+

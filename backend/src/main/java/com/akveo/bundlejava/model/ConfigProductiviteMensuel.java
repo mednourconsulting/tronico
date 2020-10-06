@@ -1,0 +1,65 @@
+package com.akveo.bundlejava.model;
+
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
+import java.util.Calendar;
+
+@Entity
+public class ConfigProductiviteMensuel implements Serializable {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private Long year =Long.valueOf(Calendar.getInstance().get(Calendar.YEAR)) ;
+    private String atelier;
+    private Double objectif = Double.valueOf(0.0);
+
+    public ConfigProductiviteMensuel() {
+    }
+
+    @Override
+    public String toString() {
+        return "ConfigProductiviteMensuel{" +
+                "id=" + id +
+                ", year=" + year +
+                ", atelier='" + atelier + '\'' +
+                ", objectif=" + objectif +
+                '}';
+    }
+
+    public Long getYear() {
+        return year;
+    }
+
+    public void setYear(Long year) {
+        this.year = year;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getAtelier() {
+        return atelier;
+    }
+
+    public void setAtelier(String atelier) {
+        this.atelier = atelier;
+    }
+
+    public Double getObjectif() {
+        return objectif;
+    }
+
+    public void setObjectif(Double objectif) {
+        this.objectif = objectif;
+    }
+
+}

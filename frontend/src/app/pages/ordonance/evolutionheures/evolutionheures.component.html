@@ -1,0 +1,138 @@
+<div *ngIf="isAdmin" class="">
+  <div class="row equal-cols">
+    <div class="col-lg-6">
+    <nb-card>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="inputFirstName" class="label">Semaine</label>
+              <nb-select  [(ngModel)]="evolutionheures.week" class="type-select " id="inputFirstName"  nbSelect fullWidth
+                          placeholder="Semaine" >
+                <nb-option *ngFor="let t of collection" [value]="t" >Semaine {{ t}}</nb-option>
+              </nb-select>
+            </div>
+          </div></div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="inputLastName" class="label">Budjet</label>
+              <input [(ngModel)]="evolutionheures.budjet" class="m img-thumbnail" ng-required="expression" type="number" nbInput fullWidth
+                     id="inputLastName" placeholder="Budjet">
+            </div>
+          </div></div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="inputLastName1" class="label">Heures en CDE</label>
+              <input [(ngModel)]="evolutionheures.heuresCDE" class="m img-thumbnail" type="number" nbInput fullWidth required="true"
+                     id="inputLastName1" placeholder="Heures en CDE">
+            </div>
+          </div></div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="inputEmail" class="label">Heures prévus</label>
+              <input [(ngModel)]="evolutionheures.heuresPrevus" class="m img-thumbnail" type="number" nbInput fullWidth
+                     id="inputEmail" placeholder="Heures prévus">
+            </div>
+          </div></div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="form-group">
+              <label for="inputWebsite" class="label">Facture</label>
+              <input [(ngModel)]="evolutionheures.facture" class="m img-thumbnail" type="number" nbInput fullWidth
+                     id="inputWebsite" placeholder="Facture">
+            </div>
+          </div></div>
+        <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group">
+              <label for="inputWebsite3" class="label">Ecart</label>
+              <input value="{{ this.evolutionheures.facture - this.evolutionheures.budjet}}" class="m img-thumbnail"
+                     type="number" nbInput fullWidth
+                     disabled="true" id="inputWebsite3" placeholder="Ecart">
+            </div>
+        </div></div>
+        <button (click)="addToList()" class="btn btn-outline-primary" type="submit" nbButton><i class="fa fa-plus-circle"></i>Add</button>
+      </nb-card-body>
+    </nb-card>
+    </div>
+    <!--nb-card>
+      <nb-card-header>
+        <div class="row form-group form-check-inline">
+          <div class="col-sm-3">
+            <label class="label" for="first">D_Semaine</label>
+            <select [(ngModel)]="weekFirst" id="first" class="form-control float-left md" fullWidth>
+              <option *ngFor="let num of collection" [ngValue]="num">Semaine {{ num }}</option>
+            </select></div>
+          <div class="col-sm-3">
+            <label class="label" for="fin">F_Semaine</label>
+            <select [(ngModel)]="weekFin" id="fin" class="form-control float-left md" fullWidth>
+              <option *ngFor="let num of collection" [ngValue]="num">Semaine {{ num}}</option>
+            </select></div>
+          <div class="col-sm-3">
+            <label class="label" for="anne">Année</label>
+            <input [(ngModel)]="year" [defaultValue]="2019"  id="anne" type="number" min="2000" class="form-control md" nbInput fullWidth>
+          </div>
+          <div class="col-sm-3">
+            <button style="margin-top: 29px; width: 70px;" (click)="searchFor()" class="btn btn-primary float-right">
+              <i class="fa fa-chart-bar"></i>
+            </button>
+          </div>
+        </div>
+      </nb-card-header>
+      <nb-card-body>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="label" for="chart">Type de graphique</label>
+            <select [(ngModel)]="stackedChart.typeChart" id="chart" class="form-control float-left md" fullWidth>
+              <option *ngFor="let type of chartType" [ngValue]="type.type">{{ type.name }}</option>
+            </select></div>
+        </div>
+        <google-chart
+          [title]="stackedChart.title"
+          [type]="stackedChart.typeChart"
+          [data]="stackedChart.data"
+          [columnNames]="stackedChart.columnNames"
+          [options]="stackedChart.options"
+          [width]="stackedChart.width"
+          [height]="stackedChart.height">
+        </google-chart>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="label" for="chart1">Type de graphique</label>
+            <select [(ngModel)]="stackedChart1.typeChart" id="chart1" class="form-control float-left md" fullWidth>
+              <option *ngFor="let type of chartType" [ngValue]="type.type">{{ type.name }}</option>
+            </select></div>
+        </div>
+        <google-chart
+          [title]="stackedChart1.title"
+          [type]="stackedChart1.typeChart"
+          [data]="stackedChart1.data"
+          [columnNames]="stackedChart1.columnNames"
+          [options]="stackedChart1.options"
+          [width]="stackedChart1.width"
+          [height]="stackedChart1.height">
+        </google-chart>
+      </nb-card-body>
+      <nb-card-footer class="form-inline">
+      </nb-card-footer >
+    </nb-card>
+
+
+<-->
+    <div class="col-lg-6">
+      <ngx-evolution-hchart></ngx-evolution-hchart></div></div>
+<nb-card>
+  <nb-card-body>
+    <ng2-smart-table
+                     (createConfirm)="createConfirm($event)"
+                     [settings]="settings"
+                     (editConfirm)="onEditConfirm($event)"
+                     [source]="source"
+                     (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+</div>

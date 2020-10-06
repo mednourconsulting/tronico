@@ -1,0 +1,59 @@
+<div *ngIf="isGranted || isAdmin" class="">
+
+      <nb-card>
+        <nb-card-header>Productivité mensuel par mois
+          <button (click)="save()" class="btn btn-outline-primary float-right"><i class="fa fa-plus-circle"></i>Add</button>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="">
+            <div class="row">
+              <div class="col-sm-3">
+                <label class="label">Mois</label>
+                <nb-select  [(ngModel)]="productivite.month" class="type-select "  nbSelect fullWidth
+                            placeholder="Mois" >
+                  <nb-option *ngFor="let t of collection" [value]="t.value" >{{ t.month }}</nb-option>
+                </nb-select>
+              </div>
+              <div class="col-sm-3">
+                <label class="label">Productivite (%)</label>
+                <input [(ngModel)]="productivite.productivite" class="img-thumbnail" type="number" nbInput fullWidth
+                       placeholder="Productivite (%)">
+              </div>
+              <div class="col-sm-3">
+                <label class="label">Objéctif (%)</label>
+                <input [(ngModel)]="OBJECTIF" class="img-thumbnail" type="number" nbInput fullWidth
+                       placeholder="Objéctif" [disabled]="true">
+              </div>
+              <div class="col-sm-3">
+                <label class="label">Ecart (%)</label>
+                <input value="{{ OBJECTIF-productivite.productivite }}"
+                       disabled="true"
+                       class="img-thumbnail"
+                       type="number"
+                       nbInput fullWidth
+                       placeholder="Ecart">
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+
+
+
+  <nb-card>
+    <nb-card-body>
+      <ng2-smart-table
+        (createConfirm)="createConfirm($event)"
+        [settings]="settings"
+        [source]="source"
+        (deleteConfirm)="onDeleteConfirm($event)"
+        (editConfirm)="onSaveConfirm($event)">
+      </ng2-smart-table>
+
+    </nb-card-body>
+  </nb-card>
+</div>
+
+
+
+

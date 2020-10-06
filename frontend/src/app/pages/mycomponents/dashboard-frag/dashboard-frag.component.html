@@ -1,0 +1,388 @@
+
+<div *ngIf="isGranted || isAdmin" class="col-12">
+  <nb-card style="height: 720px;" size="large">
+    <nb-card-header> Reporting
+      <button (click)="save()" class="btn btn-primary float-right"><i class="fa fa-plus-circle"></i>Add</button>
+    </nb-card-header>
+    <nb-tabset fullWidth>
+      <nb-tab tabTitle="REALISATIONS">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="inputFirstName" class="label">Semaine</label>
+              <input [(ngModel)]="dashboardFrag.week" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="inputFirstName" placeholder="Semaine">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in1" class="label">H. Reçues de TRF</label>
+              <input [(ngModel)]="dashboardFrag.hRecusTrf" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in1" placeholder="H. Reçues de TRF">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in9" class="label">H. Engagées/objectif</label>
+              <input [(ngModel)]="dashboardFrag.hObjectif" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in9" placeholder="H. Engagées/objectif">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in10" class="label">H. Réalisées(ou OF)</label>
+              <input [(ngModel)]="dashboardFrag.hRealise" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in10" placeholder="H. Réalisées(ou OF)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in121" class="label">Nb Cartes Engagées ou OF</label>
+              <input [(ngModel)]="dashboardFrag.nBCarteEngage" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in121" placeholder="Nb Cartes Engagées ou OF">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in8" class="label">Nb Cartes en Retard</label>
+              <input [(ngModel)]="dashboardFrag.nBCarteRetard" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in8" placeholder="Nb Cartes en Retard">
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="Résumé écarts">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in11" class="label">MQT TRF</label>
+              <input [(ngModel)]="dashboardFrag.mqtTrf" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in11" placeholder="MQT TRF">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in2" class="label">MQT TA</label>
+              <input [(ngModel)]="dashboardFrag.mqtTa" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in2" placeholder="MQT TA">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in14" class="label">QUALITE</label>
+              <input [(ngModel)]="dashboardFrag.qualite" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in14" placeholder="QUALITE">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in15" class="label">PCD</label>
+              <input [(ngModel)]="dashboardFrag.pcd" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in15" placeholder="PCD">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in16" class="label">TEST</label>
+              <input [(ngModel)]="dashboardFrag.test" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in16" placeholder="TEST">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in17" class="label">AQF</label>
+              <input [(ngModel)]="dashboardFrag.aqf" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in17" placeholder="AQF">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in18" class="label">BLOQUE/ Dossier</label>
+              <input [(ngModel)]="dashboardFrag.bloqueDossier" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in18" placeholder="BLOQUE/ Dossier">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in19" class="label">MAINTENANCE</label>
+              <input [(ngModel)]="dashboardFrag.maintenance" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in19" placeholder="MAINTENANCE">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in20" class="label">PROCESS / OUTILLAGE</label>
+              <input [(ngModel)]="dashboardFrag.processOutillage" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in20" placeholder="PROCESS / OUTILLAGE">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in21" class="label">RETARD PRODUCTION</label>
+              <input [(ngModel)]="dashboardFrag.retardProduction" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in21" placeholder="RETARD PRODUCTION">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in22" class="label">ECART STOCK</label>
+              <input [(ngModel)]="dashboardFrag.ecartStock" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in22" placeholder="ECART STOCK">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in23" class="label">ATTENTE INFO CLIENT/ RI</label>
+              <input [(ngModel)]="dashboardFrag.attenteInfoClient" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in23" placeholder="ATTENTE INFO CLIENT/ RI">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in24" class="label">REPORTER suite dde client</label>
+              <input [(ngModel)]="dashboardFrag.repporterSuiteDeClient" class="img-thumbnail" type="number"
+                     nbInput fullWidth
+                     id="in24" placeholder="REPORTER suite dde client">
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="ENCOURS">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in4" class="label">Encours</label>
+              <input value="{{(this.dashboardFrag.netFabricable + this.dashboardFrag.enTransit +
+        this.dashboardFrag.monquantTa + this.dashboardFrag.clientMqtFc + this.dashboardFrag.qualiteEncours +
+        this.dashboardFrag.aqf + this.dashboardFrag.processDossierTra + this.dashboardFrag.machine + this.dashboardFrag.finisAttRiClient +
+        this.dashboardFrag.finisReportDelai + this.dashboardFrag.yM + this.dashboardFrag.testEncours)}}" class="img-thumbnail" type="number" nbInput fullWidth
+                     disabled="true"
+                     id="in4" placeholder="Encours">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in5" class="label">NET FABRICABLE</label>
+              <input [(ngModel)]="dashboardFrag.netFabricable" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in5" placeholder="NET  FABRICABLE">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in25" class="label">En transit(H)</label>
+              <input [(ngModel)]="dashboardFrag.enTransit" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in25" placeholder="En transit(H)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in26" class="label">Manquant TA(S)</label>
+              <input [(ngModel)]="dashboardFrag.monquantTa" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in26" placeholder="Manquant TA(S)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in27" class="label">Clients & Mqt-FC(AET P)</label>
+              <input [(ngModel)]="dashboardFrag.clientMqtFc" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in27" placeholder="Clients & Mqt-FC(AET P)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in28" class="label">Qualité(Q)</label>
+              <input [(ngModel)]="dashboardFrag.qualiteEncours" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in28" placeholder="Qualité(Q)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in29" class="label">AQF( C)</label>
+              <input [(ngModel)]="dashboardFrag.aqfC" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in29" placeholder="AQF( C)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in30" class="label">Process / Dossiers / OT TRA</label>
+              <input [(ngModel)]="dashboardFrag.processDossierTra" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in30" placeholder="Process / Dossiers / OT TRA">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in31" class="label">TEST(T)</label>
+              <input [(ngModel)]="dashboardFrag.testEncours" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in31" placeholder="TEST(T)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in32" class="label">Machine(R)</label>
+              <input [(ngModel)]="dashboardFrag.machine" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in32" placeholder="Machine(R)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in33" class="label">FINIS ATTENTE RI CLIENT</label>
+              <input [(ngModel)]="dashboardFrag.finisAttRiClient" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in33" placeholder="FINIS ATTENTE RI CLIENT">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in34" class="label">FINIS REPORT DE DELAI</label>
+              <input [(ngModel)]="dashboardFrag.finisReportDelai" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in34" placeholder="FINIS REPORT DE DELAI">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in35" class="label">Y+M</label>
+              <input [(ngModel)]="dashboardFrag.yM" class="img-thumbnail" type="number" nbInput
+                     fullWidth id="in35" placeholder="Y+M">
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="ECARTS">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in6" class="label">MQ/ Ecart de Stock</label>
+              <input [(ngModel)]="dashboardFrag.mqecartStock" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in6" placeholder="Ecart de stock">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in7" class="label">MQ RUPT PEREMP & CONSOM</label>
+              <input [(ngModel)]="dashboardFrag.mqRuptEtConsom" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in7" placeholder="MQ RUPT PEREMP & CONSOM">
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="PREVISIONS">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in37" class="label">Heures Prévues</label>
+              <input [(ngModel)]="dashboardFrag.hPrevus" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in37" placeholder="Heures  Prévues">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in38" class="label">Dont Retard</label>
+              <input [(ngModel)]="dashboardFrag.dontRetard" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in38" placeholder="Dont Retard">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in39" class="label">Fabricable (Net FAB +H)</label>
+              <input [(ngModel)]="dashboardFrag.fabricable" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in39" placeholder="Fabricable (Net FAB +H)">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in40" class="label">Volume Fabricable CMS</label>
+              <input [(ngModel)]="dashboardFrag.volumeFabricableCms" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in40" placeholder="Volume Fabricable CMS">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in41" class="label">% Fabricable de l'encours</label>
+              <input  value="{{((this.dashboardFrag.fabricable / this.dashboardFrag.encours) * 100)}}" class="img-thumbnail" type="number" nbInput
+                     disabled="true"
+                     fullWidth
+                     id="in41" placeholder="% Fabricable de l'encours">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in42" class="label">PREVISION (semaine)</label>
+              <input [(ngModel)]="dashboardFrag.previsions" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in42" placeholder="PREVISION">
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="CHARGE-CAPACITE">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in45" class="label">BESOIN EN ETP/102%</label>
+              <input [(ngModel)]="dashboardFrag.besoinEtp" class="img-thumbnail" type="number" nbInput fullWidth
+                     disabled="true"
+                     id="in45" placeholder="BESOIN EN ETP/102%">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in46" class="label">ETP DISPO</label>
+              <input [(ngModel)]="dashboardFrag.etpDispo" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in46" placeholder="ETP DISPO">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in47" class="label">EFFECTIIF EN PLUS</label>
+              <input [(ngModel)]="dashboardFrag.effectifPlus" class="img-thumbnail" type="number" nbInput
+                     fullWidth disabled="true"
+                     id="in47" placeholder="EFFECTIIF EN PLUS">
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+
+      <nb-tab tabTitle="EFFICIENCY GAP">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in48" class="label">heures Améliorationcont</label>
+              <input [(ngModel)]="dashboardFrag.heuresAmelioration" class="img-thumbnail" type="number" nbInput fullWidth
+                     id="in48" placeholder="Ecart de stock">
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label for="in49" class="label">heures formation</label>
+              <input [(ngModel)]="dashboardFrag.heuresFormation" class="img-thumbnail" type="number" nbInput
+                     fullWidth
+                     id="in49" placeholder="MQ RUPT PEREMP & CONSOM">
+            </div>
+          </div>
+        </div>
+      </nb-tab>
+    </nb-tabset>
+  </nb-card>
+  <nb-card>
+    <nb-card-body>
+      <ng2-smart-table
+              [settings]="settings"
+              [source]="source"
+      >
+      </ng2-smart-table>
+    </nb-card-body>
+  </nb-card>
+</div>

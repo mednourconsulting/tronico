@@ -1,0 +1,191 @@
+<div *ngIf="isAdmin" class="">
+  <div class="row">
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-header>
+          <div class="row">
+            <div class="col-sm-6">Fixer objectif PCD pour l'année : {{ currentYear }}</div>
+            <div class="col-sm-6">
+              <button (click)="saveOtdConfig()" class="btn btn-outline-primary fa-pull-right"><i
+                class="fa fa-plus-square"></i>Add
+              </button>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="full-name-inputs">
+            <div class="row">
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="inputFirstName" class="label">Objectif en Euro</label>
+                  <input [(ngModel)]="configOtdW.objectifEuro" class="img-thumbnail" type="number" nbInput fullWidth
+                         [disabled]="isAdmin==false" id="inputFirstName" placeholder="Objectif en Euro">
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="obj" class="label">Objectif en Qte</label>
+                  <input [(ngModel)]="configOtdW.objectifQte" class="img-thumbnail" type="number" nbInput fullWidth
+                         [disabled]="isAdmin==false" id="obj" placeholder="Objectif en Qte">
+                </div>
+              </div>
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-header>
+          <div class="row">
+            <div class="col-sm-6">Fixer objectif TRS (CMS) pour l'année : {{ currentYear }}</div>
+            <div class="col-sm-6">
+              <button [disabled]="atelier!='cms'" (click)="saveTrsConfig()" class="btn btn-outline-primary fa-pull-right">
+                <i class="fa fa-plus-square"></i>Add
+              </button>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="form-group">
+            <label for="trs" class="label">Objectif TRS</label>
+            <input [(ngModel)]="configTrs.objectif" class="img-thumbnail" type="number" nbInput fullWidth
+                   [disabled]="isAdmin==false || atelier!='cms'"
+                   id="trs" placeholder="Objectif Trs">
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-header>
+          <div class="row">
+            <div class="col-sm-6">Fixer objectif OTD pour l'année : {{ currentYear }}</div>
+            <div class="col-sm-6">
+              <button (click)="savePcdConfig()" class="btn btn-outline-primary fa-pull-right"><i
+                class="fa fa-plus-square"></i>Add
+              </button>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="form-group">
+            <label for="pcd" class="label">Objectif OTD</label>
+            <input [(ngModel)]="configPcdW.objectif" class="img-thumbnail" type="number" nbInput fullWidth
+                   [disabled]="isAdmin==false"
+                   id="pcd" placeholder="Objectif Pcd">
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-header>
+          <div class="row">
+            <div class="col-sm-6">Fixer objectif Productivite Mensuel pour l'année : {{ currentYear }}</div>
+            <div class="col-sm-6">
+              <button (click)="saveProductiviteMensuelConfig()" class="btn btn-outline-primary fa-pull-right"><i
+                class="fa fa-plus-square"></i>Add
+              </button>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="form-group">
+            <label for="prod" class="label">Objectif Productivité mensuel</label>
+            <input [(ngModel)]="configProductiviteMensuel.objectif" class="img-thumbnail" type="number" nbInput fullWidth
+                   [disabled]="isAdmin==false"
+                   id="prod" placeholder="Objectif Productivité mensuel">
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-header>
+          <div class="row">
+            <div class="col-sm-6">Ajouter un produit:</div>
+            <div class="col-sm-6">
+              <button (click)="saveProduit()" class="btn btn-outline-primary float-right"><i
+                class="fa fa-plus-square"></i>Add
+              </button>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="form-group">
+            <label for="produit" class="label">produit:</label>
+            <input [(ngModel)]="produit.produit" class="img-thumbnail" type="text" nbInput fullWidth
+                   [disabled]="isAdmin==false"
+                   id="produit" placeholder="Description du produit">
+          </div>
+          <div class="form-group">
+            <label for="produitDes" class="label">Desc produit:</label>
+            <input [(ngModel)]="produit.des" class="img-thumbnail" type="text" nbInput fullWidth
+                   [disabled]="isAdmin==false"
+                   id="produitDes" placeholder="Description du produit">
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+
+    <div class="col-lg-6">
+      <nb-card>
+        <nb-card-header>
+          <div class="row">
+            <div class="col-sm-6">Ajouter un Employé:</div>
+            <div class="col-sm-6">
+              <button (click)="saveEmploit()" class="btn btn-outline-primary float-right"><i
+                class="fa fa-plus-square"></i>Add
+              </button>
+            </div>
+          </div>
+        </nb-card-header>
+        <nb-card-body>
+          <div class="row">
+            <div class="col-lg-6">
+              <label for="produit" class="label">le nom d'employé:</label>
+              <input [(ngModel)]="employe.employe" class="img-thumbnail" type="text" nbInput fullWidth
+                     [disabled]="isAdmin==false"
+                     id="employe" placeholder="Employe">
+            </div>
+            <div class="col-lg-6">
+              <label for="produit" class="label">Commentaire:</label>
+              <input [(ngModel)]="employe.commentaire" class="img-thumbnail" type="text" nbInput fullWidth
+                     [disabled]="isAdmin==false"
+                     id="commentaire" placeholder="comment">
+
+            </div>
+          </div>
+        </nb-card-body>
+      </nb-card>
+    </div>
+  </div>
+
+
+  <nb-card>
+    <nb-card-body>
+      <div class="row">
+        <div class="col-lg-6">
+          <ng2-smart-table
+            (createConfirm)="createConfirm($event)"
+            [settings]="settingsProduit"
+            [source]="sourceProduit"
+            (deleteConfirm)="onDeleteConfirm($event)"
+            (editConfirm)="onSaveConfirm($event)">
+          </ng2-smart-table>
+        </div>
+        <div class="col-lg-6">
+          <ng2-smart-table
+            [settings]="settingsEmploye"
+            [source]="sourceEmploye">
+          </ng2-smart-table>
+        </div>
+      </div>
+    </nb-card-body>
+  </nb-card>
+
+</div>

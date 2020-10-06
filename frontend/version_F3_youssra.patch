@@ -1,0 +1,56 @@
+Index: src/app/pages/ordonance/evolutionheures/evolutionheures.component.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/ordonance/evolutionheures/evolutionheures.component.html	(revision d75abe20f133f2a3d4c97bef0a7d7c06582ea6a4)
++++ src/app/pages/ordonance/evolutionheures/evolutionheures.component.html	(date 1577169074954)
+@@ -1,6 +1,5 @@
+-<div *ngIf="isAdmin" class="">
+-<div class="row">
+-  <div class="col-sm-6">
++<div *ngIf="isAdmin" class="row">
++
+     <nb-card>
+       <nb-card-body>
+         <div class="row">
+@@ -55,8 +54,6 @@
+         <button (click)="addToList()" class="btn btn-outline-primary" type="submit" nbButton><i class="fa fa-plus-circle"></i>Add</button>
+       </nb-card-body>
+     </nb-card>
+-  </div>
+-  <div class="col-sm-6">
+ 
+     <nb-card>
+       <nb-card-header>
+@@ -119,8 +116,7 @@
+       <nb-card-footer class="form-inline">
+       </nb-card-footer >
+     </nb-card>
+-  </div>
+-</div>
++
+ 
+ <!------------------------------------------>
+ 
+Index: src/app/pages/ordonance/evolutionheures/evolutionheures.component.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/app/pages/ordonance/evolutionheures/evolutionheures.component.ts	(revision d75abe20f133f2a3d4c97bef0a7d7c06582ea6a4)
++++ src/app/pages/ordonance/evolutionheures/evolutionheures.component.ts	(date 1577177413333)
+@@ -33,8 +33,12 @@
+       confirmDelete: true,
+     },
+     columns: {
++      year: {
++        title: 'Année',
++        type: 'number',
++      },
+       week: {
+-        title: 'Week',
++        title: 'Semaine',
+         type: 'number',
+       },
+       budjet: {

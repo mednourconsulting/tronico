@@ -1,0 +1,139 @@
+
+<div *ngIf="isGranted || isAdmin" class="">
+  <nb-card>
+    <nb-card-body>
+      <div class="row">
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label  class="label">Mois</label>
+            <nb-select  [(ngModel)]="month" class="type-select "  nbSelect fullWidth
+                        placeholder="Mois" >
+              <nb-option *ngFor="let t of Month" [value]="t.value" >{{ t.month }}</nb-option>
+            </nb-select>
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <label for="inputFirstName1" class="label">Année</label>
+            <input [(ngModel)]="year" value="paretoEcartToJustify.week" class="img-thumbnail" type="number" nbInput fullWidth id="inputFirstName1" placeholder="Année">
+          </div>
+        </div>
+
+        <div class="col-sm-3">
+          <div class="form-group">
+            <button style="margin-top: 28px;" (click)="searsh()" class="btn btn-outline-primary fa-pull-right" ><i class="fa fa-plus-circle"></i> search</button>
+          </div>
+        </div>
+
+      </div>
+    </nb-card-body>
+  </nb-card >
+<nb-card *ngIf="Activate===true">
+  <nb-card-header>
+    <div class="row">
+      <div class="col-sm-6">
+        Plan Action Productivite</div>
+    <div class="col-sm-6"><button (click)="save()" class="btn btn-outline-primary" type="submit" nbButton><i class="fa fa-plus-circle"></i> Add</button></div></div>
+  </nb-card-header>
+  <nb-card-body>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputFirstName" class="label">Ecart (Euro)</label>
+          <input [(ngModel)]="planActProductivite.ecart"  class="img-thumbnail" type="number" nbInput fullWidth id="inputFirstName" placeholder="Produit">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputLastName" class="label">Produit</label>
+          <input [(ngModel)]="planActProductivite.produit"  class="img-thumbnail" type="number" nbInput fullWidth id="inputLastName" placeholder="Ecart Euro">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputLastName1" class="label">Besoin</label>
+          <textarea [(ngModel)]="planActProductivite.besoin" class="img-thumbnail" type="text" nbInput fullWidth id="inputLastName1" placeholder="Besoin">
+          </textarea></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputEmail" class="label">Cause</label>
+          <textarea [(ngModel)]="planActProductivite.cause" class="img-thumbnail" type="text" nbInput fullWidth id="inputEmail" placeholder="Cause"></textarea>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputWebsite" class="label">Action</label>
+          <textarea [(ngModel)]="planActProductivite.action"class="img-thumbnail" type="text-area" nbInput fullWidth id="inputWebsite" placeholder="Action"></textarea>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label class="label">Qui</label>
+          <nb-select  [(ngModel)]="planActProductivite.qui" class="type-select "  nbSelect fullWidth
+                      placeholder="Qui" >
+            <nb-option *ngFor="let t of collection" [value]="t.title" >{{ t.title }}</nb-option>
+          </nb-select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputEmail1" class="label">Date début</label>
+          <input [(ngModel)]="planActProductivite.dateDebut" class="img-thumbnail" type="date" nbInput fullWidth id="inputEmail1" placeholder="Date début">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputWebsite2" class="label">Date objectif</label>
+          <input [(ngModel)]="planActProductivite.dateObjectif" class="img-thumbnail" type="date" nbInput fullWidth id="inputWebsite2" placeholder="Date objectif">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputWebsite1" class="label">Date réalisation</label>
+          <input [(ngModel)]="planActProductivite.dateRealisation" class="img-thumbnail" type="date" nbInput fullWidth id="inputWebsite1" placeholder="Date réalisation">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputWebsite31" class="label">Action efficace</label>
+          <input [(ngModel)]="planActProductivite.actionEfficace" class="img-thumbnail" type="text" nbInput fullWidth id="inputWebsite31" placeholder="Action efficace">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputWebsite34" class="label">Généralisation possible</label>
+          <input [(ngModel)]="planActProductivite.generalisationPosssible" class="img-thumbnail" type="text" nbInput fullWidth id="inputWebsite34" placeholder="Généralisation possible">
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="form-group">
+          <label for="inputWebsite35" class="label">Commentaire</label>
+          <textarea [(ngModel)]="planActProductivite.comment" class="img-thumbnail" type="text" nbInput fullWidth id="inputWebsite35" placeholder="Commentaire">
+          </textarea></div>
+      </div>
+    </div>
+
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-body>
+    <ng2-smart-table
+      [settings]="settings"
+      [source]="source"
+      (createConfirm)="onCreateConfirm($event)"
+      (deleteConfirm)="onDeleteConfirm($event)"
+      (editConfirm)="onSaveConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+
+</div>

@@ -1,0 +1,52 @@
+<div *ngIf="isAdmin" class="">
+<nb-card>
+  <nb-card-header>Ajouter Spleet ecart OF</nb-card-header>
+  <nb-card-body *ngIf="isGranted">
+    <div class="full-name-inputs">
+      <div class="row">
+        <div class="col-lg-6">
+          <label class="label">Numéro client</label>
+          <input [(ngModel)]="spleetEcartOf.nClient" class="img-thumbnail" type="number" nbInput fullWidth
+                 placeholder="Numéro client">
+          <label class="label">Lot+</label>
+          <input [(ngModel)]="spleetEcartOf.lot" class="img-thumbnail" type="text" nbInput fullWidth
+                 placeholder="Lot+">
+          <label class="label">Description de produit</label>
+          <input [(ngModel)]="spleetEcartOf.descProduit" class="img-thumbnail" type="text" nbInput fullWidth
+                 placeholder="Description de produit">
+        </div>
+        <div class="col-lg-6">
+          <label class="label">Qte de base</label>
+          <input [(ngModel)]="spleetEcartOf.qteBase" class="img-thumbnail" type="number" nbInput fullWidth
+                 placeholder="Qte de base">
+          <label class="label">Qte solde</label>
+          <input [(ngModel)]="spleetEcartOf.qteSolde" class="img-thumbnail" type="number" nbInput fullWidth
+                 placeholder="Qte solde">
+          <label class="label">New tips</label>
+          <input [(ngModel)]="spleetEcartOf.newTips" class="img-thumbnail" type="text" nbInput fullWidth
+                 placeholder="New tips">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <label class="label">Commentaire</label>
+          <input [(ngModel)]="spleetEcartOf.comment" class="img-thumbnail" type="text" nbInput fullWidth
+                 placeholder="Commentaire">
+        </div>
+        <div class="col-lg-6">
+          <br>
+          <button style="margin-top: 8px;" (click)="save()" class="btn btn-outline-primary md-btn"><i class="fa fa-plus-circle"></i>Add</button>
+        </div>
+      </div>
+    </div>
+  </nb-card-body>
+</nb-card>
+<nb-card>
+  <nb-card-body>
+    <ng2-smart-table [settings]="settings" [source]="source" (createConfirm)="onCreat($event)"
+                     (editConfirm)="onEdit($event)" (deleteConfirm)="onDeleteConfirm($event)">
+    </ng2-smart-table>
+  </nb-card-body>
+</nb-card>
+<!--gantt [project]="project" [options]="options" (onGridRowClick)="gridRowClicked($event)"></gantt-->
+</div>
