@@ -47,11 +47,12 @@ export class Dashboard1Component implements OnInit {
       },
     },
   };
-  atelier: any;
-  atelierList = ['cms' , 'eiffel', 'technique', 'magasin' , 'Test', 'Vauban'];
+  atelierList:Array<string> = ['cms' , 'eiffel', 'technique', 'magasin' , 'Test', 'Vauban'];
+  atelier:string;
   constructor(private service: SpleetEcartOFService) { }
 
   ngOnInit() {
+    this.atelier=this.atelierList[0];
     this.service.getAll().subscribe(data => {
       this.source = data;
     });

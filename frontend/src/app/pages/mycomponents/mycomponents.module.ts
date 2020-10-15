@@ -20,7 +20,6 @@ import {
   NbTabsetModule,
 } from '@nebular/theme';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {ChartModule} from 'angular2-chartjs';
 import {Ng2SmartTableModule} from 'ng2-smart-table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
@@ -35,7 +34,6 @@ import { TrsChartComponent } from './trs-cms/trs-chart/trs-chart.component';
 import { RealisationChartComponent } from './realisation/realisation-chart/realisation-chart.component';
 import { PcdChartComponent } from './pcd-w/pcd-chart/pcd-chart.component';
 import { ParetoChartComponent } from './pareto-otd/pareto-chart/pareto-chart.component';
-import {ChartsModule} from 'angular-bootstrap-md';
 
 
 
@@ -50,7 +48,6 @@ import {ChartsModule} from 'angular-bootstrap-md';
         NbCardModule,
         FormsModule,
         NbInputModule,
-        ChartModule,
         ReactiveFormsModule,
         NbAccordionModule,
         NbSelectModule,
@@ -61,7 +58,6 @@ import {ChartsModule} from 'angular-bootstrap-md';
         NbButtonModule,
         GoogleChartsModule,
         NgxEchartsCoreModule,
-        ChartsModule,
     ],
     exports: [
         InfoBloqComponent,

@@ -1,15 +1,13 @@
 
 
-<div style="display: block">
-    <canvas mdbChart
-            [chartType]="chartType"
-            [datasets]="chartDatasets"
-            [labels]="chartLabels"
-            [colors]="chartColors"
-            [options]="chartOptions"
-            [legend]="true"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-    </canvas>
+<div style="display: block" *ngIf="!isDatasetsEmpty">
+    <google-chart #chart
+    [type]="chartType"
+    [data]="chartDatasets"
+    [columnNames]="dataColumnNames"
+    [options]="chartOptions"
+    [width]="chartSize.width"
+    [height]="chartSize.height">
+ </google-chart>
 </div>
 

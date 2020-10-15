@@ -7,6 +7,7 @@ import {LocalDataSource} from 'ng2-smart-table';
 import {ConfigPcdWService} from '../../../@core/backend/common/services/ConfigPcdW.service';
 import {UsersService} from '../../../@core/backend/common/services/users.service';
 import { NbThemeService, NbColorHelper } from '@nebular/theme';
+import { ConfigOtdService } from '../../../@core/backend/common/services/ConfigOtd.service';
 @Component({
   selector: 'ngx-otd-w',
   templateUrl: './otd-w.component.html',
@@ -78,7 +79,7 @@ export class OtdWComponent implements OnInit {
 
 
   constructor(private theme: NbThemeService, private service: OtdWeekService, private toastr: ToastrService, private router: Router,
-              private configOtdService: ConfigPcdWService, private userService: UsersService) {
+              private configOtdService: ConfigOtdService, private userService: UsersService) {
   }
 
   init() {

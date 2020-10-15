@@ -16,12 +16,12 @@
                         </select>
     </div></div></nb-card-body>
                     </nb-card>
-                <nb-card><nb-card-header>OTD</nb-card-header><ngx-otw-chart atelier="{{atelier}}" >{{atelier}}</ngx-otw-chart></nb-card>
-                <nb-card><nb-card-header>PCD</nb-card-header><ngx-pcd-chart atelier="{{atelier}}"></ngx-pcd-chart></nb-card>
-                <nb-card> <nb-card-header>TRS CMS</nb-card-header><ngx-trs-chart></ngx-trs-chart></nb-card>
+                <nb-card><nb-card-header>OTD</nb-card-header><ngx-otw-chart [atelier]="atelier" ></ngx-otw-chart></nb-card>
+                <nb-card><nb-card-header>PCD</nb-card-header><ngx-pcd-chart [atelier]="atelier"></ngx-pcd-chart></nb-card>
+                <nb-card> <nb-card-header>TRS CMS</nb-card-header><ngx-trs-chart [atelier]="atelier"></ngx-trs-chart></nb-card>
         <nb-card>
             <nb-card-header>Realisation</nb-card-header>
-            <ngx-realisation-chart atelier="cms"></ngx-realisation-chart>
+            <ngx-realisation-chart [atelier]="atelier"></ngx-realisation-chart>
         </nb-card>
     </div>
 </div>

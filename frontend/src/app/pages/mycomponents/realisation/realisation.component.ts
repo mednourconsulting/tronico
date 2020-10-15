@@ -16,7 +16,6 @@ import {UsersService} from '../../../@core/backend/common/services/users.service
 export class RealisationComponent implements OnInit {
   @Input() atelier: string;
   isGranted: boolean;
-  atl = this.atelier;
   isAdmin: boolean;
   realisationW: RealisationW = new  RealisationW();
   source: LocalDataSource = new LocalDataSource();

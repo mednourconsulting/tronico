@@ -1,3 +1,5 @@
+import { ConfigPcdWService } from './../../../@core/backend/common/services/ConfigPcdW.service';
+import { ConfigPcdW } from './../../model/ConfigPcdW';
 import {Component, Input, OnInit} from '@angular/core';
 import {PcdWeek} from '../../model/PcdWeek';
 import {PcdWeekService} from '../../../@core/backend/common/services/PcdWeek.service';
@@ -113,7 +115,7 @@ export class PcdWComponent implements OnInit {
     35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52];
 
   constructor(private theme: NbThemeService, private service: PcdWeekService, private toaster: ToastrService, private weekService: WeekMonthService,
-              private configPcdService: ConfigOtdService, private userservice: UsersService) {
+              private configPcdService: ConfigPcdWService, private userservice: UsersService) {
   }
 
   init() {
